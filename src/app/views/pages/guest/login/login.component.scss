@@ -1,0 +1,83 @@
+.login-error{
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    margin: 10px auto;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    color: #721c24;
+    font-weight: 600;
+    justify-content: center;
+}
+
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    opacity: 0.4;
+    border: 10px solid #ffffff;
+    border-top-color: #000000;
+    animation: spinner .8s linear infinite;
+  }
+
+
+  .bgimage {
+    background-image: url('assets/media/bg/bg-blue.jpg');
+  background-repeat: no-repeat;background-size: cover;
+  background-position: center;
+  height: 360px;;
+  }
+
+  .card-body{    background-color: #fff;
+    border-radius: 12px;
+    margin: 3px 0 3px 0;
+    padding: 66px 25px 27px;}
+  
+    .heading{width: 100%;
+      background-color: #1d5d94;
+      position: absolute;
+      top: 13px;
+      left: 0px;
+      padding: 3px 48px 0;
+      text-transform: uppercase;
+      font-size: 10px;}
+
+      .heading h2{color:#fff;}
+
+      .form-control{width:70%; float: right; display: inline-block;}
+      
+.form-group{position: relative; margin-left: 25px;}
+      .input-group {
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        width: 60%;
+        top: 0;
+        right: 0;
+    }
+
+    .right-align{text-align: right;}
+.captcha-code{width: 100%;;}
+    .captcha-image, .captcha-btn{display: inline-block;}
+
+    .bottom{width: 63%;
+      text-align: right;
+      float: right;}
+
+      .enter-captcha{display: contents; margin-top: 8px; margin-left: 9px; }
+      .enter-captcha label{margin-right: 20px;}
+      .enter-captcha .form-control{    width: 64%;  float: right;}
+      

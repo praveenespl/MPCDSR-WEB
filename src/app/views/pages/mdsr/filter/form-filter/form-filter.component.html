@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Filter <button type="button" class="float-right close" aria-label="Close" (click)="closeDialog()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <hr />
+</h1>
+<div mat-dialog-content style="overflow: visible;">
+  <formio [refresh]="refreshForm" [form]="filterForm" #filterFormRef (submit)="onNoClick($event)"></formio>
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div> -->

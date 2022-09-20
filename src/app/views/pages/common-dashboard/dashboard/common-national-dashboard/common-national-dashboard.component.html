@@ -1,0 +1,190 @@
+<!-- <div class="container-fluid main-grid">
+  <div class="left-col main">
+    <div class="MDSR">
+      <div class="banner">
+
+        <h3>MDSR</h3>
+
+      </div>
+      <div class="container">
+        <div class="box">
+          <div class="icon">
+            01
+          </div>
+          <div class="content">
+            <p> Name</p>
+
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="icon">
+            02
+          </div>
+          <div class="content">
+            <p> Name</p>
+
+
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="icon">
+            03
+          </div>
+          <div class="content">
+            <p> Name</p>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="icon">
+            04
+          </div>
+          <div class="content">
+            <p> Name</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right-col main">
+    <div class="CDR">
+      <div class="banner">
+        <h3>CDR</h3>
+      </div>
+      <div class="container">
+        <div class="box">
+          <div class="icon">
+            01
+          </div>
+          <div class="content">
+            <p> Name</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="icon">
+            02
+          </div>
+          <div class="content">
+            <p> Name</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="icon">
+            03
+          </div>
+          <div class="content">
+            <p> Name</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="row">
+
+  <div class="col-sm-6 indicators-layout mat-elevation-z8">
+    <h5>MDR</h5>
+    <div class="row mt-4">
+      <div class="col-sm-6  top-item">
+        <div class="card my-card has-background-gradient-teal">
+          <div class="my-auto mx-auto">
+            <span class="fa fa-child my-icon py-3 px-4"></span>
+          </div>
+          <div class="my-auto px-4">
+            <p class="mb-1 text-uppercase card-title-size"># Reported Deaths <small>(15-49)</small></p>
+            <h2 class="text-right">{{ mdsrIndicators?.totDeath }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6  top-item">
+        <div class="card my-card has-background-gradient-blue">
+          <div class="my-auto mx-auto">
+            <span class="fa fa-check-double my-icon py-3 px-4"></span>
+          </div>
+          <div class="my-auto px-4">
+            <p class="mb-1 text-uppercase card-title-size"># Maternal Deaths</p>
+            <h2 class="text-right">{{ mdsrIndicators?.totMaternalDeath }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6  top-item">
+        <div class="card my-card has-background-gradient-orange">
+          <div class="my-auto mx-auto">
+            <span class="fa fa-clock my-icon py-3 px-4"></span>
+          </div>
+          <div class="my-auto px-4">
+            <p class="mb-1 text-uppercase card-title-size"># Review Pending</p>
+            <h2 class="text-right">{{
+              mdsrIndicators?.totMaternalDeath - mdsrIndicators?.mdsrForm5
+              }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6  top-item">
+        <div class="card my-card has-background-gradient-green">
+          <div class="my-auto mx-auto">
+            <span class="fa fa-calendar-check my-icon py-3 px-4"></span>
+          </div>
+          <div class="my-auto px-4">
+            <p class="mb-1 text-uppercase card-title-size"># Review Completed</p>
+            <h2 class="text-right">{{ mdsrIndicators?.mdsrForm5 }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 indicators-layout mat-elevation-z8">
+    <h5>CDR</h5>
+    <div class="row mt-4">
+      <div class="col-sm-6  top-item">
+        <div class="card my-card has-background-gradient-yellow">
+          <div class="my-auto mx-auto">
+            <span class="fa fa-child my-icon py-3 px-4"></span>
+          </div>
+          <div class="my-auto px-4">
+            <p class="mb-1 text-uppercase card-title-size">Deaths Notified</p>
+            <h2 class="text-right">{{cdrIndicators.cdrDeathCount | number:'3.0-0'}}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6  top-item">
+        <div class="card my-card has-background-gradient-blue2">
+          <div class="my-auto mx-auto">
+            <span class="fa fa-check-double my-icon py-3 px-4"></span>
+          </div>
+          <div class="my-auto px-4">
+            <p class="mb-1 text-uppercase card-title-size">Verified FBIR</p>
+            <h2 class="text-right">{{cdrIndicators.cdrVerified | number:'3.0-0'}}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6  top-item">
+        <div class="card my-card has-background-gradient-maroon">
+          <div class="my-auto mx-auto">
+            <span class="fa fa-clock my-icon py-3 px-4"></span>
+          </div>
+          <div class="my-auto px-4">
+            <p class="mb-1 text-uppercase card-title-size">Review Pending</p>
+            <h2 class="text-right">{{cdrIndicators.cdrPending | number:'3.0-0'}}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6  top-item">
+        <div class="card my-card has-background-gradient-green2">
+          <div class="my-auto mx-auto">
+            <span class="fa fa-calendar-check my-icon py-3 px-4"></span>
+          </div>
+          <div class="my-auto px-4">
+            <p class="mb-1 text-uppercase card-title-size">Review Done</p>
+            <h2 class="text-right">{{cdrIndicators.cdrDone | number:'3.0-0'}}</h2>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

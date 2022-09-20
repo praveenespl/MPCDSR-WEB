@@ -1,0 +1,84 @@
+@import "../../../../../../assets/sass/mat-table.scss";
+@import "sass/pages/wizard/wizard-3";
+.mat-row:nth-child(even) {
+	background-color: rgb(240, 245, 239);
+}
+// ::ng-deep mat-footer-row,
+// mat-header-row,
+// mat-row,
+// td.mat-cell,
+// td.mat-footer-cell,
+// th.mat-header-cell {
+// 	border-bottom-color: black;
+// }
+// ::ng-deep th.mat-header-cell {
+// 	background-color: #337ab7;
+// 	color: #ffff;
+// 	font-size: 14px;
+// }
+::ng-deep {
+	.formio_table {
+		& table {
+			table-layout: fixed;
+			& .row {
+				display: table-row !important;
+				flex-wrap: nowrap !important;
+				margin-right: 0;
+				margin-left: 0;
+			}
+			& tbody label {
+				font-size: 1rem !important;
+				color: black !important;
+				font-weight: 600 !important;
+			}
+			& thead th {
+				text-align: center;
+				font-weight: 600 !important;
+				background-color: #e6e6ec;
+			}
+		}
+		& .formio-choices.form-group {
+			min-width: initial !important;
+			margin-bottom: 0;
+		}
+	}
+
+	#evdjms9 {
+		float: right !important;
+		position: relative !important;
+		top: 11.6rem !important;
+		right: 0.8rem;
+	}
+
+	#finalSubmit {
+		float: right !important;
+		position: relative !important;
+		top: 28.4rem !important;
+		right: 0.8rem;
+	}
+	#editor {
+		position: relative;
+		top: -7rem;
+		margin-bottom: -7rem;
+	}
+	mat-panel-title{
+		font-size: 1.6rem;
+		font-weight: 500;
+	}
+
+	#diagnosis1 {
+		float: right !important;
+		position: relative !important;
+		top: 7.4rem !important;
+		right: 2.8rem;
+		z-index: 1000;
+	}
+
+	#diagnosis2 {
+		float: right !important;
+		position: relative !important;
+		top: 7.4rem !important;
+		right: 3.8rem;
+		z-index: 1000;
+	}
+}

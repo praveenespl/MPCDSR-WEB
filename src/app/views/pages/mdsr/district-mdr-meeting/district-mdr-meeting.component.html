@@ -1,0 +1,147 @@
+<!-- Modal / Popup -->
+<div id="myModall" class="modall" *ngIf="ShowModal">
+
+    <div class="modall-content">
+        <span class="close" (click)="ShowModal=false">&times;</span>
+        <br/><br/>
+        <button mat-raised-button color="primary" class="savemeeting"  (click)="createMeeting()">Save</button>
+
+            <br/><br/>
+
+        <kt-portlet>
+            <!-- <kt-portlet-header [title]="'State MDR Meeting '" [class]="'kt-portlet__head--lg'">
+                <ng-container ktPortletTools>
+                </ng-container>
+            </kt-portlet-header> -->
+
+            <kt-portlet-body>
+                <div class="position-relative">
+                </div>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <!-- <h5 class="col-12">Basic Information</h5> -->
+                        <div class="col-md-4">
+                            <div class="form-group col-md-12">
+                                <label class="i-field-required">Date of Meeting</label>
+                                <span class="asterisk_input"> </span>
+                                <div class="input-group mb-2 calendar-border">
+                                    <input readonly required class="form-control" selectMode="single"
+                                        formControlName="date" [owlDateTime]="date"
+                                        [owlDateTimeTrigger]="date" hour12Timer="true"
+                                        placeholder="Course From Date" />
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i [owlDateTimeTrigger]="date" class="fas fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                    <owl-date-time [pickerMode]="'popup'" [pickerType]="'calendar'" #date>
+                                    </owl-date-time>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="i-field-required">Upload Meeting Photos</label>
+                                <div class="input-group ">
+                                    <input class="form-control" [hidden]="true" (change)="getFile($event)" type="file"
+                                        accept="image/*" #file (click)="file.value = null" multiple />
+                                    <input class="form-control" placeholder="Upload Meeting Photos" readonly matInput
+                                        formControlName="meeting_photos" />
+                                    <div class="input-group-append" style="border: 1px solid #e2e5ec;
+                                height: calc( 1.5em + 1.3rem + 2px ) !important;">
+                                        <button class="input-group-text" matSuffix mat-icon-button
+                                            (click)="file.click()" matTooltip="Select a file"
+                                            [matTooltipPosition]="'above'">
+                                            <mat-icon class="uploadIcon">file_upload</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="i-field-required">Upload Meeting Minutes</label>
+                                <div class="input-group ">
+                                    <input class="form-control" [hidden]="true" (change)="getFileMinutes($event)" type="file"
+                                        accept="image/*" #file (click)="file.value = null" multiple />
+                                    <input class="form-control" placeholder="Upload Meeting Minutes" readonly matInput
+                                        formControlName="meeting_minutes" />
+                                    <div class="input-group-append" style="border: 1px solid #e2e5ec;
+                                height: calc( 1.5em + 1.3rem + 2px ) !important;">
+                                        <button class="input-group-text" matSuffix mat-icon-button
+                                            (click)="file.click()" matTooltip="Select a file"
+                                            [matTooltipPosition]="'above'">
+                                            <mat-icon class="uploadIcon">file_upload</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group col-md-12">
+                                <label class="i-field-required">Meeting Attendees</label>
+                                <div class="form align-items-center mb-3"
+                                    *ngFor="let meeting_attendee of form.get('attendees')['controls']; let i=index"
+                                    [formGroup]="meeting_attendee">
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" placeholder="Name"
+                                            formControlName="name">
+                                        <input class="ml-2 form-control" type="text" placeholder="Designation"
+                                            formControlName="designation">
+                                        <i class="d-flex align-items-center float-right pointer ml-2 fas fa-trash-alt text-danger"
+                                            (click)="deleteMeetingAttendee(i)"
+                                            *ngIf="form.get('attendees')['controls'].length > 3"></i>
+                                    </div>
+                                </div>
+                                <button class="mt-2 float-right" mat-mini-fab color="primary"
+                                    aria-label="Add Meeting Attendee" (click)="addItem()">
+                                    <mat-icon>plus_one</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </form>
+            </kt-portlet-body>
+        </kt-portlet>
+
+
+
+
+    </div>
+</div>
+
+<kt-portlet>
+    <button mat-raised-button color="primary" class="addmeeting"  (click)="ShowModal=true">Add meeting</button>
+
+    <kt-portlet-header [title]="'State MDR Meeting '" [class]="'kt-portlet__head--lg'">
+        <ng-container ktPortletTools>
+        </ng-container>
+    </kt-portlet-header>
+
+
+    <table class="table table-sm">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>Date of Meeting</th>
+                <th>Meeting Photos</th>
+                <th>Meeting Minutes</th>
+                <th>Meeting Attendees</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of Meetings; let i = index">
+                <td class="thlook" ><span>{{ data.date | date:'dd-MM-yyyy' }}</span></td>
+                <td class="tdlook" style="cursor:pointer;">
+
+                </td>
+                <td class="tdlook" style="cursor:pointer;">
+
+                </td>
+                <td class="tdlook" style="cursor:pointer;">
+                    {{data.attendees.length}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</kt-portlet>

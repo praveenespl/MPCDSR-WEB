@@ -1,0 +1,16 @@
+<div class="col-lg-12">
+	<kt-notification-index-table
+		[title]="'Form 5: For Investigation of Maternal Deaths Data'"
+		[tableDataSource]="dataSource"
+		(editForm)="editForm($event)"
+		(viewForm)="viewForm($event)"
+		(addForm)="addForm($event)"
+		(showFilters)="showFilters()"
+		[columns]="columns"
+		[columnsToDisplay]="columnsToDisplay"
+		[viewOnly]="false"
+		[pdf]="true"
+		[isFormLevel]="true"
+		[formFilter]="'form5'"
+	></kt-notification-index-table>
+</div>

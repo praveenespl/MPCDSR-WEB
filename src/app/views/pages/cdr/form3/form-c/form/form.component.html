@@ -1,0 +1,3600 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<kt-portlet-header
+		[title]="'Form 3C: Social Autopsy Form'"
+		[class]="'kt-portlet__head--lg'"
+	>
+		<ng-container ktPortletTools>
+			<a mat-raised-button color="warn" (click)="backClicked()">
+				Back
+			</a>
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body>
+		<div class="kt-form">
+			<div>
+				<strong>Note:</strong>
+				<ul>
+					<li>
+						To be filled for all verbal autopsies conducted and attach with the same.
+					</li>
+				</ul>
+			</div>
+			<hr />
+
+			<form [formGroup]="form">
+				<!--begin: Wizard -->
+				<div
+					#wizard
+					class="kt-grid kt-wizard-v3 kt-wizard-v3--white"
+					id="kt_wizard_v3"
+					data-ktwizard-state="step-first"
+				>
+					<div class="kt-grid__item">
+						<!--begin: Form Wizard Nav -->
+						<div class="kt-wizard-v3__nav">
+							<div
+								class="kt-wizard-v3__nav-items scrollbar"
+								id="scrollbar"
+								style="overflow-x: auto;"
+							>
+								<a
+									class="kt-wizard-v3__nav-item"
+									href="javascript:;"
+									data-ktwizard-type="step"
+									data-ktwizard-state="current"
+								>
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Basic
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+								<a
+									class="kt-wizard-v3__nav-item"
+									href="javascript:;"
+									data-ktwizard-type="step"
+								>
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section A
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+								<a
+									class="kt-wizard-v3__nav-item"
+									href="javascript:;"
+									data-ktwizard-type="step"
+								>
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section B
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+
+								<a
+									class="kt-wizard-v3__nav-item"
+									href="javascript:;"
+									data-ktwizard-type="step"
+								>
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section C
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+
+								<a
+									class="kt-wizard-v3__nav-item"
+									href="javascript:;"
+									data-ktwizard-type="step"
+								>
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section D
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<!--end: Form Wizard Nav -->
+					</div>
+					<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+						<!--begin: Form Wizard Form-->
+						<div class="kt-form" id="kt_form">
+							<!--begin: Form Wizard Step 1-->
+							<div
+								class="kt-wizard-v3__content"
+								data-ktwizard-type="step-content"
+								data-ktwizard-state="current"
+							>
+								<!-- <div class="kt-heading kt-heading--md">
+							HEADING
+						</div> -->
+								<div
+									class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('basic') as formBasic"
+								>
+									<div class="row">
+										<!--  -->
+										<div
+											class="form-group col-md-3"
+											*ngIf="{
+												control: formBasic.get('mcts_number'),
+												label: 'MCTS/RCH-ID',
+												required: true,
+												type: 'text'
+											} as form_input"
+										>
+											<kt-form-input
+												onlyNumber
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+									</div>
+								</div>
+							</div>
+							<!--end: Form Wizard Step 1-->
+
+							<!--begin: Form Wizard Step 2-->
+							<div
+								class="kt-wizard-v3__content"
+								data-ktwizard-type="step-content"
+							>
+								<div
+									class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('sectionA') as formSectionA"
+								>
+									<div class="row">
+										<!--  -->
+										<div
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('informant_name'),
+												label: 'Name of key informant',
+												required: true,
+												type: 'text'
+											} as form_input"
+										>
+											<kt-form-input
+												onlyAlphabets
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('informant_relation'),
+												label: 'Relation of key informant to deceased(Child)',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Brother/Sister',
+														'Mother/Father',
+														'Neighbour/No relationGrandfather/Grandmother',
+														'Other relative'
+													]
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('place_of_death'),
+												label: 'Place of death of child',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Home',
+														'On way to health facility/in transit',
+														'Sub Center',
+														'PHC/CHC/Rural Hospital',
+														'District Hospital',
+														'Medical College',
+														'Private Hospital',
+														'Other',
+														'DNK'
+													]
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+										formSectionA.get('place_of_death').value != 'On way to health facility/in transit'
+									"
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('actual_place_of_death'),
+												label: 'Actual Place of Death',
+												tooltip: '',
+												required: formSectionA.value.place_of_death=='On way to health facility/in transit',
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Home to facility',
+														'facility to facility',
+														'facility to home'
+													]
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[tooltip]="form_input?.tooltip"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+											[hidden]="formSectionA.value.place_of_death != 'Other'"
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('place_of_death_other'),
+												label: 'Other',
+												required: formSectionA.value.place_of_death == 'Other',
+												type: 'text'
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+											class="form-group col-md-4"
+											maxlength="10"
+											*ngIf="{
+												control: formSectionA.get('contact_number'),
+												label: 'Telephone/Mobile Number',
+												required: true,
+												type: 'number'
+											} as form_input"
+										>
+											<kt-form-input
+												onlyNumber
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('number_of_family_members'),
+												label: 'Total number of family members of deceased(child)',
+												required: true,
+												type: 'number'
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('number_of_children'),
+												label: 'Number of children < 5 years',
+												required: true,
+												type: 'number'
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('cast'),
+												label: 'Caste',
+												tooltip: '',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['SC','ST', 'OBC', 'General','NA']
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[tooltip]="form_input?.tooltip"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!-- <div
+											class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionA.get('cast'),
+												label: 'Caste',
+												required: true,
+												type: 'text'
+											} as form_input"
+										>
+											<kt-form-input
+												onlyAlphabets
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div> -->
+										<!--  -->
+										<div
+											class="form-group col-md-4"
+											*ngIf="{
+												control: formSectionA.get('below_poverty_line'),
+												label: 'Do you have Below Poverty Line (BPL) card',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+											class="form-group col-md-12"
+											*ngIf="{
+												control: formSectionA.get('family_assets'),
+												label:
+													'What are the key family assets: (Multiple answers allowed. tick all that apply)',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Vehicle (motorised)',
+														'Television',
+														'Own House',
+														'Own Land',
+														'Cattles',
+														'Telephone'
+													],
+													multiple: true
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+										<!--  -->
+									</div>
+								</div>
+							</div>
+							<!--end: Form Wizard Step 2-->
+
+							<!--begin: Form Wizard Step 3-->
+							<div
+								class="kt-wizard-v3__content"
+								data-ktwizard-type="step-content"
+							>
+								<div
+									class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('sectionB') as formSectionB"
+								>
+									<div class="row">
+										<!--  -->
+										<div
+											class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionB.get(
+													'asha_aww_vhn_anm_advice_on_hospital'
+												),
+												label:
+													'Did ASHA/AWW/VHN/ANM advice on hospital treatment?',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No', 'DNK']
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div
+											[hidden]="
+												formSectionB.value
+													.asha_aww_vhn_anm_advice_on_hospital != 'Yes'
+											"
+											class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionB.get('who_advised'),
+												label: 'Who advised',
+												required:
+													formSectionB.value
+														.asha_aww_vhn_anm_advice_on_hospital == 'Yes',
+												type: 'select',
+												selectOptions: {
+													items: ['ASHA', 'ANM', 'Link worker', 'Other']
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+
+										<!--  -->
+										<!-- <div
+											[hidden]="
+												formSectionB.value
+													.asha_aww_vhn_anm_advice_on_hospital != 'Yes' &&
+												formSectionB.value.who_advised != 'Other'
+											"
+											class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionB.get('who_advised_other'),
+												label: 'Who advised',
+												required:
+													formSectionB.value
+														.asha_aww_vhn_anm_advice_on_hospital == 'Yes' &&
+													formSectionB.value.who_advised == 'Other',
+												type: 'text'
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+											></kt-form-input>
+										</div> -->
+
+										<!--  -->
+										<div
+											class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionB.get('seek_care_outside_home'),
+												label:
+													'During the illness that led to the death, did you seek care outside the home for the infant?',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No', 'DNK']
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+												[isSubmitted]="isSubmitted"
+												[viewOnly]="viewOnly"
+											></kt-form-input>
+										</div>
+
+										<!--  -->
+										<ng-container
+											*ngIf="formSectionB.value.seek_care_outside_home == 'No'"
+										>
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('illness_was_serious'),
+													label: 'Did not think that the illness was serious',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('money_not_available'),
+													label: 'Money not available for treatment',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'family_members_were_not_able_to_accompany'
+													),
+													label: 'Family members were not able to accompany',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('bad_weather'),
+													label: 'Bad Weather',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'did_not_know_where_to_take'
+													),
+													label: 'Did not know where to take the infant',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('no_hope_for_survival'),
+													label: 'No hope for survival of the infant',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('transport_not_available'),
+													label: 'Transport not available',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('others'),
+													label: 'Others',
+													type: 'text'
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+										</ng-container>
+										<!--  -->
+
+										<ng-container
+											*ngIf="formSectionB.value.seek_care_outside_home != 'No'"
+										>
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'condition_when_decide_for_medical_consultation'
+													),
+													label:
+														'What was the condition of the infant at the time when it was decided for medical consultation?',
+													required: false,
+													type: 'select',
+													selectOptions: {
+														items: [
+															'Alert/Active/feeding',
+															'Conscious but Drowsy/Inactive/Unable to feed',
+															'Unconscious'
+														]
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<!-- <div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'condition_when_decide_for_medical_consultation'
+													),
+													label:
+														'What was the condition of the infant at the time when it was decided for medical consultation?',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: [
+															'Alert/Active/feeding',
+															'Conscious but Drowsy/Inactive/Unable to feed',
+															'Unconscious'
+														]
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+												></kt-form-input>
+											</div> -->
+											<!--  -->
+											<h5 class="col-12">
+												From where or from whom did you seek care?
+											</h5>
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'quack_informal_service_providers'
+													),
+													label: 'Quack/informal service providers',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'traditional_healer_religious_healer'
+													),
+													label: 'Traditional Healer/Religious Healer',
+													required: false,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('sub_centre'),
+													label: 'Sub Centre',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('phc'),
+													label: 'PHC',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('chc'),
+													label: 'CHC',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('sub_district_hospital'),
+													label: 'Sub-District Hospital',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('district_govt__Hospital'),
+													label: 'District (Govt.) Hospital',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get('district_govt__Hospital'),
+													label: 'Private Allopathic Doctor',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'private_allopathic_doctor'
+													),
+													label: 'Private allopathic doctor',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'reason_for_seeking_care_from_there'
+													),
+													label: 'Doctors in alternate system of medicine',
+													required: false,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+											<!--  -->
+
+											<div class="col-12">
+												<h5>
+													Problems faced by the parents in getting treatment in
+													the health facility: Now I will ask you questions
+													related to problems you might have faced in getting
+													the treatment from various health facilities.
+												</h5>
+
+												<table
+													class="table table-sm table-responsive table-bordered"
+												>
+													<thead>
+														<tr>
+															<th>Details</th>
+															<th>First Health Facility</th>
+															<th>Referral Institution I</th>
+															<th>Referral Institution II</th>
+															<th>Referral Institution III</th>
+														</tr>
+													</thead>
+													<tbody>
+														<!--  -->
+														<tr>
+															<td>
+																Specify in which hospital you took the baby
+																first and then where was the baby taken
+																thereafter?
+																<!--  -->
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'hospital_you_took_baby_type'
+																		),
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Govt.',
+																				'Private',
+																				'Not for profit'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'hospital_you_took_baby_first_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'hospital_you_took_baby_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'hospital_you_took_baby_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'hospital_you_took_baby_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																Specify the problem/complication with which baby
+																was taken to this facility.
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'problem_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'problem_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'problem_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'problem_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																Total time taken from the onset of the problem
+																to reach this facility (from home to the
+																facility)
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'time_taken_to_reach_facility_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'time_taken_to_reach_facility_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'time_taken_to_reach_facility_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'time_taken_to_reach_facility_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																Type of treatment received in the
+																institution/hospital
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'treatment_received_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'treatment_received_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'treatment_received_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'treatment_received_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																Specify the reasons for referring to another
+																institution
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_referring_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Lack of Specialists',
+																				'Lack of Equipments',
+																				'Others'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+																<div
+																	[hidden]="
+																		formSectionB.value
+																			.reasons_for_referring_health_facility !=
+																		'Other'
+																	"
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_referring_other_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_referring_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Lack of Specialists',
+																				'Lack of Equipments',
+																				'Others'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+																<div
+																	[hidden]="
+																		formSectionB.value
+																			.reasons_for_referring_referral_institution_i !=
+																		'Other'
+																	"
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_referring_other_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_referring_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Lack of Specialists',
+																				'Lack of Equipments',
+																				'Others'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+																<div
+																	[hidden]="
+																		formSectionB.value
+																			.reasons_for_referring_referral_institution_ii !=
+																		'Other'
+																	"
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_referring_other_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_referring_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Lack of Specialists',
+																				'Lack of Equipments',
+																				'Others'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+																<div
+																	[hidden]="
+																		formSectionB.value
+																			.reasons_for_referring_referral_institution_iii !=
+																		'Other'
+																	"
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_referring_other_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																Mode of transport from one institution to other
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'ransport_from_one_institution_to_other_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'ransport_from_one_institution_to_other_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'ransport_from_one_institution_to_other_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'ransport_from_one_institution_to_other_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																Distance from one facility to other ( in kms)
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'distance_from_one_institution_to_other_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'distance_from_one_institution_to_other_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'distance_from_one_institution_to_other_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'distance_from_one_institution_to_other_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																If baby was taken to any institution other than
+																the one referred, state the reasons
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'state_the_reasons_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'state_the_reasons_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'state_the_reasons_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'state_the_reasons_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																If baby was taken to any institution other than
+																the one referred, who advised (eg; caregivers,
+																relatives etc.)
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'who_advised_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'who_advised_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'who_advised_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'who_advised_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																Was the child attended immediately
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'child_attended_immediately_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: ['Yes', 'No']
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'child_attended_immediately_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: ['Yes', 'No']
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'child_attended_immediately_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: ['Yes', 'No']
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'child_attended_immediately_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: ['Yes', 'No']
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																If yes, time taken to initiate treatment in the
+																institution on reaching the hospital in Mins
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'time_taken_to_initiate_treatment_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'time_taken_to_initiate_treatment_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'time_taken_to_initiate_treatment_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'time_taken_to_initiate_treatment_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+														<tr>
+															<td>
+																Reasons for the delay in initiating treatment
+																(Use your judgment in arriving the reasons)
+															</td>
+															<!--  -->
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_delay_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Doctor not available',
+																				'Paramedical workers not available',
+																				'Too much patient rush',
+																				'Informal payment',
+																				'Mobilizing specialists',
+																				'Could not afford to pay for the services',
+																				'Investigations could not be done',
+																				'Other problem'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+																<div
+																	[hidden]="
+																		formSectionB.value
+																			.reasons_for_delay_health_facility !=
+																		'Other problem'
+																	"
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_delay_other_health_facility'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		placeholder="Other"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_delay_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Doctor not available',
+																				'Paramedical workers not available',
+																				'Too much patient rush',
+																				'Informal payment',
+																				'Mobilizing specialists',
+																				'Could not afford to pay for the services',
+																				'Investigations could not be done',
+																				'Other problem'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+																<div
+																	[hidden]="
+																		formSectionB.value
+																			.reasons_for_delay_referral_institution_i !=
+																		'Other problem'
+																	"
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_delay_other_referral_institution_i'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		placeholder="Other"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_delay_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Doctor not available',
+																				'Paramedical workers not available',
+																				'Too much patient rush',
+																				'Informal payment',
+																				'Mobilizing specialists',
+																				'Could not afford to pay for the services',
+																				'Investigations could not be done',
+																				'Other problem'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+																<div
+																	[hidden]="
+																		formSectionB.value
+																			.reasons_for_delay_referral_institution_ii !=
+																		'Other problem'
+																	"
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_delay_other_referral_institution_ii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		placeholder="Other"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+															<td>
+																<div
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_delay_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'select',
+																		selectOptions: {
+																			items: [
+																				'Doctor not available',
+																				'Paramedical workers not available',
+																				'Too much patient rush',
+																				'Informal payment',
+																				'Mobilizing specialists',
+																				'Could not afford to pay for the services',
+																				'Investigations could not be done',
+																				'Other problem'
+																			]
+																		}
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+																<div
+																	[hidden]="
+																		formSectionB.value
+																			.reasons_for_delay_referral_institution_iii !=
+																		'Other problem'
+																	"
+																	*ngIf="{
+																		control: formSectionB.get(
+																			'reasons_for_delay_other_referral_institution_iii'
+																		),
+																		label: '',
+																		required: false,
+																		type: 'text'
+																	} as form_input"
+																>
+																	<kt-form-input
+																		[formControl]="form_input?.control"
+																		[showLabel]="false"
+																		[type]="form_input?.type"
+																		[label]="form_input?.label"
+																		[errorLabel]="
+																			form_input?.label ||
+																			form_input?.errorLabel
+																		"
+																		placeholder="Other"
+																		[errors]="form_input?.control.errors"
+																		[required]="form_input?.required"
+																		[selectOptions]="form_input?.selectOptions"
+																		[isSubmitted]="isSubmitted"
+																		[viewOnly]="viewOnly"
+																	></kt-form-input>
+																</div>
+															</td>
+														</tr>
+
+														<!--  -->
+													</tbody>
+												</table>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'discharged_against_medical_advice_absconded'
+													),
+													label:
+														'If the baby was shown as having been discharged against medical advice/absconded, record the reasons for the same.',
+													required: false,
+													type: 'text'
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'discharge_due_to_dissatisfaction_of_treatment'
+													),
+													label:
+														'Was the discharge due to the dissatisfaction of the treatment given in the hospital?',
+													required: false,
+													type: 'text'
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+
+											<!--  -->
+											<div
+												class="form-group col-md-3"
+												*ngIf="{
+													control: formSectionB.get(
+														'states_of_child_at_timed_of_lama_Discharge'
+													),
+													label:
+														'What was the states of child at the timed of LAMA/ Discharge',
+													required: false,
+													type: 'text'
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+										</ng-container>
+
+										<!--  -->
+									</div>
+								</div>
+							</div>
+							<!--end: Form Wizard Step 3-->
+
+							<!--begin: Form Wizard Step 4-->
+							<div
+								class="kt-wizard-v3__content"
+								data-ktwizard-type="step-content"
+								*ngIf="form.get('sectionC') as formSectionC"
+							>
+								<!--  -->
+								<div class="row">
+									<!--  -->
+									<h4 class="col-12">Brief social history of the family</h4>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionC.get(
+												'history_of_alcoholism_in_family'
+											),
+											label: 'Any history of alcoholism in family',
+											required: false,
+											type: 'select',
+											selectOptions: {
+												items: ['Yes', 'No', 'DNK']
+											}
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[errorLabel]="form_input?.label || form_input?.errorLabel"
+											[errors]="form_input?.control.errors"
+											[required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<!-- <div
+										class="form-group col-md-3"
+										*ngIf="{
+											control: formSectionC.get(
+												'history_of_alcoholism_in_family'
+											),
+											label: 'Any history of alcoholism in family',
+											required: true,
+											type: 'select',
+											selectOptions: {
+												items: ['Yes', 'No', 'DNK']
+											}
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[errorLabel]="form_input?.label || form_input?.errorLabel"
+											[errors]="form_input?.control.errors"
+											[required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions"
+										></kt-form-input>
+									</div> -->
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionC.get('history_of_smoking_in_family'),
+											label: 'Any history of smoking in family',
+											required: false,
+											type: 'select',
+											selectOptions: {
+												items: ['Yes', 'No', 'DNK']
+											}
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[errorLabel]="form_input?.label || form_input?.errorLabel"
+											[errors]="form_input?.control.errors"
+											[required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionC.get(
+												'history_of_domestic_violence_in_family'
+											),
+											label: 'Any history of domestic violence in family',
+											required: false,
+											type: 'select',
+											selectOptions: {
+												items: ['Yes', 'No', 'DNK']
+											}
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[errorLabel]="form_input?.label || form_input?.errorLabel"
+											[errors]="form_input?.control.errors"
+											[required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<h4 class="col-12">
+										Awareness of mother & family members about treatment Seeking
+									</h4>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionC.get(
+												'danger_signs_when_taken_to_health_facility'
+											),
+											label:
+												'Do you know the danger signs when a newborn or infant should be taken to health facility?',
+											required: false,
+											type: 'select',
+											selectOptions: {
+												items: ['Yes', 'No']
+											}
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[errorLabel]="form_input?.label || form_input?.errorLabel"
+											[errors]="form_input?.control.errors"
+											[required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<div
+										[hidden]="
+											formSectionC.value
+												.danger_signs_when_taken_to_health_facility != 'No'
+										"
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionC.get('what_will_be__conditions'),
+											label: 'What will be the conditions',
+											required: false,
+											type: 'select',
+											selectOptions: {
+												items: [
+													'Pre-term',
+													'LBW',
+													'No cry at birth',
+													'Fits',
+													'Difficult breathing',
+													'Drowsiness/inactivity/unconsciousness',
+													'Jaundice',
+													'Diarrhoea',
+													'Refusal to feed',
+													'Fast Breathing',
+													'High grade fever'
+												]
+											}
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[errorLabel]="form_input?.label || form_input?.errorLabel"
+											[errors]="form_input?.control.errors"
+											[required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionC.get(
+												'hospital_where_newborns_infants_children_can_be_admitted_and_treated'
+											),
+											label:
+												'Do you know about any hospital where newborns/infants/children can be admitted and treated?',
+											required: false,
+											type: 'select',
+											selectOptions: {
+												items: ['Yes', 'No']
+											}
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[errorLabel]="form_input?.label || form_input?.errorLabel"
+											[errors]="form_input?.control.errors"
+											[required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<div
+										[hidden]="
+											formSectionC.value
+												.hospital_where_newborns_infants_children_can_be_admitted_and_treated !=
+											'Yes'
+										"
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionC.get('facilities_name'),
+											label: 'Please name these facilities',
+											required: formSectionC.value.hospital_where_newborns_infants_children_can_be_admitted_and_treated =='Yes',
+											type: 'text'
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[errorLabel]="form_input?.label || form_input?.errorLabel"
+											[errors]="form_input?.control.errors"
+											[required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+								</div>
+							</div>
+							<!--end: Form Wizard Step 4-->
+
+							<!--begin: Form Wizard Step 5-->
+							<div
+								class="kt-wizard-v3__content"
+								data-ktwizard-type="step-content"
+								*ngIf="form.get('sectionD') as formSectionD"
+							>
+								<!--  -->
+								<div class="row">
+									<!--  -->
+									<h4 class="col-12">
+										Can you tell us regarding the total amount that you had to
+										spend on your child treatment?
+									</h4>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionD.get('total_amount'),
+											label: 'Total amount in Rs.',
+											type: 'number'
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[disabled]="form_input?.disabled"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="true"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionD.get('treatment'),
+											label:
+												'Treatment (medicines, consultation, home treatment etc.)',
+											type: 'number'
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionD.get('transport'),
+											label: 'Transport',
+											type: 'number'
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[selectOptions]="form_input?.selectOptions"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionD.get('others'),
+											label: 'Others',
+											type: 'number'
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+									<div
+										class="form-group col-md-4"
+										*ngIf="{
+											control: formSectionD.get('family_arrange_this_money'),
+											label: 'How did you (the family) arrange this money?',
+											type: 'select',
+											selectOptions: {
+												items: [
+													'Available/Savings',
+													'Borrowed',
+													'Sold assets',
+													'Community fund',
+													'Govt. scheme',
+													'Other',
+													'DNK'
+												],
+												multiple: true
+											}
+										} as form_input"
+									>
+										<kt-form-input
+											[formControl]="form_input?.control"
+											[type]="form_input?.type"
+											[label]="form_input?.label"
+											[selectOptions]="form_input?.selectOptions"
+											[isSubmitted]="isSubmitted"
+											[viewOnly]="viewOnly"
+										></kt-form-input>
+									</div>
+
+									<!--  -->
+								</div>
+							</div>
+							<!--end: Form Wizard Step 5-->
+
+							<!--begin: Form Actions -->
+							<div class="kt-form__actions">
+								<div
+									class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+									data-ktwizard-type="action-prev"
+								>
+									Previous
+								</div>
+								<div
+									*ngIf="!viewOnly"
+									class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+									data-ktwizard-type="action-submit"
+									(click)="onSubmit()"
+								>
+									Save
+								</div>
+								<div
+									class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+									data-ktwizard-type="action-next"
+								>
+									Next Step
+								</div>
+							</div>
+							<!--end: Form Actions -->
+						</div>
+						<!--end: Form Wizard Form-->
+					</div>
+				</div>
+				<!--end: Wizard -->
+			</form>
+		</div>
+	</kt-portlet-body>
+	<!-- end::Body (attribute: ktPortletBody) -->
+</kt-portlet>

@@ -1,0 +1,186 @@
+<div class="row">
+    <div class="col-lg-12">
+        <kt-portlet>
+            <kt-portlet-header [title]="'Dashboard Selection (Divided Into Sections)'" [class]="'kt-portlet__head--lg'"
+                style="color: white; min-height: 40px;">
+                <ng-container ktPortletTools>
+                </ng-container>
+            </kt-portlet-header>
+            <kt-portlet-body>
+                <div class="kt-form no-alert">
+                    <div class="kt-form__filtration mb-0">
+
+                        <label class="container">Basic Information
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container">Pregnancy Care
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container">Labour & Birth
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container">Cause Of Death
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container">Associated Factors
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </kt-portlet-body>
+        </kt-portlet>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-sm-6 col-md-4 top-item">
+        <div class="card my-card has-background-gradient-teal">
+            <div class="my-auto mx-auto">
+                <span class="fa fa-child my-icon py-3 px-4 m-right"></span>
+            </div>
+            <div class="my-auto px-4">
+                <p class="mb-1 text-uppercase">Total StillBirth</p>
+                <h2 class="text-right">120</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 top-item">
+        <div class="card my-card has-background-gradient-blue">
+            <div class="my-auto mx-auto">
+                <span class="fa fa-check-double my-icon py-3 px-4 m-right"></span>
+            </div>
+            <div class="my-auto px-4">
+                <p class="mb-1 text-uppercase">Total Verified</p>
+                <h2 class="text-right">80</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 top-item">
+        <div class="card my-card has-background-gradient-orange">
+            <div class="my-auto mx-auto">
+                <span class="fa fa-calendar-check my-icon py-3 px-4 m-right"></span>
+            </div>
+            <div class="my-auto px-4">
+                <p class="mb-1 text-uppercase">Total Rejected</p>
+                <h2 class="text-right">40</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <kt-portlet>
+            <kt-portlet-header [title]="'StillBirth Reported Statewise'" [class]="'kt-portlet__head--lg'"
+                style="color: white; min-height: 40px;">
+                <ng-container ktPortletTools>
+                </ng-container>
+            </kt-portlet-header>
+            <kt-portlet-body>
+                <div class="kt-form no-alert">
+                    <div class="kt-form__filtration mb-0">
+                        <kt-mapstillbirth [mapChartDiv]=mapChartDiv [callingFrom]=callingFrom
+                            (myOutput)="getStateData($event)" [isShowAllDistrictOnMap]="isShowAllDistrictOnMap">
+                        </kt-mapstillbirth>
+                    </div>
+                </div>
+            </kt-portlet-body>
+        </kt-portlet>
+    </div>
+    <div class="col-lg-6">
+        <kt-portlet>
+            <kt-portlet-header [title]="'StillBirth Reported Statewise - Tabular View'" [class]="'kt-portlet__head--lg'"
+                style="color: white; min-height: 40px;">
+                <ng-container ktPortletTools>
+                    <ng-container ktPortletTools>
+                        <button class="mat-raised-button" (click)="forStatewiseCbmdsrFbmdsrExportTable()">
+                            Export
+                        </button>
+                    </ng-container>
+
+                </ng-container>
+
+            </kt-portlet-header>
+            <kt-portlet-body>
+                <div style="overflow-y: auto; max-height: 520px;">
+                    <input type="text" class="form-control" (keyup)="applyFilterSatewiseChildDeath($event.target.value)"
+                        placeholder="Search" />
+                    <div style="margin-top:5px;">
+                        <table class="w-100 shadow" mat-table [dataSource]="whereCbmdsrAndFbmdsrConductedDatasource"
+                            matSort>
+                            <ng-container matColumnDef="sn">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>S.N.</th>
+                                <td mat-cell *matCellDef="let row; let i = index" class="text-center">
+                                    {{paginatorWhereCbmdsrAndFbmdsrConductedDatasource.pageSize *
+                                    paginatorWhereCbmdsrAndFbmdsrConductedDatasource.pageIndex +
+                                    i +
+                                    1 }}.</td>
+                            </ng-container>
+                            <ng-container matColumnDef="category">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+                                <td mat-cell *matCellDef="let element"> <button mat-raised-button
+                                        class="pointer mat-raised-button"
+                                        (click)="getDeathsWhereCbmdsrAndFbmdsrConducted(element)">{{element?.category}}
+                                    </button></td>
+                            </ng-container>
+                            <ng-container matColumnDef="column-2">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Stillbirth</th>
+                                <td mat-cell *matCellDef="let element" class="text-center"> {{element['column-2']}}
+                                </td>
+                            </ng-container>
+                            <!-- <ng-container matColumnDef="column-1">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>StillBirth </th>
+                                <td mat-cell *matCellDef="let element" class="text-center">
+                                    {{element['column-1']}}
+                                </td>
+                            </ng-container> -->
+
+                            <tr mat-header-row
+                                *matHeaderRowDef="displayedColumnsWhereCbmdsrAndFbmdsrConductedDatasource;sticky: true">
+                            </tr>
+                            <tr mat-row
+                                *matRowDef="let row; columns: displayedColumnsWhereCbmdsrAndFbmdsrConductedDatasource;">
+                            </tr>
+                        </table>
+                        <mat-paginator #paginatorWhereCbmdsrAndFbmdsrConductedDatasource [pageSize]="6"
+                            [length]="whereCbmdsrAndFbmdsrConductedDatasource?.data?.length || 0"
+                            [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+                    </div>
+                </div>
+
+            </kt-portlet-body>
+        </kt-portlet>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <kt-basicinformation></kt-basicinformation>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <kt-pregnancycare></kt-pregnancycare>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <kt-labourbirth></kt-labourbirth>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <kt-causeofdeath></kt-causeofdeath>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <kt-associatedfactors></kt-associatedfactors>
+    </div>
+</div>

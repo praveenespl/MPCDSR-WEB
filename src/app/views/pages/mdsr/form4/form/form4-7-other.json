@@ -1,0 +1,5598 @@
+{
+	"components": [
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "HTML",
+							"tag": "label",
+							"className": "col-form-label",
+							"attrs": [],
+							"content": "Primary diagnosis/condition leading to death",
+							"refreshOnChange": false,
+							"customClass": "",
+							"hidden": false,
+							"tableView": false,
+							"key": "html",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": null,
+								"when": null,
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "htmlelement",
+							"input": false,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"defaultValue": null,
+							"protected": false,
+							"unique": false,
+							"persistent": false,
+							"clearOnHide": true,
+							"refreshOn": "",
+							"redrawOn": "",
+							"labelPosition": "top",
+							"description": "",
+							"errorLabel": "",
+							"tooltip": "",
+							"hideLabel": false,
+							"tabindex": "",
+							"disabled": false,
+							"autofocus": false,
+							"dbIndex": false,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"widget": null,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"custom": "",
+								"customPrivate": false,
+								"strictDateValidation": false
+							},
+							"allowCalculateOverride": false,
+							"encrypted": false,
+							"alwaysEnabled": false,
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"hideOnChildrenHidden": false,
+							"id": "ei9jj0e"
+						}
+					],
+					"width": 4,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "Text Area",
+							"labelPosition": "top",
+							"placeholder": "",
+							"description": "",
+							"tooltip": "",
+							"prefix": "",
+							"suffix": "",
+							"editor": "",
+							"autoExpand": false,
+							"customClass": "",
+							"tabindex": "",
+							"hidden": false,
+							"hideLabel": true,
+							"showWordCount": false,
+							"showCharCount": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": true,
+							"multiple": false,
+							"defaultValue": "",
+							"persistent": true,
+							"inputFormat": "html",
+							"protected": false,
+							"dbIndex": false,
+							"case": "",
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"strictDateValidation": false,
+								"pattern": "",
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"minLength": "",
+								"maxLength": "",
+								"minWords": "",
+								"maxWords": ""
+							},
+							"unique": false,
+							"errorLabel": "",
+							"key": "leading_to_death",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "textarea",
+							"rows": 3,
+							"widget": {
+								"type": "input"
+							},
+							"input": true,
+							"refreshOn": "",
+							"allowMultipleMasks": false,
+							"mask": false,
+							"inputType": "text",
+							"inputMask": "",
+							"wysiwyg": false,
+							"hideOnChildrenHidden": false,
+							"id": "e4l2bk"
+						}
+					],
+					"width": 8,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				}
+			],
+			"key": "columns",
+			"type": "columns",
+			"input": false,
+			"path": "columns",
+			"components": [
+				{
+					"label": "HTML",
+					"tag": "label",
+					"className": "col-form-label",
+					"content": "Primary diagnosis/condition leading to death",
+					"refreshOnChange": false,
+					"key": "html",
+					"type": "htmlelement",
+					"input": false,
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "Text Area",
+					"autoExpand": false,
+					"hideLabel": true,
+					"key": "leading_to_death",
+					"type": "textarea",
+					"input": true,
+					"hideOnChildrenHidden": false
+				}
+			]
+		},
+		{
+			"label": "HTML",
+			"tag": "label",
+			"className": "col-form-label",
+			"content": "",
+			"refreshOnChange": false,
+			"key": "html1",
+			"type": "htmlelement",
+			"input": false,
+			"hideOnChildrenHidden": false
+		},
+
+		{
+			"label": "HTML",
+			"tag": "h5",
+			"className": "font-weight-bold",
+			"attrs": [
+				{
+					"attr": "",
+					"value": ""
+				}
+			],
+			"content": "Direct cause of Death",
+			"refreshOnChange": false,
+			"key": "html",
+			"type": "htmlelement",
+			"input": false,
+			"tableView": false
+		},
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "Group Name",
+							"placeholder":"Select Group Name",
+							"widget": "choicesjs",
+							"tableView": true,
+							"dataSrc": "url",
+							"data": {
+								"url": "{{urlOld}}icd10_codes/getGroupName",
+								"headers": [
+									{
+										"key": "",
+										"value": ""
+									}
+								]
+							},
+							"valueProperty": "value",
+							"selectThreshold": 0.3,
+							"clearOnRefresh": true,
+							"template": "<span>{{ item.label }}</span>",
+							"key": "cause_of_death.direct.groupName",
+							"filter": "params={\"type\" : \"Direct Cause\"}",
+							"type": "select",
+							"input": true,
+							"disableLimit": false
+						}
+					],
+					"offset": 0,
+					"push": 0,
+					"pull": 0,
+					"size": "md",
+					"currentWidth": 4,
+					"width": 4
+				},
+				{
+					"components": [
+						{
+							"label": "Category",
+							"placeholder":"Select Category",
+							"widget": "choicesjs",
+							"tableView": true,
+							"dataSrc": "url",
+							"data": {
+								"url": "{{urlOld}}icd10_codes/getGroupCategory",
+								"headers": [
+									{
+										"key": "",
+										"value": ""
+									}
+								]
+							},
+							"selectThreshold": 0.3,
+							"valueProperty":"value",
+							"template": "<span>{{ item.value }}</span>",
+							"key": "cause_of_death.direct.category",
+							"refreshOn":"cause_of_death.direct.groupName",
+							"clearOnRefresh": true,
+							"filter": "params={\"type\" : \"Direct Cause\",\"group_name\":\"{{data.cause_of_death.direct.groupName}}\"}",
+							"type": "select",
+							"input": true,
+							"disableLimit": false
+						}
+					],
+					"offset": 0,
+					"push": 0,
+					"pull": 0,
+					"size": "md",
+					"currentWidth": 4,
+					"width": 4
+				},
+				{
+					"components": [
+						{
+							"label": "Category",
+							"placeholder":"Select Sub Category",
+							"widget": "choicesjs",
+							"tableView": true,
+							"dataSrc": "url",
+							"data": {
+								"url": "{{urlOld}}icd10_codes/getSubGroupCategory",
+								"headers": [
+									{
+										"key": "",
+										"value": ""
+									}
+								]
+							},
+							"selectThreshold": 0.3,
+							"valueProperty":"value",
+							"template": "<span>{{ item.value }}</span>",
+							"key": "cause_of_death.direct.sub_category",
+							"refreshOn":"cause_of_death.direct.category",
+							"clearOnRefresh": true,
+							"filter": "params={\"type\" : \"Direct Cause\",\"group_name\":\"{{data.cause_of_death.direct.groupName}}\",\"icd_category\":\"{{data.cause_of_death.direct.category}}\"}",
+							"type": "select",
+							"input": true,
+							"disableLimit": false
+						}
+					],
+					"offset": 0,
+					"push": 0,
+					"pull": 0,
+					"size": "md",
+					"currentWidth": 4,
+					"width": 4
+				}
+			],
+			"key": "columns",
+			"type": "columns",
+			"input": false,
+			"tableView": false
+		},
+
+
+		{
+			"label": "HTML",
+			"tag": "h5",
+			"className": "font-weight-bold",
+			"attrs": [
+				{
+					"attr": "",
+					"value": ""
+				}
+			],
+			"content": "Indirect cause of Death",
+			"refreshOnChange": false,
+			"key": "html",
+			"type": "htmlelement",
+			"input": false,
+			"tableView": false
+		},
+
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "Group Name",
+							"placeholder":"Select Group Name",
+							"widget": "choicesjs",
+							"tableView": true,
+							"dataSrc": "url",
+							"data": {
+								"url": "{{urlOld}}icd10_codes/getGroupName",
+								"headers": [
+									{
+										"key": "",
+										"value": ""
+									}
+								]
+							},
+							"valueProperty": "value",
+							"selectThreshold": 0.3,
+							"clearOnRefresh": true,
+							"template": "<span>{{ item.label }}</span>",
+							"key": "cause_of_death.indirect.groupName",
+							"filter": "params={\"type\" : \"Indirect Cause\"}",
+							"type": "select",
+							"input": true,
+							"disableLimit": false
+						}
+					],
+					"offset": 0,
+					"push": 0,
+					"pull": 0,
+					"size": "md",
+					"currentWidth": 4,
+					"width": 4
+				},
+				{
+					"components": [
+						{
+							"label": "Category",
+							"placeholder":"Select Category",
+							"widget": "choicesjs",
+							"tableView": true,
+							"dataSrc": "url",
+							"data": {
+								"url": "{{urlOld}}icd10_codes/getGroupCategory",
+								"headers": [
+									{
+										"key": "",
+										"value": ""
+									}
+								]
+							},
+							"selectThreshold": 0.3,
+							"valueProperty":"value",
+							"template": "<span>{{ item.value }}</span>",
+							"key": "cause_of_death.indirect.category",
+							"refreshOn":"cause_of_death.indirect.groupName",
+							"clearOnRefresh": true,
+							"filter": "params={\"type\" : \"Indirect Cause\",\"group_name\":\"{{data.cause_of_death.indirect.groupName}}\"}",
+							"type": "select",
+							"input": true,
+							"disableLimit": false
+						}
+					],
+					"offset": 0,
+					"push": 0,
+					"pull": 0,
+					"size": "md",
+					"currentWidth": 4,
+					"width": 4
+				},
+				{
+					"components": [
+						{
+							"label": "Category",
+							"placeholder":"Select Sub Category",
+							"widget": "choicesjs",
+							"tableView": true,
+							"dataSrc": "url",
+							"data": {
+								"url": "{{urlOld}}icd10_codes/getSubGroupCategory",
+								"headers": [
+									{
+										"key": "",
+										"value": ""
+									}
+								]
+							},
+							"selectThreshold": 0.3,
+							"valueProperty":"value",
+							"template": "<span>{{ item.value }}</span>",
+							"key": "cause_of_death.indirect.sub_category",
+							"refreshOn":"cause_of_death.indirect.category",
+							"clearOnRefresh": true,
+							"filter": "params={\"type\" : \"Indirect Cause\",\"group_name\":\"{{data.cause_of_death.indirect.groupName}}\",\"icd_category\":\"{{data.cause_of_death.indirect.category}}\"}",
+							"type": "select",
+							"input": true,
+							"disableLimit": false
+						}
+					],
+					"offset": 0,
+					"push": 0,
+					"pull": 0,
+					"size": "md",
+					"currentWidth": 4,
+					"width": 4
+				}
+			],
+			"key": "columns",
+			"type": "columns",
+			"input": false,
+			"tableView": false
+		},
+
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "HTML",
+							"tag": "label",
+							"className": "col-form-label",
+							"attrs": [],
+							"content": "Part 1:Antecedent cause (Please mention the cause of death from Box Below)",
+							"refreshOnChange": false,
+							"customClass": "",
+							"hidden": false,
+							"tableView": false,
+							"key": "html2",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": null,
+								"when": null,
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "htmlelement",
+							"input": false,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"defaultValue": null,
+							"protected": false,
+							"unique": false,
+							"persistent": false,
+							"clearOnHide": true,
+							"refreshOn": "",
+							"redrawOn": "",
+							"labelPosition": "top",
+							"description": "",
+							"errorLabel": "",
+							"tooltip": "",
+							"hideLabel": false,
+							"tabindex": "",
+							"disabled": false,
+							"autofocus": false,
+							"dbIndex": false,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"widget": null,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"custom": "",
+								"customPrivate": false,
+								"strictDateValidation": false
+							},
+							"allowCalculateOverride": false,
+							"encrypted": false,
+							"alwaysEnabled": false,
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"hideOnChildrenHidden": false,
+							"id": "egp6hli"
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "Due to or as a consequence of",
+							"labelPosition": "top",
+							"placeholder": "",
+							"description": "",
+							"tooltip": "",
+							"prefix": "",
+							"suffix": "",
+							"inputMask": "",
+							"allowMultipleMasks": false,
+							"customClass": "",
+							"tabindex": "",
+							"hidden": false,
+							"hideLabel": false,
+							"showWordCount": false,
+							"showCharCount": false,
+							"mask": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": true,
+							"multiple": false,
+							"defaultValue": "",
+							"persistent": true,
+							"inputFormat": "plain",
+							"protected": false,
+							"dbIndex": false,
+							"case": "",
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"strictDateValidation": false,
+								"pattern": "",
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"minLength": "",
+								"maxLength": ""
+							},
+							"unique": false,
+							"errorLabel": "",
+							"key": "cause_of_death.consequence1",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "textfield",
+							"widget": {
+								"type": "input"
+							},
+							"input": true,
+							"hideOnChildrenHidden": false,
+							"refreshOn": "",
+							"inputType": "text",
+							"id": "e0b3tli"
+						}
+					],
+					"width": 4,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "Due to or as a consequence of",
+							"labelPosition": "top",
+							"placeholder": "",
+							"description": "",
+							"tooltip": "",
+							"prefix": "",
+							"suffix": "",
+							"inputMask": "",
+							"allowMultipleMasks": false,
+							"customClass": "",
+							"tabindex": "",
+							"hidden": false,
+							"hideLabel": false,
+							"showWordCount": false,
+							"showCharCount": false,
+							"mask": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": true,
+							"multiple": false,
+							"defaultValue": "",
+							"persistent": true,
+							"inputFormat": "plain",
+							"protected": false,
+							"dbIndex": false,
+							"case": "",
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"strictDateValidation": false,
+								"pattern": "",
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"minLength": "",
+								"maxLength": ""
+							},
+							"unique": false,
+							"errorLabel": "",
+							"key": "cause_of_death.consequence2",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "textfield",
+							"widget": {
+								"type": "input"
+							},
+							"input": true,
+							"hideOnChildrenHidden": false,
+							"refreshOn": "",
+							"inputType": "text",
+							"id": "etxptdq"
+						}
+					],
+					"width": 4,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "Due to or as a consequence of",
+							"labelPosition": "top",
+							"placeholder": "",
+							"description": "",
+							"tooltip": "",
+							"prefix": "",
+							"suffix": "",
+							"inputMask": "",
+							"allowMultipleMasks": false,
+							"customClass": "",
+							"tabindex": "",
+							"hidden": false,
+							"hideLabel": false,
+							"showWordCount": false,
+							"showCharCount": false,
+							"mask": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": true,
+							"multiple": false,
+							"defaultValue": "",
+							"persistent": true,
+							"inputFormat": "plain",
+							"protected": false,
+							"dbIndex": false,
+							"case": "",
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"strictDateValidation": false,
+								"pattern": "",
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"minLength": "",
+								"maxLength": ""
+							},
+							"unique": false,
+							"errorLabel": "",
+							"key": "cause_of_death.consequence3",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "textfield",
+							"widget": {
+								"type": "input"
+							},
+							"input": true,
+							"refreshOn": "",
+							"inputType": "text",
+							"hideOnChildrenHidden": false,
+							"id": "e86ft3"
+						}
+					],
+					"width": 4,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				}
+			],
+			"key": "columns2",
+			"type": "columns",
+			"input": false,
+			"path": "columns2",
+			"components": [
+				{
+					"label": "HTML",
+					"tag": "label",
+					"className": "col-form-label",
+					"content": "Primary diagnosis/condition leading to death",
+					"refreshOnChange": false,
+					"key": "html",
+					"type": "htmlelement",
+					"input": false,
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "HTML",
+					"tag": "label",
+					"className": "col-form-label",
+					"content": "Cause of death",
+					"refreshOnChange": false,
+					"key": "html1",
+					"type": "htmlelement",
+					"input": false,
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "HTML",
+					"tag": "label",
+					"className": "col-form-label",
+					"content": "Part 1:Antecedent cause (Please mention the cause of death from Box Below)",
+					"refreshOnChange": false,
+					"key": "html2",
+					"type": "htmlelement",
+					"input": false,
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "Due to or as a consequence of",
+					"key": "cause_of_death.consequence1",
+					"type": "textfield",
+					"input": true,
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "Due to or as a consequence of",
+					"key": "cause_of_death.consequence2",
+					"type": "textfield",
+					"input": true,
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "Due to or as a consequence of",
+					"key": "cause_of_death.consequence3",
+					"type": "textfield",
+					"input": true,
+					"hideOnChildrenHidden": false
+				}
+			]
+		},
+		{
+			"label": "HTML",
+			"className": "font-weight-bold",
+			"content": "IN YOUR OPINION WERE ANY OF THESE FACTORS PRESENT?",
+			"refreshOnChange": false,
+			"key": "html4",
+			"type": "htmlelement",
+			"input": false
+		},
+		{
+			"label": "Table",
+			"bordered": true,
+			"condensed": true,
+			"key": "table",
+			"type": "table",
+			"numRows": 4,
+			"numCols": 2,
+			"input": false,
+			"rows": [
+				[
+					{
+						"components": [
+							{
+								"label": "HTML",
+								"tag": "label",
+								"className": "col-form-label",
+								"content": "Personal / Family",
+								"refreshOnChange": false,
+								"key": "html5",
+								"type": "htmlelement",
+								"input": false,
+								"hideOnChildrenHidden": false
+							}
+						]
+					},
+					{
+						"components": [
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Delay in woman seeking help",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html9",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": null,
+													"when": null,
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "e226utj"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.seeking",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "erfs6em"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns4",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.seeking",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Refusal of treatment or admission",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html10",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": null,
+													"when": null,
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "e82xzn"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "opinion.refusal",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.refusal",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "eazesya"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns5",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "opinion.refusal",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.refusal",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Refusal of admission in previous facility",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html11",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": null,
+													"when": null,
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "egfcvt"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.refusal_previous_facility",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "eg1tn2m"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns6",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.refusal_previous_facility",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							}
+						]
+					}
+				],
+				[
+					{
+						"components": [
+							{
+								"label": "HTML",
+								"tag": "label",
+								"className": "col-form-label",
+								"content": "Logistical Problems",
+								"refreshOnChange": false,
+								"key": "html6",
+								"type": "htmlelement",
+								"input": false,
+								"hideOnChildrenHidden": false
+							}
+						]
+					},
+					{
+						"components": [
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of transport from home to health care facilities",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html12",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": null,
+													"when": null,
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "e30chhd"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.home_to_healthcare",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "egfy03"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns7",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.home_to_healthcare",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of transport between health care facilities",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html13",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "e7v7c0k"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.between_healthcare",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "eqk4zzk"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns8",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.between_healthcare",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of assured referral system",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html14",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "ec2072t"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.referral_system",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "e3bk4"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns9",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of assured referral system",
+										"refreshOnChange": false,
+										"key": "html14",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.referral_system",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							}
+						]
+					}
+				],
+				[
+					{
+						"components": [
+							{
+								"label": "HTML",
+								"tag": "label",
+								"className": "col-form-label",
+								"content": "Facilities",
+								"refreshOnChange": false,
+								"key": "html7",
+								"type": "htmlelement",
+								"input": false,
+								"hideOnChildrenHidden": false
+							}
+						]
+					},
+					{
+						"components": [
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of facilities, equipment or consumable",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html15",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "ew34jhr"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.lack_of_facility",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "e3d58rcp"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns10",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of assured referral system",
+										"refreshOnChange": false,
+										"key": "html14",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of facilities, equipment or consumable",
+										"refreshOnChange": false,
+										"key": "html15",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.lack_of_facility",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of blood / blood product",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html16",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "e3ilobl"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.lack_of_blood",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "esfyqq"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns11",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of assured referral system",
+										"refreshOnChange": false,
+										"key": "html14",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of facilities, equipment or consumable",
+										"refreshOnChange": false,
+										"key": "html15",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of blood / blood product",
+										"refreshOnChange": false,
+										"key": "html16",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.lack_of_blood",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of OT availability",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html17",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "eck2lai"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.lack_of_ot",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "ewootwn"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns12",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of assured referral system",
+										"refreshOnChange": false,
+										"key": "html14",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of facilities, equipment or consumable",
+										"refreshOnChange": false,
+										"key": "html15",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of blood / blood product",
+										"refreshOnChange": false,
+										"key": "html16",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of OT availability",
+										"refreshOnChange": false,
+										"key": "html17",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.lack_of_ot",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							}
+						]
+					}
+				],
+				[
+					{
+						"components": [
+							{
+								"label": "HTML",
+								"tag": "label",
+								"className": "col-form-label",
+								"content": "Health Personnel Problems",
+								"refreshOnChange": false,
+								"key": "html8",
+								"type": "htmlelement",
+								"input": false,
+								"hideOnChildrenHidden": false
+							}
+						]
+					},
+					{
+						"components": [
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of human resources",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html18",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "ex2fsv2"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.lack_of_human_resource",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "ewhoq3e"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns13",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of assured referral system",
+										"refreshOnChange": false,
+										"key": "html14",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of facilities, equipment or consumable",
+										"refreshOnChange": false,
+										"key": "html15",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of blood / blood product",
+										"refreshOnChange": false,
+										"key": "html16",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of OT availability",
+										"refreshOnChange": false,
+										"key": "html17",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of human resources",
+										"refreshOnChange": false,
+										"key": "html18",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.lack_of_human_resource",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of Anesthetist",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html19",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "eqzpwx"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.lack_of_anesthetist",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "ecn4xjr"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns14",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of assured referral system",
+										"refreshOnChange": false,
+										"key": "html14",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of facilities, equipment or consumable",
+										"refreshOnChange": false,
+										"key": "html15",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of blood / blood product",
+										"refreshOnChange": false,
+										"key": "html16",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of OT availability",
+										"refreshOnChange": false,
+										"key": "html17",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of human resources",
+										"refreshOnChange": false,
+										"key": "html18",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of Anesthetist",
+										"refreshOnChange": false,
+										"key": "html19",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.lack_of_anesthetist",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of Obstreticians",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html20",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "e9o0qi"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.lack_of_obstetricians",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "ettrh3q"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns15",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of assured referral system",
+										"refreshOnChange": false,
+										"key": "html14",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of facilities, equipment or consumable",
+										"refreshOnChange": false,
+										"key": "html15",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of blood / blood product",
+										"refreshOnChange": false,
+										"key": "html16",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of OT availability",
+										"refreshOnChange": false,
+										"key": "html17",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of human resources",
+										"refreshOnChange": false,
+										"key": "html18",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of Anesthetist",
+										"refreshOnChange": false,
+										"key": "html19",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of Obstreticians",
+										"refreshOnChange": false,
+										"key": "html20",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.lack_of_obstetricians",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							},
+							{
+								"label": "Columns",
+								"columns": [
+									{
+										"components": [
+											{
+												"label": "HTML",
+												"tag": "label",
+												"className": "col-form-label",
+												"attrs": [],
+												"content": "Lack of expertise, training or education",
+												"refreshOnChange": false,
+												"customClass": "",
+												"hidden": false,
+												"tableView": false,
+												"key": "html21",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "htmlelement",
+												"input": false,
+												"hideOnChildrenHidden": false,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"defaultValue": null,
+												"protected": false,
+												"unique": false,
+												"persistent": false,
+												"clearOnHide": true,
+												"refreshOn": "",
+												"redrawOn": "",
+												"labelPosition": "top",
+												"description": "",
+												"errorLabel": "",
+												"tooltip": "",
+												"hideLabel": false,
+												"tabindex": "",
+												"disabled": false,
+												"autofocus": false,
+												"dbIndex": false,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"widget": null,
+												"validateOn": "change",
+												"validate": {
+													"required": false,
+													"custom": "",
+													"customPrivate": false,
+													"strictDateValidation": false
+												},
+												"allowCalculateOverride": false,
+												"encrypted": false,
+												"alwaysEnabled": false,
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"id": "embi0ej"
+											}
+										],
+										"width": 7,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									},
+									{
+										"components": [
+											{
+												"label": "Radio",
+												"labelPosition": "top",
+												"optionsLabelPosition": "right",
+												"description": "",
+												"tooltip": "",
+												"customClass": "",
+												"tabindex": "",
+												"inline": true,
+												"hidden": false,
+												"hideLabel": true,
+												"autofocus": false,
+												"disabled": false,
+												"alwaysEnabled": false,
+												"tableView": false,
+												"defaultValue": "",
+												"values": [
+													{
+														"label": "Yes",
+														"value": "yes",
+														"shortcut": ""
+													},
+													{
+														"label": "No",
+														"value": "no",
+														"shortcut": ""
+													},
+													{
+														"label": "Not Known",
+														"value": "notKnown",
+														"shortcut": ""
+													}
+												],
+												"dataType": "",
+												"persistent": true,
+												"protected": false,
+												"dbIndex": false,
+												"encrypted": false,
+												"redrawOn": "",
+												"clearOnHide": true,
+												"customDefaultValue": "",
+												"calculateValue": "",
+												"allowCalculateOverride": false,
+												"validate": {
+													"required": false,
+													"customMessage": "",
+													"custom": "",
+													"customPrivate": false,
+													"json": "",
+													"strictDateValidation": false
+												},
+												"errorLabel": "",
+												"key": "opinion.lack_of_expertise",
+												"tags": "",
+												"properties": {},
+												"conditional": {
+													"show": "",
+													"when": "",
+													"eq": "",
+													"json": ""
+												},
+												"customConditional": "",
+												"logic": [],
+												"attributes": {},
+												"overlay": {
+													"style": "",
+													"page": "",
+													"left": "",
+													"top": "",
+													"width": "",
+													"height": ""
+												},
+												"type": "radio",
+												"input": true,
+												"placeholder": "",
+												"prefix": "",
+												"suffix": "",
+												"multiple": false,
+												"unique": false,
+												"refreshOn": "",
+												"widget": null,
+												"validateOn": "change",
+												"showCharCount": false,
+												"showWordCount": false,
+												"allowMultipleMasks": false,
+												"inputType": "radio",
+												"fieldSet": false,
+												"hideOnChildrenHidden": false,
+												"id": "ednpugn"
+											}
+										],
+										"width": 5,
+										"offset": 0,
+										"push": 0,
+										"pull": 0
+									}
+								],
+								"key": "columns16",
+								"type": "columns",
+								"input": false,
+								"path": "columns4",
+								"components": [
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Delay in woman seeking help",
+										"refreshOnChange": false,
+										"key": "html9",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of treatment or admission",
+										"refreshOnChange": false,
+										"key": "html10",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Refusal of admission in previous facility",
+										"refreshOnChange": false,
+										"key": "html11",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport from home to health care facilities",
+										"refreshOnChange": false,
+										"key": "html12",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of transport between health care facilities",
+										"refreshOnChange": false,
+										"key": "html13",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of assured referral system",
+										"refreshOnChange": false,
+										"key": "html14",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of facilities, equipment or consumable",
+										"refreshOnChange": false,
+										"key": "html15",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of blood / blood product",
+										"refreshOnChange": false,
+										"key": "html16",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of OT availability",
+										"refreshOnChange": false,
+										"key": "html17",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of human resources",
+										"refreshOnChange": false,
+										"key": "html18",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of Anesthetist",
+										"refreshOnChange": false,
+										"key": "html19",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of Obstreticians",
+										"refreshOnChange": false,
+										"key": "html20",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "HTML",
+										"tag": "label",
+										"className": "col-form-label",
+										"content": "Lack of expertise, training or education",
+										"refreshOnChange": false,
+										"key": "html21",
+										"type": "htmlelement",
+										"input": false,
+										"hideOnChildrenHidden": false
+									},
+									{
+										"label": "Radio",
+										"optionsLabelPosition": "right",
+										"inline": true,
+										"hideLabel": true,
+										"values": [
+											{
+												"label": "Yes",
+												"value": "yes",
+												"shortcut": ""
+											},
+											{
+												"label": "No",
+												"value": "no",
+												"shortcut": ""
+											},
+											{
+												"label": "Not Known",
+												"value": "notKnown",
+												"shortcut": ""
+											}
+										],
+										"key": "opinion.lack_of_expertise",
+										"type": "radio",
+										"input": true,
+										"hideOnChildrenHidden": false
+									}
+								]
+							}
+						]
+					}
+				]
+			],
+			"header": [
+				"System",
+				"Example"
+			],
+			"path": "table"
+		},
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "HTML",
+							"tag": "label",
+							"className": "col-form-label",
+							"attrs": [],
+							"content": "Autopsy",
+							"refreshOnChange": false,
+							"customClass": "",
+							"hidden": false,
+							"tableView": false,
+							"key": "html22",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "htmlelement",
+							"input": false,
+							"hideOnChildrenHidden": false,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"defaultValue": null,
+							"protected": false,
+							"unique": false,
+							"persistent": false,
+							"clearOnHide": true,
+							"refreshOn": "",
+							"redrawOn": "",
+							"labelPosition": "top",
+							"description": "",
+							"errorLabel": "",
+							"tooltip": "",
+							"hideLabel": false,
+							"tabindex": "",
+							"disabled": false,
+							"autofocus": false,
+							"dbIndex": false,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"widget": null,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"custom": "",
+								"customPrivate": false,
+								"strictDateValidation": false
+							},
+							"allowCalculateOverride": false,
+							"encrypted": false,
+							"alwaysEnabled": false,
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"id": "ewlez6r"
+						}
+					],
+					"width": 4,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "Autopsy",
+							"labelPosition": "top",
+							"optionsLabelPosition": "right",
+							"description": "",
+							"tooltip": "",
+							"customClass": "",
+							"tabindex": "",
+							"inline": true,
+							"hidden": false,
+							"hideLabel": true,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": false,
+							"defaultValue": "",
+							"values": [
+								{
+									"label": "Performed",
+									"value": "performed",
+									"shortcut": ""
+								},
+								{
+									"label": "Not Performed",
+									"value": "notPerformed",
+									"shortcut": ""
+								}
+							],
+							"dataType": "",
+							"persistent": true,
+							"protected": false,
+							"dbIndex": false,
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validate": {
+								"required": false,
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"strictDateValidation": false
+							},
+							"errorLabel": "",
+							"key": "autopsy",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "radio",
+							"input": true,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"unique": false,
+							"refreshOn": "",
+							"widget": null,
+							"validateOn": "change",
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"inputType": "radio",
+							"fieldSet": false,
+							"hideOnChildrenHidden": false,
+							"id": "erowsv8"
+						}
+					],
+					"width": 4,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "If performed please report the final diagnosis and send the detailed report later",
+							"labelPosition": "top",
+							"placeholder": "",
+							"description": "",
+							"tooltip": "",
+							"prefix": "",
+							"suffix": "",
+							"editor": "",
+							"autoExpand": false,
+							"customClass": "",
+							"tabindex": "",
+							"hidden": false,
+							"hideLabel": false,
+							"showWordCount": false,
+							"showCharCount": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": true,
+							"multiple": false,
+							"defaultValue": "",
+							"persistent": true,
+							"inputFormat": "html",
+							"protected": false,
+							"dbIndex": false,
+							"case": "",
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"strictDateValidation": false,
+								"pattern": "",
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"minLength": "",
+								"maxLength": "",
+								"minWords": "",
+								"maxWords": ""
+							},
+							"unique": false,
+							"errorLabel": "",
+							"key": "performed",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": true,
+								"when": "autopsy",
+								"eq": "performed",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "textarea",
+							"rows": 3,
+							"widget": {
+								"type": "input"
+							},
+							"input": true,
+							"refreshOn": "",
+							"allowMultipleMasks": false,
+							"mask": false,
+							"inputType": "text",
+							"inputMask": "",
+							"wysiwyg": false,
+							"hideOnChildrenHidden": false,
+							"id": "e1c7nu"
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				}
+			],
+			"customClass": "mt-3",
+			"key": "columns17",
+			"type": "columns",
+			"input": false,
+			"path": "columns17",
+			"components": [
+				{
+					"label": "HTML",
+					"tag": "label",
+					"className": "col-form-label",
+					"content": "Autopsy",
+					"refreshOnChange": false,
+					"key": "html22",
+					"type": "htmlelement",
+					"input": false,
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "Autopsy",
+					"optionsLabelPosition": "right",
+					"inline": true,
+					"hideLabel": true,
+					"values": [
+						{
+							"label": "Performed",
+							"value": "performed",
+							"shortcut": ""
+						},
+						{
+							"label": "Not Performed",
+							"value": "notPerformed",
+							"shortcut": ""
+						}
+					],
+					"key": "autopsy",
+					"type": "radio",
+					"input": true,
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "If performed please report the final diagnosis and send the detailed report later",
+					"autoExpand": false,
+					"key": "performed",
+					"conditional": {
+						"show": true,
+						"when": "autopsy",
+						"eq": "performed"
+					},
+					"type": "textarea",
+					"input": true,
+					"hideOnChildrenHidden": false
+				}
+			]
+		},
+		{
+			"components": [
+				{
+					"label": "Columns",
+					"columns": [
+						{
+							"components": [
+								{
+									"label": "Doctor Name",
+									"labelPosition": "top",
+									"placeholder": "",
+									"description": "",
+									"tooltip": "",
+									"prefix": "",
+									"suffix": "",
+									"inputMask": "",
+									"allowMultipleMasks": false,
+									"customClass": "",
+									"tabindex": "",
+									"hidden": false,
+									"hideLabel": false,
+									"showWordCount": false,
+									"showCharCount": false,
+									"mask": false,
+									"autofocus": false,
+									"disabled": false,
+									"alwaysEnabled": false,
+									"tableView": true,
+									"multiple": false,
+									"defaultValue": "",
+									"persistent": true,
+									"inputFormat": "plain",
+									"protected": false,
+									"dbIndex": false,
+									"case": "",
+									"encrypted": false,
+									"redrawOn": "",
+									"clearOnHide": true,
+									"customDefaultValue": "",
+									"calculateValue": "",
+									"allowCalculateOverride": false,
+									"validateOn": "change",
+									"validate": {
+										"required": true,
+										"strictDateValidation": false,
+										"pattern": "",
+										"customMessage": "",
+										"custom": "",
+										"customPrivate": false,
+										"json": "",
+										"minLength": "",
+										"maxLength": ""
+									},
+									"unique": false,
+									"errorLabel": "",
+									"key": "doctor.name",
+									"tags": "",
+									"properties": {},
+									"conditional": {
+										"show": "",
+										"when": "",
+										"eq": "",
+										"json": ""
+									},
+									"customConditional": "",
+									"logic": [],
+									"attributes": {},
+									"overlay": {
+										"style": "",
+										"page": "",
+										"left": "",
+										"top": "",
+										"width": "",
+										"height": ""
+									},
+									"type": "textfield",
+									"widget": {
+										"type": "input"
+									},
+									"input": true,
+									"refreshOn": "",
+									"inputType": "text",
+									"hideOnChildrenHidden": false,
+									"id": "eqegk0h"
+								}
+							],
+							"width": 20,
+							"offset": 0,
+							"push": 0,
+							"pull": 0
+						},
+						{
+							"components": [
+								{
+									"label": "Date",
+									"labelPosition": "top",
+									"displayInTimezone": "viewer",
+									"useLocaleSettings": false,
+									"allowInput": true,
+									"format": "dd-MM-yyyy",
+									"placeholder": "",
+									"description": "",
+									"tooltip": "",
+									"customClass": "",
+									"tabindex": "",
+									"hidden": false,
+									"hideLabel": false,
+									"autofocus": false,
+									"disabled": false,
+									"alwaysEnabled": false,
+									"tableView": false,
+									"enableDate": true,
+									"datePicker": {
+										"minDate": "",
+										"maxDate": "moment()",
+										"showWeeks": true,
+										"startingDay": 0,
+										"initDate": "",
+										"minMode": "day",
+										"maxMode": "year",
+										"yearRows": 4,
+										"yearColumns": 5
+									},
+									"enableTime": false,
+									"timePicker": {
+										"showMeridian": true,
+										"hourStep": 1,
+										"minuteStep": 1,
+										"readonlyInput": false,
+										"mousewheel": true,
+										"arrowkeys": true
+									},
+									"multiple": false,
+									"defaultValue": "",
+									"persistent": true,
+									"protected": false,
+									"dbIndex": false,
+									"encrypted": false,
+									"redrawOn": "",
+									"clearOnHide": true,
+									"customDefaultValue": "",
+									"calculateValue": "",
+									"allowCalculateOverride": false,
+									"validateOn": "change",
+									"validate": {
+										"required": true,
+										"strictDateValidation": false,
+										"customMessage": "",
+										"customPrivate": false,
+										"json": ""
+									},
+									"unique": false,
+									"errorLabel": "Date is Required",
+									"key": "doctor.date",
+									"tags": "",
+									"properties": {},
+									"conditional": {
+										"show": "",
+										"when": "",
+										"eq": "",
+										"json": ""
+									},
+									"customConditional": "",
+									"logic": [],
+									"attributes": {},
+									"overlay": {
+										"style": "",
+										"page": "",
+										"left": "",
+										"top": "",
+										"width": "",
+										"height": ""
+									},
+									"type": "datetime",
+									"input": true,
+									"prefix": "",
+									"suffix": "<i ref=\"icon\" class=\"fa fa-calendar\" style=\"\"></i>",
+									"refreshOn": "",
+									"widget": {
+										"type": "calendar",
+										"displayInTimezone": "viewer",
+										"language": "en",
+										"useLocaleSettings": false,
+										"allowInput": true,
+										"mode": "single",
+										"enableTime": false,
+										"noCalendar": false,
+										"format": "dd-MM-yyyy",
+										"hourIncrement": 1,
+										"minuteIncrement": 1,
+										"time_24hr": false,
+										"readOnly": false,
+										"minDate": "",
+										"maxDate": ""
+									},
+									"showCharCount": false,
+									"showWordCount": false,
+									"allowMultipleMasks": false,
+									"timezone": "",
+									"datepickerMode": "day",
+									"hideOnChildrenHidden": false,
+									"id": "es2nkhr",
+									"width": 12,
+									"defaultDate": ""
+								}
+							],
+							"width": 20,
+							"offset": 0,
+							"push": 0,
+							"pull": 0
+						},
+						{
+							"components": [
+								{
+									"label": "Registration No.",
+									"labelPosition": "top",
+									"placeholder": "",
+									"description": "",
+									"tooltip": "",
+									"prefix": "",
+									"suffix": "",
+									"customClass": "",
+									"tabindex": "",
+									"hidden": false,
+									"hideLabel": false,
+									"mask": false,
+									"autofocus": false,
+									"disabled": false,
+									"alwaysEnabled": false,
+									"tableView": false,
+									"multiple": false,
+									"defaultValue": "",
+									"persistent": true,
+									"delimiter": false,
+									"requireDecimal": false,
+									"inputFormat": "plain",
+									"protected": false,
+									"dbIndex": false,
+									"case": "",
+									"encrypted": false,
+									"redrawOn": "",
+									"clearOnHide": true,
+									"customDefaultValue": "",
+									"calculateValue": "",
+									"allowCalculateOverride": false,
+									"validateOn": "blur",
+									"validate": {
+										"required": false,
+										"strictDateValidation": false,
+										"customMessage": "",
+										"custom": "",
+										"customPrivate": false,
+										"json": "",
+										"min": "",
+										"max": "",
+										"step": "any",
+										"integer": ""
+									},
+									"errorLabel": "",
+									"key": "doctor.reg_no",
+									"tags": "",
+									"properties": {},
+									"conditional": {
+										"show": "",
+										"when": "",
+										"eq": "",
+										"json": ""
+									},
+									"customConditional": "",
+									"logic": [],
+									"attributes": {},
+									"overlay": {
+										"style": "",
+										"page": "",
+										"left": "",
+										"top": "",
+										"width": "",
+										"height": ""
+									},
+									"type": "textfield",
+									"widget": {
+										"type": "input"
+									},
+									"input": true,
+									"refreshOn": "",
+									"inputType": "text",
+									"hideOnChildrenHidden": false,
+									"id": "eu1rc3i"
+								}
+							],
+							"width": 20,
+							"offset": 0,
+							"push": 0,
+							"pull": 0
+						}
+					],
+					"key": "columns3",
+					"type": "columns",
+					"input": false,
+					"path": "columns3"
+				}
+			]
+		},
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "Columns",
+							"class":"d-flex justify-content-end",
+							"columns": [
+								{
+									"components": [
+										{
+											"label": "Save & Next",
+											"showValidations": true,
+											"key": "submit",
+											"type": "button",
+											"input": true,
+											"hideOnChildrenHidden": false,
+											"placeholder": "",
+											"prefix": "",
+											"customClass": "",
+											"suffix": "",
+											"multiple": false,
+											"defaultValue": null,
+											"protected": false,
+											"unique": false,
+											"persistent": false,
+											"hidden": false,
+											"clearOnHide": true,
+											"refreshOn": "",
+											"redrawOn": "",
+											"tableView": false,
+											"labelPosition": "top",
+											"description": "",
+											"errorLabel": "",
+											"tooltip": "",
+											"hideLabel": false,
+											"tabindex": "",
+											"disabled": false,
+											"autofocus": false,
+											"dbIndex": false,
+											"customDefaultValue": "",
+											"calculateValue": "",
+											"widget": {
+												"type": "input"
+											},
+											"attributes": {},
+											"validateOn": "change",
+											"validate": {
+												"required": false,
+												"custom": "",
+												"customPrivate": false,
+												"strictDateValidation": false
+											},
+											"conditional": {
+												"show": null,
+												"when": null,
+												"eq": ""
+											},
+											"overlay": {
+												"style": "",
+												"left": "",
+												"top": "",
+												"width": "",
+												"height": ""
+											},
+											"allowCalculateOverride": false,
+											"encrypted": false,
+											"alwaysEnabled": false,
+											"showCharCount": false,
+											"showWordCount": false,
+											"properties": {},
+											"allowMultipleMasks": false,
+											"size": "md",
+											"leftIcon": "",
+											"rightIcon": "",
+											"block": false,
+											"action": "submit",
+											"disableOnInvalid": false,
+											"theme": "info",
+											"dataGridLabel": true,
+											"id": "e88j9ipv"
+										}
+									],
+									"width": 12,
+									"offset": 0,
+									"push": 0,
+									"pull": 0
+								}
+							],
+							"autoAdjust": false,
+							"hideOnChildrenHidden": false,
+							"customClass": "",
+							"hidden": false,
+							"hideLabel": false,
+							"alwaysEnabled": false,
+							"tableView": false,
+							"key": "columns2",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "columns",
+							"input": false,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"defaultValue": null,
+							"protected": false,
+							"unique": false,
+							"persistent": false,
+							"clearOnHide": false,
+							"refreshOn": "",
+							"redrawOn": "",
+							"labelPosition": "top",
+							"description": "",
+							"errorLabel": "",
+							"tooltip": "",
+							"tabindex": "",
+							"disabled": false,
+							"autofocus": false,
+							"dbIndex": false,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"widget": null,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"custom": "",
+								"customPrivate": false,
+								"strictDateValidation": false
+							},
+							"allowCalculateOverride": false,
+							"encrypted": false,
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"tree": false,
+							"id": "finalSubmit",
+							"path": "columns2"
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				}
+			],
+			"customClass": "ml-1",
+			"key": "columns",
+			"type": "columns",
+			"input": false,
+			"path": "columns"
+		}
+	]
+}

@@ -1,0 +1,43 @@
+<kt-portlet>
+       
+    <kt-portlet-header [title]="'Upload Form'" [class]="'kt-portlet__head--lg'">
+           
+    </kt-portlet-header>
+
+    <!-- end::Header -->
+
+    <!-- start::Body (attribute: ktPortletBody) -->
+    <kt-portlet-body>
+        <div class="kt-form no-alert">
+            
+            <div class="kt-form__filtration mb-0">
+                    
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h4>Upload File</h4>
+                    </div>
+                    <div class="col-lg-5">
+                        <input  type="file" name="imageName" (click)="methodToSameFileSelected($event)" (change)="selectFile($event)" #selectedFile5>
+
+                        <!-- <button mat-raised-button color="primary" class="col-lg-4" (click)="selectedFile5.click()" class="btn m-btn--pill m-btn--air btn-outline-success  btn-sm">
+                            <span style="float:right" matTooltip="Upload PDF File only"><i class="fa fa-upload" ></i></span>
+                        </button>&nbsp; -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <pdf-viewer *ngIf="ShowUplodedPDF" [src]="UploadedImage" [render-text]="true" [original-size]="false" [autoresize]="false" style="display: block;width: 150px;height: 80px;" (click)="viewImage(UploadedImage)"></pdf-viewer>
+                       <img *ngIf="ShowUplodedImage" [src]="UploadedImage"  (click)="viewImage(UploadedImage)" style="display: block;width: 150px;height: 80px;">
+                    </div> 
+                </div>
+                <br/>
+            <div class="row">
+                
+                <button class="btn btn-primary py-1" color="primary" (click)="onNoClick()">Upload</button>
+            </div>
+           </div> 
+    </div>
+    </div>
+    </kt-portlet-body>
+</kt-portlet>

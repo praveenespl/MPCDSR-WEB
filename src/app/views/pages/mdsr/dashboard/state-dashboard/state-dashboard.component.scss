@@ -1,0 +1,12 @@
+@import "../../../../../../assets/sass/mat-table.scss";
+@import "../../../mdsr/dashboard/national-dashboard/national-dashboard.component.scss";
+.kt-portlet__body {
+	display: flex !important;
+	flex-direction: column !important;
+	padding: 5px !important;
+	border-radius: 4px !important;
+}
+
+th.mat-sort-header-sorted {
+	color: white;
+}

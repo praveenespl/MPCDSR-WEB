@@ -1,0 +1,555 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+	<kt-portlet-header
+		[title]="'Form 5D: State Level Reporting Form'"
+		[class]="'kt-portlet__head--lg'"
+	>
+		<!-- [viewLoading$]="dataSource.loading$" -->
+		<ng-container ktPortletTools>
+			<span class="mx-1 d-none d-md-block"></span>
+			<button mat-raised-button color="primary">
+				<!-- (click)="showFilers()" -->
+				<i class="fas fa-filter"></i>
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body class="p-0">
+		<div class="position-relative">
+			<div class="table-container overflow-x-auto">
+				<table class="table table-bordered">
+					<thead class="bg-primary text-white">
+						<tr>
+							<th scope="col" colspan="2">Indicators</th>
+							<th scope="col">During the month</th>
+							<th scope="col">
+								Cumulative (Since April current year .......till month)
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row" rowspan="10">Number of deaths reported</th>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="5">
+								Place where the death took place during the month
+							</th>
+						</tr>
+						<tr>
+							<th scope="row">Home</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Health facility: private</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Health facility: public</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">In transit</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="10">
+								No. of deaths reviewed (Verbal Autopsy completed and report
+								submitted to office of DNO)
+							</th>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="10">
+								No. of facility based deaths reviewed (Facility Based Death
+								(Facility Based Death report submitted to DNO)
+							</th>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="11">Cause of death</th>
+						</tr>
+						<tr>
+							<th scope="row">A. Pneumonia</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="11">Cause of death</th>
+						</tr>
+						<tr>
+							<th scope="row">B. Prematurity and low birth weight</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="11">Cause of death</th>
+						</tr>
+						<tr>
+							<th scope="row">C. Diarrhoeal Diseases</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="11">Cause of death</th>
+						</tr>
+						<tr>
+							<th scope="row">D. Neonatal infections</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="11">Cause of death</th>
+						</tr>
+						<tr>
+							<th scope="row">E. Birth Asphyxia and birth trauma</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" rowspan="11">Cause of death</th>
+						</tr>
+						<tr>
+							<th scope="row">F. Other Diseases</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Male</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Female</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">SC/ST</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">OBC</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">General</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">&lt;28 days</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">29 days-1Year</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">1-5 years</th>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row" colspan="2">
+								Date of the last meeting of District CDR Committee held
+							</th>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

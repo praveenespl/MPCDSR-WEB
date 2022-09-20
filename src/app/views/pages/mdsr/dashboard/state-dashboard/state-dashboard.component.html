@@ -1,0 +1,1140 @@
+<div class="row" *ngIf="currentUser.accessupto==='State'">
+	<div class="col-md-12 font-weight-bold mb-1">
+		<form [formGroup]="filterForm" style="width: 100%;" class="d-flex justify-content-end">
+			<div class="col-md-2">
+				<mat-form-field style="width: 100%;" appearance="outline">
+					<mat-label>Select Districts</mat-label>
+					<mat-select formControlName="districtcodes" multiple>
+						<mat-option #allSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
+						<mat-option *ngFor="let district of districtList" [value]="district.districtcode"
+							(click)="tosslePerOne(allSelected.viewValue)">{{district.districtname}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col-md-2">
+				<mat-form-field style="width: 100%;" appearance="outline">
+					<mat-label>From Date</mat-label>
+					<input matInput formControlName="fromDate" (dateChange)="filterChange()" [matDatepicker]="fromDatePicker">
+					<mat-datepicker-toggle matSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
+					<mat-datepicker #fromDatePicker></mat-datepicker>
+				</mat-form-field>
+			</div>
+			<div class="col-md-2">
+				<mat-form-field style="width: 100%;" appearance="outline">
+					<mat-label>To Date</mat-label>
+					<input matInput formControlName="toDate" (dateChange)="filterChange()" [matDatepicker]="toDatePicker">
+					<mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+					<mat-datepicker #toDatePicker></mat-datepicker>
+				</mat-form-field>
+			</div>
+
+		</form>
+	</div>
+</div>
+<kt-portlet>
+	<kt-portlet-body>
+		<!-- start::FILTERS & GROUP ACTIONS -->
+		<div class="row">
+			<div class="col-lg-3">
+				<mat-card (click)="getDetails('reportedDeath','Reported Death')" style="cursor: pointer;"
+					class="card-blue card-details h-100 d-flex flex-column justify-content-between align-items-center mat-card">
+					<mat-card-header>
+						<mat-card-title style="text-align: center;"># Women Deaths <small>(15-49yrs)</small>
+						</mat-card-title>
+					</mat-card-header>
+					<mat-card-content style="
+								text-align: center;
+								font-weight: bold;
+
+								font-size: 20px;
+								color: white;
+							">
+						<div class="display-2">{{ indicatorDetails?.totDeath }}</div>
+					</mat-card-content>
+
+				</mat-card>
+			</div>
+			<div class="col-lg-3">
+				<mat-card (click)="getDetails('maternalDeath','Maternal Death')" style="cursor: pointer;"
+					class="card-orange card-details h-100 d-flex flex-column justify-content-between align-items-center mat-card">
+					<mat-card-header>
+						<mat-card-title style="text-align: center;"># Maternal Deaths
+						</mat-card-title>
+					</mat-card-header>
+					<mat-card-content style="
+								text-align: center;
+								font-weight: bold;
+
+								font-size: 20px;
+								color: white;
+							">
+						<div class="display-2">{{ indicatorDetails?.totMaternalDeath }}</div>
+					</mat-card-content>
+
+				</mat-card>
+			</div>
+
+			<div class="col-lg-3">
+				<mat-card (click)="getDetails('reviewCompleted','Review Completed')" style="cursor: pointer;"
+					class="card-green card-details h-100 d-flex flex-column justify-content-between align-items-center mat-card">
+					<mat-card-header>
+						<mat-card-title style="text-align: center;"># Review Completed
+						</mat-card-title>
+					</mat-card-header>
+					<mat-card-content style="
+								text-align: center;
+								font-weight: bold;
+								font-size: 20px;
+								color: white;
+							">
+						<div class="display-2">{{ indicatorDetails?.mdsrForm5 }}</div>
+					</mat-card-content>
+
+				</mat-card>
+			</div>
+			<div class="col-lg-3">
+				<mat-card (click)="getDetails('reviewPending','Review Pending')" style="cursor: pointer;"
+					class="card-red card-details h-100 d-flex flex-column justify-content-between align-items-center mat-card">
+					<mat-card-header>
+						<mat-card-title style="text-align: center;"># Review Pending</mat-card-title>
+					</mat-card-header>
+					<mat-card-content style="
+								text-align: center;
+								font-weight: bold;
+								font-size: 20px;
+								color: white;
+							">
+						<div class="display-2">{{ indicatorDetails?.totMaternalDeath - indicatorDetails?.mdsrForm5 }}</div>
+					</mat-card-content>
+
+				</mat-card>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>
+
+<kt-portlet>
+	<kt-portlet-body>
+		<div class="row">
+			<div class="col-lg-6">
+				<mat-card
+					class="card-cbmdr card-details h-100 d-flex flex-column justify-content-between align-items-center mat-card">
+					<mat-card-header>
+						<mat-card-title style="text-align: center;margin-top: 8px;"># CBMDSR conducted :
+						</mat-card-title>
+						<mat-card-content style="
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 30px;
+                        cursor:pointer;
+                    "><span
+								(click)="getNotificationDetails({type:maternalDeathsNotification[0]?.cbmdsr?.type})">{{maternalDeathsNotification[0]?.cbmdsr?.count
+								? maternalDeathsNotification[0]?.cbmdsr?.count : 0}}</span>
+						</mat-card-content>
+					</mat-card-header>
+				</mat-card>
+			</div>
+			<div class="col-lg-6">
+				<mat-card
+					class="card-fbmdr card-details h-100 d-flex flex-column justify-content-between align-items-center mat-card">
+					<mat-card-header>
+						<mat-card-title style="text-align: center;margin-top: 8px;"># FBMDSR conducted :
+						</mat-card-title>
+						<mat-card-content style="
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 30px;
+                        cursor:pointer;
+                    "><span
+								(click)="getNotificationDetails({type:maternalDeathsNotification[0]?.fbmdsr?.type})">{{maternalDeathsNotification[0]?.fbmdsr?.count
+								? maternalDeathsNotification[0]?.fbmdsr?.count : 0}}</span>
+						</mat-card-content>
+					</mat-card-header>
+				</mat-card>
+			</div>
+
+		</div>
+	</kt-portlet-body>
+</kt-portlet>
+
+<div class="row" *ngIf="isShowMaternalDeathsDetails">
+	<div class="col-lg-12">
+		<kt-portlet>
+			<kt-portlet-header [title]="MaternalDeathsNotificationsDetails" [class]="'kt-portlet__head--lg'">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="forBlockwiseMaternalDeathsNotificationExportTable()">
+						Export
+					</button>
+				</ng-container>
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div style="overflow-y: auto; height: 300px;">
+					<input type="text" class="form-control"
+						(keyup)="applyFilterBlockwiseMaternalDeathsNotification($event.target.value)" placeholder="Search" />
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="dataSourceForBlockwiseMaternalDeathsNotification"
+							matSort>
+							<!-- Name Column -->
+							<ng-container matColumnDef="sn">
+								<th mat-header-cell *matHeaderCellDef>S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}.</td>
+							</ng-container>
+							<ng-container matColumnDef="districtname">
+								<th mat-header-cell *matHeaderCellDef> District </th>
+								<td mat-cell *matCellDef="let element"> {{element?.district_id?.districtname}} </td>
+							</ng-container>
+							<ng-container matColumnDef="subdistrictname">
+								<th mat-header-cell *matHeaderCellDef> Block </th>
+								<td mat-cell *matCellDef="let element"> {{element?.block_id?.subdistrictname}} </td>
+							</ng-container>
+							<ng-container matColumnDef="villagename">
+								<th mat-header-cell *matHeaderCellDef>Village</th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.village_id?.villagename ? element?.village_id?.villagename : '----'}}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="deceased_women_fname">
+								<th mat-header-cell *matHeaderCellDef>Deseased Name</th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.deceased_women_fname}}{{ element?.deceased_women_lname }}{{ element?.deceased_women_mname
+									}}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="husband_name">
+								<th mat-header-cell *matHeaderCellDef>Deseased Husband Name</th>
+								<td mat-cell *matCellDef="let element"> {{element?.husband_name}} </td>
+							</ng-container>
+							<ng-container matColumnDef="place_of_death">
+								<th mat-header-cell *matHeaderCellDef>Place of Death</th>
+								<td mat-cell *matCellDef="let element"> {{element?.place_of_death}} </td>
+							</ng-container>
+							<ng-container matColumnDef="death_date_time">
+								<th mat-header-cell *matHeaderCellDef>Date and Time of Death</th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.death_date_time | date:'dd-MM-yyyy hh:mm'}} </td>
+							</ng-container>
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsForBlockwiseMaternalDeathsNotification;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsForBlockwiseMaternalDeathsNotification;">
+							</tr>
+						</table>
+
+					</div>
+				</div>
+
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+<div class="row" *ngIf="currentUser.accessupto==='Block'">
+	<div class="col-lg-12">
+		<kt-notification-index-table [title]="NotificationTitle" [tableDataSource]="dataSource"
+			(editForm)="editForm($event)" (viewForm)="viewForm($event)" (addForm)="addForm($event)" [columns]="columns"
+			[columnsToDisplay]="columnsToDisplay" [viewOnly]="false">
+		</kt-notification-index-table>
+	</div>
+</div>
+
+<div class="row" *ngIf="currentUser.accessupto==='State'">
+	<div class="col-lg-6">
+		<kt-portlet>
+			<kt-portlet-header [title]="'Maternal Deaths Districtwise - Map'" [class]="'kt-portlet__head--lg'"
+				style="color: white; min-height: 40px;">
+				<ng-container ktPortletTools>
+					<div class="form-check form-check-inline">
+					</div>
+					<div class="form-check form-check-inline">
+					</div>
+				</ng-container>
+
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+
+				<div class="kt-form no-alert">
+
+					<div class="kt-form__filtration mb-0">
+						<kt-map [mapChartDiv]=mapChartDiv></kt-map>
+					</div>
+				</div>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-lg-6">
+		<kt-portlet>
+
+			<kt-portlet-header [title]="MaternalDeathsDistrictwiseTabularViewTitle" [class]="'kt-portlet__head--lg'"
+				style="color: white; min-height: 40px;">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="forDistrictwiseCbmdsrFbmdsrExportTable()">
+						Export
+					</button>
+				</ng-container>
+
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div style="overflow-y: auto; height: 620px;">
+					<input type="text" class="form-control" (keyup)="applyFilterDistrictwiseCbmdsrFbmdsr($event.target.value)"
+						placeholder="Search" />
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="dataSourceForDistrictwiseCbmdsrFbmdsr" matSort>
+							<!-- Name Column -->
+							<ng-container matColumnDef="sn">
+								<th mat-header-cell *matHeaderCellDef>S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}.</td>
+								<td mat-footer-cell *matFooterCellDef> </td>
+							</ng-container>
+							<ng-container matColumnDef="category">
+								<th mat-header-cell *matHeaderCellDef> District </th>
+								<td mat-cell *matCellDef="let element" style="cursor:pointer;">
+									<!-- <b><span (click)=getBlocksData(element)>{{element.category}}</span></b>  -->
+									<a class="font-weight-bold" (click)=getBlocksData(element)>
+										{{element?.category}}
+									</a>
+								</td>
+								<td mat-footer-cell *matFooterCellDef> TOTAL </td>
+							</ng-container>
+							<ng-container matColumnDef="column-2">
+								<th mat-header-cell *matHeaderCellDef> # Total CBMDSR </th>
+								<td mat-cell *matCellDef="let element"> {{element['column-2']}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalCbmdsr}} </td>
+							</ng-container>
+							<ng-container matColumnDef="column-1">
+								<th mat-header-cell *matHeaderCellDef># Total FBMDSR</th>
+								<td mat-cell *matCellDef="let element"> {{element['column-1']}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalFbmdsr}} </td>
+							</ng-container>
+							<ng-container matColumnDef="totalMDs">
+								<th mat-header-cell *matHeaderCellDef># Total MDs</th>
+								<td mat-cell *matCellDef="let element"> {{element['totalMDs']}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalMDs}} </td>
+							</ng-container>
+							<ng-container matColumnDef="reported">
+								<th mat-header-cell *matHeaderCellDef># Reported (15-49yrs)</th>
+								<td mat-cell *matCellDef="let element"> {{element['reported']}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{reported}} </td>
+							</ng-container>
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsForDistrictwiseCbmdsrFbmdsr;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsForDistrictwiseCbmdsrFbmdsr;">
+							</tr>
+							<tr style="background-color: #DCDCDC;" mat-footer-row
+								*matFooterRowDef="displayedColumnsForDistrictwiseCbmdsrFbmdsr; sticky: true"></tr>
+						</table>
+
+					</div>
+				</div>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+
+<div class="row" *ngIf="currentUser.accessupto==='State'" [hidden]="!isShowBlockTable">
+	<div class="col-lg-6">
+		<kt-portlet>
+			<kt-portlet-header [title]="'Maternal Deaths Blockwise - Graph View'" [class]="'kt-portlet__head--lg'">
+				<ng-container ktPortletTools>
+					<div class="form-check form-check-inline">
+					</div>
+				</ng-container>
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div class="kt-form no-alert">
+					<div class="kt-form__filtration mb-0">
+						<div id="blockwiseCbmdsrFbmdsr" style="height: 500px; width: 100%;"></div>
+					</div>
+				</div>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-lg-6">
+		<kt-portlet>
+			<kt-portlet-header [title]="MaternalDeathsBlockwiseTabularViewTitle" [class]="'kt-portlet__head--lg'"
+				style="color: white; min-height: 40px;">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="forBlockwiseCbmdsrFbmdsrExportTable()">
+						Export
+					</button>
+				</ng-container>
+
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div style="overflow-y: auto; height: 500px;">
+					<input type="text" class="form-control" (keyup)="applyFilterBlockwiseCbmdsrFbmdsr($event.target.value)"
+						placeholder="Search" />
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="dataSourceForBlockwiseCbmdsrFbmdsr" MatSort>
+							<!-- Name Column -->
+							<ng-container matColumnDef="sn">
+								<th mat-header-cell *matHeaderCellDef>S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}.</td>
+								<td mat-footer-cell *matFooterCellDef> </td>
+							</ng-container>
+							<ng-container matColumnDef="category">
+								<th mat-header-cell *matHeaderCellDef> Block </th>
+								<td mat-cell *matCellDef="let element">{{element.category}}</td>
+								<td mat-footer-cell *matFooterCellDef> TOTAL </td>
+							</ng-container>
+							<ng-container matColumnDef="column-2">
+								<th mat-header-cell *matHeaderCellDef> # Total CBMDSR </th>
+								<td mat-cell *matCellDef="let element" style="cursor:pointer;">
+									<a class="font-weight-bold"
+										(click)="getBlockswiseDeathsData({type:'CBMDSR',subdistrictcode:element?.subdistrictcode})">{{element['column-2']}}</a>
+								</td>
+								<td mat-footer-cell *matFooterCellDef> {{totalCbmdsrBlockwise}} </td>
+							</ng-container>
+							<ng-container matColumnDef="column-1">
+								<th mat-header-cell *matHeaderCellDef># Total FBMDSR</th>
+								<td mat-cell *matCellDef="let element" style="cursor:pointer;">
+									<a class="font-weight-bold"
+										(click)="getBlockswiseDeathsData({type:'FBMDSR',subdistrictcode:element?.subdistrictcode})">
+										{{element['column-1']}}</a>
+								</td>
+								<td mat-footer-cell *matFooterCellDef> {{totalFbmdsrBlockwise}} </td>
+							</ng-container>
+							<ng-container matColumnDef="totalMDs">
+								<th mat-header-cell *matHeaderCellDef># Total MDs</th>
+								<td mat-cell *matCellDef="let element" style="cursor:pointer;">
+									<a class="font-weight-bold"
+										(click)="getBlockswiseDeathsData({type:'',subdistrictcode:element?.subdistrictcode})">
+										{{element['totalMDs']}}</a>
+								</td>
+								<td mat-footer-cell *matFooterCellDef> {{totaltotalMDsBlockwise}} </td>
+							</ng-container>
+							<ng-container matColumnDef="reported">
+								<th mat-header-cell *matHeaderCellDef># Reported (15-49yrs)</th>
+								<td mat-cell *matCellDef="let element" style="cursor:pointer;">
+									<a class="font-weight-bold"
+										(click)="getBlockswiseDeathsData({type:'',subdistrictcode:element?.subdistrictcode})">
+										{{element['reported']}}</a>
+								</td>
+								<td mat-footer-cell *matFooterCellDef> {{totalreportedBlockwise}} </td>
+							</ng-container>
+
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsForBlockwiseCbmdsrFbmdsr;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsForBlockwiseCbmdsrFbmdsr;">
+							</tr>
+							<tr style="background-color: #DCDCDC;" mat-footer-row
+								*matFooterRowDef="displayedColumnsForBlockwiseCbmdsrFbmdsr; sticky: true"></tr>
+						</table>
+					</div>
+				</div>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+
+<div class="row" *ngIf="isShowBlockwiseDeathsDetailTable">
+	<div class="col-lg-12">
+		<kt-portlet>
+			<kt-portlet-header [title]="'Blockwise Maternal Deaths Details'" [class]="'kt-portlet__head--lg'">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="forBlockwiseMaternalDeathsDetailExportTable()">
+						Export
+					</button>
+				</ng-container>
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div style="overflow-y: auto; height: 300px;">
+					<input type="text" class="form-control"
+						(keyup)="applyFilterBlockwiseMaternalDeathsDetail($event.target.value)" placeholder="Search" />
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="dataSourceForBlockwiseMaternalDeathsDetail" MatSort>
+							<!-- Name Column -->
+							<ng-container matColumnDef="sn">
+								<th mat-header-cell *matHeaderCellDef>S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}.</td>
+							</ng-container>
+							<ng-container matColumnDef="districtname">
+								<th mat-header-cell *matHeaderCellDef> District </th>
+								<td mat-cell *matCellDef="let element"> {{element?.district_id?.districtname}} </td>
+							</ng-container>
+							<ng-container matColumnDef="subdistrictname">
+								<th mat-header-cell *matHeaderCellDef> Block </th>
+								<td mat-cell *matCellDef="let element"> {{element?.block_id?.subdistrictname}} </td>
+							</ng-container>
+							<ng-container matColumnDef="villagename">
+								<th mat-header-cell *matHeaderCellDef>Village</th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.village_id ? element?.village_id?.villagename : '----'}}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="deceased_women_fname">
+								<th mat-header-cell *matHeaderCellDef>Deseased Name</th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.deceased_women_fname}}{{ element?.deceased_women_lname }}{{ element?.deceased_women_mname
+									}}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="husband_name">
+								<th mat-header-cell *matHeaderCellDef>Deseased Husband Name</th>
+								<td mat-cell *matCellDef="let element"> {{element?.husband_name}} </td>
+							</ng-container>
+							<ng-container matColumnDef="place_of_death">
+								<th mat-header-cell *matHeaderCellDef>Place of Death</th>
+								<td mat-cell *matCellDef="let element"> {{element?.place_of_death}} </td>
+							</ng-container>
+							<ng-container matColumnDef="death_date_time">
+								<th mat-header-cell *matHeaderCellDef>Date and Time of Death</th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.death_date_time | date:'dd-MM-yyyy hh:mm'}} </td>
+							</ng-container>
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsForBlockwiseMaternalDeathsDetail;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsForBlockwiseMaternalDeathsDetail;">
+							</tr>
+						</table>
+						<!-- <mat-paginator #paginator1 [pageSize]="10"
+                            [length]="dataSourceForStudentApplied?.data?.length || 0"
+                            [pageSizeOptions]="[1,5, 10, 20, 50]" showFirstLastButtons></mat-paginator> -->
+					</div>
+				</div>
+				<!-- <div class="kt-form">
+                    <div class="kt-form__filtration mb-0" style="height: 280px; overflow: auto;">
+                        <table class="table table-sm">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th *ngIf="this.currentUser.accessupto == 'State'">District</th>
+                                    <th>Block</th>
+                                    <th>Village</th>
+                                    <th>Deseased Name</th>
+                                    <th>Deseased Husband Name</th>
+                                    <th>Place of Death</th>
+                                    <th>Date and Time of Death</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let blockwiseNotifications of blockwiseDetailsOfMaternalDeathsNotification; let i = index">
+                                    <td class="thlook">
+                                        {{ i+1 }}
+                                    </td>
+                                    <td class="thlook" *ngIf="this.currentUser.accessupto == 'State'">
+                                        {{ blockwiseNotifications?.district_id?.districtname }}
+                                    </td>
+                                    <td class="thlook">
+                                        {{ blockwiseNotifications?.block_id?.subdistrictname }}
+                                    </td>
+                                    <td class="tdlook">
+                                        {{ blockwiseNotifications?.village_id?.villagename ? blockwiseNotifications?.village_id?.villagename : '----'}}
+                                    </td>
+                                    <td class="tdlook">
+                                        {{ blockwiseNotifications?.deceased_women_fname }}{{ blockwiseNotifications?.deceased_women_lname }}{{ blockwiseNotifications?.deceased_women_mname }}
+                                    </td>
+                                    <td class="tdlook">
+                                        {{ blockwiseNotifications?.husband_name }}
+                                    </td>
+                                    <td class="tdlook">
+                                        {{ blockwiseNotifications?.place_of_death }}
+                                    </td>
+                                    <td class="tdlook">
+                                        {{ blockwiseNotifications?.death_date_time | date:'dd-MM-yyyy hh:mm' }}
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+
+<div class="row" *ngIf="currentUser.accessupto==='State'">
+	<div class="col-lg-6">
+		<kt-portlet>
+			<kt-portlet-header [title]="CBMDSRMaternalDeathsFormsStatusDistrictwiseTitle" [class]="'kt-portlet__head--lg'">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="forDistrictwiseCbmdsrFormStatusExportTable()">
+						Export
+					</button>
+				</ng-container>
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div style="overflow-y: auto; height: 400px;">
+					<input type="text" class="form-control" (keyup)="applyFilterDistrictwiseCbmdsrFormStatus($event.target.value)"
+						placeholder="Search" />
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="dataSourceForDistrictwiseCbmdsrFormStatus" MatSort>
+							<!-- Name Column -->
+							<ng-container matColumnDef="sn">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}.</td>
+								<td mat-footer-cell *matFooterCellDef> </td>
+							</ng-container>
+
+							<ng-container matColumnDef="1">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">S.No.</th>
+							</ng-container>
+
+							<ng-container matColumnDef="districtname">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									District </th>
+								<td mat-cell *matCellDef="let element" style="cursor:pointer;">
+									<a class="font-weight-bold" (click)=getSubmittedFormsStatusBlockwise(element)>
+										{{element?.districtname}}
+									</a>
+								</td>
+
+								<td mat-footer-cell *matFooterCellDef> TOTAL </td>
+							</ng-container>
+
+							<ng-container matColumnDef="2">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">District</th>
+							</ng-container>
+
+							<ng-container matColumnDef="form1">
+								<th mat-header-cell *matHeaderCellDef>Form 3</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form1}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalCbmdsrDistrictwiseForm1}} </td>
+							</ng-container>
+							<ng-container matColumnDef="form5">
+								<th mat-header-cell *matHeaderCellDef>Form 5</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form5}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalCbmdsrDistrictwiseForm5}} </td>
+							</ng-container>
+							<ng-container matColumnDef="form6">
+								<th mat-header-cell *matHeaderCellDef>Form 6</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form6}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalCbmdsrDistrictwiseForm6}} </td>
+							</ng-container>
+
+							<!-- Header row second group -->
+							<ng-container matColumnDef="header-row-second-group">
+								<th mat-header-cell *matHeaderCellDef [attr.colspan]="3" style="text-align:center"> # Forms Filled </th>
+							</ng-container>
+
+							<ng-container matColumnDef="percentage">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									% age<br />
+									<small>(form5/form1)*100</small>
+								</th>
+								<td mat-cell *matCellDef="let element">
+									{{(element.form5/element.form1)*100 | number: '1.2-2'}}%
+								</td>
+								<td mat-footer-cell *matFooterCellDef>
+									{{(totalCbmdsrDistrictwiseForm5/totalCbmdsrDistrictwiseForm1)*100 | number:'1.2-2'}}%
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="4">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">% <br /><small>(form5 / form3)*100</small>
+								</th>
+							</ng-container>
+
+							<tr mat-header-row *matHeaderRowDef="['1', '2','header-row-second-group','4']"></tr>
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsForDistrictwiseCbmdsrFormStatus;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsForDistrictwiseCbmdsrFormStatus;">
+							</tr>
+							<tr style="background-color: #DCDCDC;" mat-footer-row
+								*matFooterRowDef="displayedColumnsForDistrictwiseCbmdsrFormStatus; sticky: true"></tr>
+						</table>
+
+					</div>
+				</div>
+
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-lg-6">
+		<kt-portlet>
+			<kt-portlet-header [title]="FBMDSRMaternalDeathsFormsStatusDistrictwiseTitle" [class]="'kt-portlet__head--lg'">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="forDistrictwiseFbmdsrFormStatusExportTable()">
+						Export
+					</button>
+				</ng-container>
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div style="overflow-y: auto; height: 400px;">
+					<input type="text" class="form-control" (keyup)="applyFilterDistrictwiseFbmdsrFormStatus($event.target.value)"
+						placeholder="Search" />
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="dataSourceForDistrictwiseFbmdsrFormStatus" MatSort>
+							<!-- Name Column -->
+							<ng-container matColumnDef="snF">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}.</td>
+								<td mat-footer-cell *matFooterCellDef> </td>
+							</ng-container>
+
+							<ng-container matColumnDef="4">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">S.No.</th>
+							</ng-container>
+
+							<ng-container matColumnDef="districtnameF">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									District </th>
+								<td mat-cell *matCellDef="let element" style="cursor:pointer;">
+									<a class="font-weight-bold" (click)=getSubmittedFormsStatusBlockwise(element)>
+										{{element?.districtname}}
+									</a>
+								</td>
+								<td mat-footer-cell *matFooterCellDef> TOTAL </td>
+							</ng-container>
+
+							<ng-container matColumnDef="5">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">District</th>
+							</ng-container>
+
+							<ng-container matColumnDef="form1F">
+								<th mat-header-cell *matHeaderCellDef>Form 3</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form1}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalFbmdsrDistrictwiseForm1}} </td>
+							</ng-container>
+							<ng-container matColumnDef="form4">
+								<th mat-header-cell *matHeaderCellDef>Form 4</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form4}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalFbmdsrDistrictwiseForm4}} </td>
+							</ng-container>
+							<ng-container matColumnDef="form6F">
+								<th mat-header-cell *matHeaderCellDef>Form 6</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form6}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalFbmdsrDistrictwiseForm6}} </td>
+							</ng-container>
+
+							<ng-container matColumnDef="percentage">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									% age
+								</th>
+								<td mat-cell *matCellDef="let element">
+									{{(element.form4/element.form1)*100 | number: '1.2-2'}}%
+								</td>
+								<td mat-footer-cell *matFooterCellDef>
+									{{(totalFbmdsrDistrictwiseForm4/totalFbmdsrDistrictwiseForm1)*100 | number:'1.2-2'}}%
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="7">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">% <br /><small>(form4 / form 3)*100</small>
+								</th>
+							</ng-container>
+
+							<!-- Header row second group -->
+							<ng-container matColumnDef="header-row-second-group1">
+								<th mat-header-cell *matHeaderCellDef [attr.colspan]="3" style="text-align:center"> # Forms Filled </th>
+							</ng-container>
+
+							<tr mat-header-row *matHeaderRowDef="['4', '5','header-row-second-group1','7']"></tr>
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsForDistrictwiseFbmdsrFormStatus;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsForDistrictwiseFbmdsrFormStatus;">
+							</tr>
+							<tr style="background-color: #DCDCDC;" mat-footer-row
+								*matFooterRowDef="displayedColumnsForDistrictwiseFbmdsrFormStatus; sticky: true"></tr>
+						</table>
+
+					</div>
+				</div>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+
+<div class="row" *ngIf="isShowFormsStatusBlockwise">
+	<div class="col-lg-6">
+		<kt-portlet>
+			<kt-portlet-header [title]="CBMDSRMaternalDeathsFormsStatusBlockwiseTitle" [class]="'kt-portlet__head--lg'">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="forBlockwiseCbmdsrFormStatusExportTable()">
+						Export
+					</button>
+				</ng-container>
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div style="overflow-y: auto; height: 400px;">
+					<input type="text" class="form-control" (keyup)="applyFilterBlockwiseCbmdsrFormStatus($event.target.value)"
+						placeholder="Search" />
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="dataSourceForBlockwiseCbmdsrFormStatus" MatSort>
+							<!-- Name Column -->
+							<ng-container matColumnDef="sn">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}.</td>
+								<td mat-footer-cell *matFooterCellDef> </td>
+							</ng-container>
+
+							<ng-container matColumnDef="1">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">S.No.</th>
+							</ng-container>
+
+							<ng-container matColumnDef="subdistrictname">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									Block </th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.subdistrictname}}</td>
+								<td mat-footer-cell *matFooterCellDef> TOTAL </td>
+							</ng-container>
+
+							<ng-container matColumnDef="2">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Block</th>
+							</ng-container>
+
+							<ng-container matColumnDef="form1">
+								<th mat-header-cell *matHeaderCellDef>Form 3</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form1}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalCbmdsrBlockwiseForm1}} </td>
+							</ng-container>
+							<ng-container matColumnDef="form5">
+								<th mat-header-cell *matHeaderCellDef>Form 5</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form5}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalCbmdsrBlockwiseForm5}} </td>
+							</ng-container>
+							<ng-container matColumnDef="form6">
+								<th mat-header-cell *matHeaderCellDef>Form 6</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form6}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalCbmdsrBlockwiseForm6}} </td>
+							</ng-container>
+							<ng-container matColumnDef="finalStatus">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									%
+								</th>
+								<td mat-cell *matCellDef="let element">
+									{{(element.form5/element.form1)*100 | number:'1.2-2'}}%
+								</td>
+								<td mat-footer-cell *matFooterCellDef>
+									{{(totalCbmdsrBlockwiseForm5/totalCbmdsrBlockwiseForm1)*100 | number:'1.2-2'}}%
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="3">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">%<br /><small>(form5 / form 3)*100</small></th>
+							</ng-container>
+
+							<!-- Header row second group -->
+							<ng-container matColumnDef="header-row-second-group">
+								<th mat-header-cell *matHeaderCellDef [attr.colspan]="3" style="text-align:center"> # Forms Filled </th>
+							</ng-container>
+
+							<tr mat-header-row *matHeaderRowDef="['1', '2','header-row-second-group','3']"></tr>
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsForBlockwiseCbmdsrFormStatus;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsForBlockwiseCbmdsrFormStatus;">
+							</tr>
+							<tr style="background-color: #DCDCDC;" mat-footer-row
+								*matFooterRowDef="displayedColumnsForBlockwiseCbmdsrFormStatus; sticky: true"></tr>
+						</table>
+
+					</div>
+				</div>
+
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-lg-6">
+		<kt-portlet>
+			<kt-portlet-header [title]="FBMDSRMaternalDeathsFormsStatusBlockwiseTitle" [class]="'kt-portlet__head--lg'">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="forBlockwiseFbmdsrFormStatusExportTable()">
+						Export
+					</button>
+				</ng-container>
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div style="overflow-y: auto; height: 400px;">
+					<input type="text" class="form-control" (keyup)="applyFilterBlockwiseFbmdsrFormStatus($event.target.value)"
+						placeholder="Search" />
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="dataSourceForBlockwiseFbmdsrFormStatus" MatSort>
+							<!-- Name Column -->
+							<ng-container matColumnDef="snF">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}.</td>
+								<td mat-footer-cell *matFooterCellDef> </td>
+							</ng-container>
+
+							<ng-container matColumnDef="4">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">S.No.</th>
+							</ng-container>
+
+							<ng-container matColumnDef="subdistrictnameF">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									District </th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.subdistrictname}}</td>
+								<td mat-footer-cell *matFooterCellDef> TOTAL </td>
+							</ng-container>
+
+							<ng-container matColumnDef="5">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Block</th>
+							</ng-container>
+
+							<ng-container matColumnDef="form1F">
+								<th mat-header-cell *matHeaderCellDef>Form 3</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form1}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalFbmdsrBlockwiseForm1}} </td>
+							</ng-container>
+							<ng-container matColumnDef="form4">
+								<th mat-header-cell *matHeaderCellDef>Form 4</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form4}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalFbmdsrBlockwiseForm4}} </td>
+							</ng-container>
+							<ng-container matColumnDef="form6F">
+								<th mat-header-cell *matHeaderCellDef>Form 6</th>
+								<td mat-cell *matCellDef="let element"> {{element?.form6}} </td>
+								<td mat-footer-cell *matFooterCellDef> {{totalFbmdsrBlockwiseForm6}} </td>
+							</ng-container>
+							<ng-container matColumnDef="finalStatusF">
+								<th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+									Final Status
+								</th>
+								<td mat-cell *matCellDef="let element">
+									{{(element.form4/element.form1)*100 | number: '1.2-2'}}%
+								</td>
+								<td mat-footer-cell *matFooterCellDef>
+									{{(totalFbmdsrBlockwiseForm4/totalFbmdsrBlockwiseForm1)*100 | number: '1.2-2'}}%
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="6">
+								<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">% <br /><small>(form4 / form3)*100</small></th>
+							</ng-container>
+
+							<!-- Header row second group -->
+							<ng-container matColumnDef="header-row-second-group1">
+								<th mat-header-cell *matHeaderCellDef [attr.colspan]="3" style="text-align:center"> # Forms Filled </th>
+							</ng-container>
+
+							<tr mat-header-row *matHeaderRowDef="['4', '5','header-row-second-group1','6']"></tr>
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsForBlockwiseFbmdsrFormStatus;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsForBlockwiseFbmdsrFormStatus;">
+							</tr>
+							<tr style="background-color: #DCDCDC;" mat-footer-row
+								*matFooterRowDef="displayedColumnsForBlockwiseFbmdsrFormStatus; sticky: true"></tr>
+						</table>
+					</div>
+				</div>
+
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+
+<div class="row" *ngIf="currentUser.accessupto==='State'">
+	<div class="col-lg-12">
+		<kt-portlet>
+			<kt-portlet-header [title]="MajorCausesOfMaternalDeathsDataTitle"
+				[class]="'kt-portlet__head--lg justify-content-center'">
+			</kt-portlet-header>
+
+			<kt-portlet-body>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="card card-body">
+							<div id="chart1" style="height: 500px; width: 100%;"></div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="card card-body">
+							<div id="chart2" style="height: 500px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+
+<kt-portlet *ngIf="this.currentUser.accessupto == 'State'">
+	<kt-portlet-header
+		[title]="selectedValueCBFBMDSR==='percentWise'?OutofTotalFBMDSRCasesHowManyCBMDSRAreCompletedInPer:OutofTotalFBMDSRCasesHowManyCBMDSRAreCompleted"
+		[class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<mat-radio-group aria-label="Select an option" [ngModel]="selectedValueCBFBMDSR">
+				<mat-radio-button value="percentWise" (change)="onChangeCBFBMDSR('percentWise')">
+					% wise
+				</mat-radio-button>
+				<mat-radio-button value="countWise" (change)="onChangeCBFBMDSR('countWise')">
+					Count wise
+				</mat-radio-button>
+			</mat-radio-group>
+		</ng-container>
+
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<div class="kt-form no-alert">
+			<div class="kt-form__filtration mb-0">
+				<div id="totalCBOutOfFBMDSR" style="height: 500px; width: 100%;"></div>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>
+
+<div *ngIf="currentUser.accessupto==='State'">
+	<kt-portlet>
+		<kt-portlet-header [title]="monthOnMonthTitle" [class]="'kt-portlet__head--lg'">
+
+		</kt-portlet-header>
+
+		<kt-portlet-body>
+
+			<div class="kt-form no-alert">
+
+				<div class="kt-form__filtration mb-0">
+					<div id="chart4" style="height: 500px; width: 100%;"></div>
+				</div>
+			</div>
+		</kt-portlet-body>
+	</kt-portlet>
+
+</div>
+<kt-portlet *ngIf="this.currentUser.accessupto == 'State'">
+
+	<kt-portlet-header [title]="MDsAtFacilityVsTransitVsHomeVsOtherTitle" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<mat-radio-group aria-label="Select an option" [ngModel]="selectedValueMDsFacilityVsHomeVsTransit">
+				<mat-radio-button value="percentWise" (change)="onChangeFacilityVsHomeVsTransit('percentWise')">
+					% wise
+				</mat-radio-button>
+				<mat-radio-button value="countWise" (change)="onChangeFacilityVsHomeVsTransit('countWise')">
+					Count wise
+				</mat-radio-button>
+			</mat-radio-group>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<kt-stack-bar [statecodes]="[state_id.statecode]" [districtcodes]="filterForm.value.districtcodes"
+			[fromDate]="fromDate" [toDate]="toDate" [type]="'getDistricts'" [accessupto]="currentUser.accessupto"
+			[selectedValue]="selectedValueMDsFacilityVsHomeVsTransit">
+		</kt-stack-bar>
+
+	</kt-portlet-body>
+</kt-portlet>
+
+<!-- <div class="row" *ngIf="currentUser.accessupto=='State'">
+	<div class="col-lg-6">
+		<kt-portlet>
+			<!-- <kt-portlet-header [title]="'Districts who have reported MD but not conducted \'District CMO Review Meeting\': [Monthly]'" [class]="'kt-portlet__head--lg'" style="color: white; min-height: 40px;"> --
+			<kt-portlet-header [title]="MDnotreviewedbyCMO" [class]="'kt-portlet__head--lg'"
+				style="color: white; min-height: 40px;">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="ExportTableMD(1)">
+						Export
+					</button>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<div style="overflow-y: auto; max-height: 520px;">
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="data2" matSort>
+							<pre>{{data2}}</pre>
+							<ng-container matColumnDef="sn">
+								<th mat-header-cell *matHeaderCellDef>S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index" class="text-center">
+									{{ i + 1 }}.</td>
+							</ng-container>
+
+							<ng-container matColumnDef="state">
+								<th mat-header-cell *matHeaderCellDef> State </th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.state}}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="district">
+								<th mat-header-cell *matHeaderCellDef> District </th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.district}}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="md">
+								<th mat-header-cell *matHeaderCellDef> MD Reported </th>
+								<td mat-cell *matCellDef="let element" class="text-center"> {{element.md}} </td>
+							</ng-container>
+							<ng-container matColumnDef="dnotreviwed">
+								<th mat-header-cell *matHeaderCellDef> Deaths not Reviwed </th>
+								<td mat-cell *matCellDef="let element" class="text-center"> {{element.dnotreviwed}} </td>
+							</ng-container>
+
+
+							<tr mat-header-row
+								*matHeaderRowDef="displayedColumnsWhereCbmdsrAndFbmdsrConductedDatasource2;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsWhereCbmdsrAndFbmdsrConductedDatasource2;">
+							</tr>
+						</table>
+						<div class="col-xl-12 " *ngIf="data2?.length==0" align="center">
+							<mat-spinner strokeWidth="3" [diameter]="60"></mat-spinner>
+						</div>
+
+					</div>
+				</div>
+
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-lg-6">
+		<kt-portlet>
+			<kt-portlet-header [title]="MDnotreviewedbyDCDM" [class]="'kt-portlet__head--lg'"
+				style="color: white; min-height: 40px;">
+				<ng-container ktPortletTools>
+					<button class="btn btn-primary" (click)="ExportTableMD(2)">
+						Export
+					</button>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<div style="overflow-y: auto; max-height: 520px;">
+					<div style="margin-top:5px;">
+						<table class="w-100 shadow" mat-table [dataSource]="data3" matSort>
+							<ng-container matColumnDef="sn">
+								<th mat-header-cell *matHeaderCellDef>S.N.</th>
+								<td mat-cell *matCellDef="let row; let i = index" class="text-center">
+									{{ i + 1 }}.</td>
+							</ng-container>
+
+							<ng-container matColumnDef="state">
+								<th mat-header-cell *matHeaderCellDef> State </th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.state}}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="district">
+								<th mat-header-cell *matHeaderCellDef> District </th>
+								<td mat-cell *matCellDef="let element">
+									{{element?.district}}
+								</td>
+							</ng-container>
+							<ng-container matColumnDef="md">
+								<th mat-header-cell *matHeaderCellDef> MD Reported </th>
+								<td mat-cell *matCellDef="let element" class="text-center"> {{element.md}} </td>
+							</ng-container>
+							<ng-container matColumnDef="dnotreviwed">
+								<th mat-header-cell *matHeaderCellDef> Deaths not Reviwed </th>
+								<td mat-cell *matCellDef="let element" class="text-center"> {{element.dnotreviwed}} </td>
+							</ng-container>
+
+
+							<tr mat-header-row
+								*matHeaderRowDef="displayedColumnsWhereCbmdsrAndFbmdsrConductedDatasource2;sticky: true">
+							</tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsWhereCbmdsrAndFbmdsrConductedDatasource2;">
+							</tr>
+						</table>
+						<div class="col-xl-12 " *ngIf="data2?.length==0" align="center">
+							<mat-spinner strokeWidth="3" [diameter]="60"></mat-spinner>
+						</div>
+					</div>
+				</div>
+
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div> -->

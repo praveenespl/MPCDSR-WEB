@@ -1,0 +1,17 @@
+@import "../../../../../assets/sass/mat-table.scss";
+.mat-row:nth-child(even) {
+	background-color: rgb(240, 245, 239);
+}
+// ::ng-deep mat-footer-row,
+// mat-header-row,
+// mat-row,
+// td.mat-cell,
+// td.mat-footer-cell,
+// th.mat-header-cell {
+// 	border-bottom-color: black;
+// }
+// ::ng-deep th.mat-header-cell {
+// 	background-color: #337ab7;
+// 	color: #FFFF;
+// 	font-size: 14px;
+// }

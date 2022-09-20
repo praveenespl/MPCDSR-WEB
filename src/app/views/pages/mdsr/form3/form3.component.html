@@ -1,0 +1,159 @@
+<kt-portlet>
+	<kt-portlet-header [title]="title" [class]="'kt-portlet__head--lg'">
+		<!-- [viewLoading$]="dataSource.loading$" -->
+		<ng-container ktPortletTools>
+			<!-- <button mat-raised-button color="primary" class="mr-2" *ngIf="showMailButton && this.currentUser.accessupto != 'District'" (click)="sendMail()">
+				<i class="fas fa-envelope"></i>
+			</button> -->
+			<a *ngIf="this.currentUser.accessupto != 'District'" class="pl-2" routerLink="add" mat-raised-button
+				color="primary" matTooltip="Add new record">
+				+Add new
+			</a>
+			&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="onClick()">
+				<i class="fas fa-filter"></i>
+			</button>
+			<button *ngIf="this.currentUser.accessupto != 'District'" mat-icon-button aria-label="" matTooltip="Info about the action" (click)="exportToExcel()">
+				<i style="color: #3f50b4; font-size: 2.5rem;" class="fas fa-file-excel"></i>
+			</button>
+			<button *ngIf="this.currentUser.accessupto != 'District'" mat-raised-button aria-label="" color="primary"
+				matTooltip="Info about the action" (click)="exportToPDF()">
+				PDF
+			</button>
+
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body [hidden]="!isShowFilter">
+		<div class="kt-form no-alert">
+			<div class="kt-form__filtration mb-0">
+				<formio [refresh]="refreshForm" [form]="formFilter" (change)="filterChange($event)" #filterFormRef>
+				</formio>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>
+
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body class="p-0">
+		<!-- start::FILTERS & GROUP ACTIONS -->
+		<div class="position-relative" style="min-height: 200px;">
+			<div class="loading-shade" *ngIf="isLoadingResults || isMaxLimitReached">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+				<div class="example-rate-limit-reached" *ngIf="isMaxLimitReached">
+					Please wait...
+				</div>
+			</div>
+
+			<div class="table-container" #pdfTable>
+				<!--multiTemplateDataRows-->
+				<div class="d-none">
+					<h3>Form 3: MDR Line Listing Form for All Cases of Maternal Death Data</h3><br/>
+					<div >
+						<span>State: {{currentUser?.user_state_id?.statename}}</span> &nbsp;&nbsp;
+						<span>District: {{currentUser?.user_district_id?.districtname}}</span>&nbsp;&nbsp;
+					</div><br/>
+				</div>
+				<table mat-table [dataSource]="dataSource" class="w-100" matSort 
+					multiTemplateDataRows>
+					<ng-container matColumnDef="block">
+						<th mat-header-cell *matHeaderCellDef>
+							Block
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{row?.block_id?.subdistrictname}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Name of Deceased">
+						<th mat-header-cell *matHeaderCellDef>
+							Name of Deceased
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.mdsrForm1.getName }}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Age">
+						<th mat-header-cell *matHeaderCellDef [style.width]="'60px'">
+							Age
+						</th>
+						<td mat-cell [style.width]="'100px'" *matCellDef="let row">
+							{{ row.mdsrForm1.getAge }}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Death Date Time">
+						<th mat-header-cell *matHeaderCellDef>
+							Death Date Time
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.mdsrForm1.getDeathDateTime }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="Investigation Date">
+						<th mat-header-cell *matHeaderCellDef>
+							Investigation Date
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.getFieldInvestigationDate }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="Death Cause">
+						<th mat-header-cell *matHeaderCellDef>Death Cause</th>
+						<td mat-cell *matCellDef="let row">
+							{{
+							row.mdsrForm1.is_maternal_death
+							? "Maternal"
+							: "Non Maternal"
+							}}
+						</td>
+					</ng-container>
+					Death Cause
+
+					<ng-container *ngFor="let column of columns">
+						<ng-container [matColumnDef]="column.name" *ngIf="!column?.isActionField">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>
+								{{ column?.name }}
+							</th>
+							<td mat-cell *matCellDef="let row">
+								{{ objectPath.get(row, column?.key) || "--" }}
+							</td>
+						</ng-container>
+					</ng-container>
+
+					<ng-container matColumnDef="Interview Date">
+						<th mat-header-cell *matHeaderCellDef>
+							Interview Date
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.getInterviewDate }}
+						</td>
+					</ng-container>
+					<!-- ACTION FIELDS -->
+					<ng-container matColumnDef="action">
+						<th mat-header-cell *matHeaderCellDef></th>
+						<td mat-cell *matCellDef="let row">
+							<a *ngIf="this.currentUser.accessupto != 'District'" [routerLink]="[row.mdsrForm1.id]">
+								<mat-icon>edit</mat-icon>
+							</a>
+						</td>
+					</ng-container>
+					<!-- Expandable Details-->
+					<tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+					<tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+					<!-- (click)="expandedElement = expandedElement === row ? null : row" -->
+					<!-- <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"></tr> -->
+				</table>
+			</div>
+
+			<mat-paginator [length]="totalRecords" [pageSize]="pageSize"></mat-paginator>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

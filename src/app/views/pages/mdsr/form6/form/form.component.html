@@ -1,0 +1,122 @@
+<!-- <kt-portlet [hidden]='!showFiliter' id="filter">
+	<kt-portlet-header [title]="'Search Deceased Women: For MDSR Case Summary'" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="onClick()"><i class="fas fa-filter"></i></button>
+
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body [hidden]="!isShowFilter">
+		<formio [form]="formFilter" [refresh]="refreshForm" (submit)="filterChange($event)"></formio>
+	</kt-portlet-body>
+</kt-portlet>
+
+<kt-portlet *ngIf="records.length > 1 && !recordToUse">
+	<kt-portlet-header [title]="'Deceased Women Info'" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<button mat-raised-button color="warn" (click)="backClicked()">
+				Back
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<div class="position-relative" style="min-height: 200px;">
+			<div class="table-container">
+				<table mat-table [dataSource]="records" class="w-100" matSort matSortDisableClear multiTemplateDataRows>
+					<ng-container matColumnDef="action">
+						<th mat-header-cell *matHeaderCellDef>Select</th>
+
+						<td mat-cell *matCellDef="let row">
+
+							<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+								[(ngModel)]="recordToUse">
+								<mat-radio-button class="example-radio-button" [value]="row.deceased_women_id"
+									(change)="fillFormDetails(row)">
+								</mat-radio-button>
+							</mat-radio-group>
+
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="block">
+						<th mat-header-cell *matHeaderCellDef>
+							Block
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{row?.block_id?.subdistrictname}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Name of Deceased">
+						<th mat-header-cell *matHeaderCellDef>Name of Deceased</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.generalinformation.deceased_women_fname}} {{ row.generalinformation.deceased_women_mname}} {{
+							row.generalinformation.deceased_women_lname}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Husband">
+						<th mat-header-cell *matHeaderCellDef>Husband</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.generalinformation.husband_name ? row.generalinformation.husband_name : row.husband_name}}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="Age">
+						<th mat-header-cell *matHeaderCellDef>Age</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.generalinformation.age ? row.generalinformation.age : row.patient_history.background_info.age}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="MCTS">
+						<th mat-header-cell *matHeaderCellDef>MCTS Id</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.generalinformation.mcts_id}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Mobile">
+						<th mat-header-cell *matHeaderCellDef>Mobile</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.generalinformation.mobile ? row.generalinformation.mobile : row.mobile}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Death Date Time">
+						<th mat-header-cell *matHeaderCellDef>Death Date Time</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.patient_history.death_date_time ?
+							row.patient_history.death_date_time:row.patient_history.background_info.death_date_time}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Place Of Death">
+						<th mat-header-cell *matHeaderCellDef>Place Of Death</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.patient_history.background_info ? row.patient_history.background_info.period_of_death
+							:row.place_of_death }}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Submitted">
+						<th mat-header-cell *matHeaderCellDef>Submitted</th>
+						<td mat-cell *matCellDef="let row">
+							<span [style.color]="row.form6.length>0?'darkgreen':'red'">{{row.form6.length>0?'Submitted':'Not Submitted'}}</span>
+						</td>
+					</ng-container>
+					<tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+					<tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+				</table>
+			</div>
+
+		</div>
+	</kt-portlet-body>
+</kt-portlet> -->
+<kt-portlet [hidden]="!recordToUse">
+	<kt-portlet-header [title]="'Form 6: MDR Case Summary'" [class]="'kt-portlet__head--sm'">
+		<ng-container ktPortletTools>
+			<button mat-raised-button color="warn" (click)="backClicked()">
+				Back
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<div class="kt-form no-alert">
+			<div class="kt-form__filtration mb-0">
+				<formio [form]="form" [refresh]="setp1refresh" (submit)="onSubmit($event)" id="formio"></formio>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

@@ -1,0 +1,76 @@
+@import "sass/pages/wizard/wizard-3";
+@import "../../../../../../assets/sass/mat-table.scss";
+.mat-row:nth-child(even) {
+	background-color: rgb(240, 245, 239);
+}
+::ng-deep mat-footer-row,
+mat-header-row,
+mat-row,
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+	border-bottom-color: black;
+}
+// ::ng-deep th.mat-header-cell {
+// 	background-color: #337ab7;
+// 	color: #ffff;
+// 	font-size: 14px;
+// }
+// .w-175 {
+// 	width: 175%;
+// }
+
+.table thead th,
+.table thead td {
+	font-weight: 800;
+	border-bottom-width: 1px;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+::ng-deep {
+	.formio_table {
+		& table {
+			table-layout: fixed;
+			& .row {
+				display: table-row !important;
+				flex-wrap: nowrap !important;
+				margin-right: 0;
+				margin-left: 0;
+			}
+			& tbody label {
+				font-size: 1rem !important;
+				color: black !important;
+				font-weight: 600 !important;
+			}
+			& thead th {
+				text-align: center;
+				font-weight: 600 !important;
+				background-color: #e6e6ec;
+			}
+		}
+		& .formio-choices.form-group {
+			min-width: initial !important;
+			margin-bottom: 0;
+		}
+	}
+
+	#evdjms9 {
+		float: right !important;
+		position: relative !important;
+		top: 11.6rem !important;
+		right: 0.8rem;
+	}
+
+	#finalSubmit {
+		float: right !important;
+		position: relative !important;
+		top: 32.1rem !important;
+		right: 0.8rem;
+	}
+	#e88j9ipv {
+		margin-top: -6rem;
+	}
+}
+
+

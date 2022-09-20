@@ -1,0 +1,40 @@
+<!-- begin: Header -->
+<div ktHeader #ktHeader class="kt-header kt-grid__item" [ngClass]="htmlClassService.getClasses('header', true)" id="kt_header">
+	<ngb-progressbar class="kt-loading-bar" *ngIf="(loader.progress$|async) > 0" [value]="loader.progress$|async" height="3px"></ngb-progressbar>
+	<!-- <div class="bg-primary p-2 text-white">
+		<div class="kt-container d-flex flex-column flex-lg-row justify-content-lg-between justify-content-center">
+			<span class="font-weight-600">
+				<nav class="navbar navbar-expand p-0">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link text-white py-0" routerLink="/">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white py-0" routerLink=".">Feedback</a>
+						</li>
+					</ul>
+				</nav>
+			</span>
+			<span>Ministry of Health and Family Welfare, Government of India</span>
+			
+		</div>
+	</div> -->
+	<div class="kt-header__top">
+		<div class="kt-container" [ngClass]="{'kt-container--fluid': fluid}">
+			<!-- begin:: Brand -->
+			<kt-brand></kt-brand>
+			<!-- end:: Brand -->
+			<!-- begin:: Header Topbar -->
+			<kt-topbar></kt-topbar>
+			<!-- end:: Header Topbar -->
+		</div>
+	</div>
+	<div class="kt-header__bottom">
+		<div class="kt-container" [ngClass]="{'kt-container--fluid': fluid}">
+			<!-- begin: Header Menu -->
+			<kt-menu-horizontal *ngIf="menuHeaderDisplay"></kt-menu-horizontal>
+			<!-- end: Header Menu -->
+		</div>
+	</div>
+</div>
+<!-- end: Header -->

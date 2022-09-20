@@ -1,0 +1,188 @@
+<kt-portlet>
+	<kt-portlet-header [title]="title" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<button *ngIf="this.currentUser.accessupto != 'District'" mat-icon-button aria-label=""
+				matTooltip="Info about the action" (click)="exportToExcel()">
+				<i style="color: #3f50b4; font-size: 2.5rem;" class="fas fa-file-excel"></i>
+			</button>
+			<button mat-raised-button color="warn" (click)="backClicked()">
+				Back
+			</button>
+
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body *ngIf="isShowForm">
+		<div class="kt-form no-alert">
+			<div class="kt-form__filtration mb-0">
+				<formio [refresh]="refreshForm" [form]="filterForm" (change)="filterChange($event)" #filterFormRef>
+				</formio>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>
+
+<kt-portlet>
+	<kt-portlet-body class="p-0">
+		<!-- start::FILTERS & GROUP ACTIONS -->
+		<div class="position-relative" style="min-height: 200px;">
+			<div class="loading-shade" *ngIf="isLoadingResults || isMaxLimitReached">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+				<div class="example-rate-limit-reached" *ngIf="isMaxLimitReached">
+					Please wait...
+				</div>
+			</div>
+
+			<div class="table-container">
+				<!-- <div class="d-flex px-3 pt-2 font-weight-bold">
+                    <div class="pr-2">
+                        Non-Maternal Death
+                        <div class="maternal bg-success"></div>
+                    </div>
+                    <div class="pr-2">
+                        Maternal Death
+                        <div class="maternal bg-danger"></div>
+                    </div>
+                </div> -->
+				<!---->
+				<table mat-table [dataSource]="dataSource" class="w-100 mt-2" matSort matSortDisableClear multiTemplateDataRows>
+					<ng-container matColumnDef="isMaternal">
+						<th mat-header-cell *matHeaderCellDef>Death Cause</th>
+						<td mat-cell *matCellDef="let row">
+							<div [style.color]="
+									row.is_maternal_death
+										? 'darkgreen'
+										: 'red'
+								">{{row.is_maternal_death?'Maternal':'Non-Maternal'}}</div>
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Name of Deceased">
+						<th mat-header-cell *matHeaderCellDef>
+							Name of Deceased
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.getName }}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Age">
+						<th mat-header-cell *matHeaderCellDef>Age</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.getAge }}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Death Date Time">
+						<th mat-header-cell *matHeaderCellDef>
+							Death Date Time
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.getDeathDateTime }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="Investigation Date">
+						<th mat-header-cell *matHeaderCellDef>
+							Investigation Date
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.getFieldInvestigationDate }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="Submitted">
+						<th mat-header-cell *matHeaderCellDef>Submitted</th>
+						<td mat-cell *matCellDef="let row">
+							<span [style.color]="row.mdsrForm2s.length > 0 ? 'darkgreen' : 'red'">
+								{{row.mdsrForm2s.length > 0 ? "Submitted" : "Not Submitted"}}
+							</span>
+						</td>
+					</ng-container>
+
+					<ng-container *ngFor="let column of columns">
+						<ng-container [matColumnDef]="column.name" *ngIf="!column?.isActionField">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>
+								{{ column?.name }}
+							</th>
+							<td mat-cell *matCellDef="let row">
+								{{ objectPath.get(row, column?.key) || "--" }}
+							</td>
+						</ng-container>
+					</ng-container>
+
+					<ng-container matColumnDef="expandedDetail">
+						<td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplay.length">
+							<div class="expandable-row-details" [@collapsed]="
+									row == expandedElement
+										? 'expanded'
+										: 'collapsed'
+								">
+								<div class="d-flex pt-2 font-weight-bold">
+									<div class="pr-3">
+										Is Maternal Death : {{ expandedElement?.is_maternal_death ? "Yes" : "No" }}
+									</div>
+									<div class="pr-3">
+										Reporting Person : {{ expandedElement?.reporting_person }}
+									</div>
+									<div class="pr-3">
+										Designation : {{ expandedElement?.designation }}
+									</div>
+									<div class="pr-3">
+										Reported Date : {{ expandedElement?.date_of_reporting | date: "dd-MM-yyyy" }}
+									</div>
+								</div>
+								<form *ngIf="mdsrForm2FormGroup" [formGroup]="mdsrForm2FormGroup" (ngSubmit)="saveAndUpdateMdsrForm2()">
+									<div class="row pt-3">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="field_investigation_date">Field Investigation
+													Date</label>
+												<!-- <ngb-datepicker #dp></ngb-datepicker> -->
+												<input class="form-control" placeholder="yyyy-mm-dd" readonly
+													[owlDateTime]="field_investigation_date" [owlDateTimeTrigger]="field_investigation_date"
+													formControlName="field_investigation_date" [max]="today" />
+												<owl-date-time [pickerType]="'calendar'" #field_investigation_date></owl-date-time>
+												<!-- <input class="form-control" formControlName="field_investigation_date"
+                                                    (click)="d.toggle()" placeholder="yyyy-mm-dd" name="dp"
+                                                    ngbDatepicker container='body' #d="ngbDatepicker" /> -->
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<label for="reason">If died due to maternal
+													cause, Please specify</label>
+												<textarea id="reason" formControlName="reason" class="form-control"
+													placeholder="If died due to maternal cause, Please specify"></textarea>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<label for="action_taken">Action Taken</label>
+												<textarea id="action_taken" formControlName="action_taken" class="form-control"
+													placeholder="Action Taken"></textarea>
+											</div>
+										</div>
+										<div class="col-md-1 align-bottom pt-3">
+											<button class="btn btn-sm btn-primary">
+												{{ buttonText }}
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</td>
+					</ng-container>
+					<!--  -->
+					<tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+					<tr mat-row *matRowDef="let row; columns: columnsToDisplay" class="expandable-table-row"
+						(click)="expendRow(row)"></tr>
+					<!-- (click)="expandedElement = expandedElement === row ? null : row" -->
+					<tr mat-row class="expandable-table-row expandable-row" *matRowDef="let row; columns: ['expandedDetail']">
+					</tr>
+				</table>
+			</div>
+
+			<mat-paginator [length]="totalRecords" [pageSize]="pageSize"></mat-paginator>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

@@ -1,0 +1,84 @@
+<div class="border-primary">
+	<!-- <img src="assets/media/bg/bg-blue.jpg"> -->
+
+	<!-- <div class="card-header bg-primary">
+        <h5 class="mb-0 px-2 font-weight-normal text-center text-white">
+            Sign In
+        </h5>
+    </div> -->
+
+	<div class="row justify-content-center bgimage">
+
+		<div class="col-11 col-md-6 col-lg-4 card-body">
+			<div class="heading">
+				<h2>Login</h2>
+			</div>
+			<form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
+				<div *ngIf="message!=''" class="login-error" role="alert">
+					{{message}}
+				</div>
+				<div class="form-group">
+					<label>Username</label>
+					<div class="input-group">
+						<input type="text" formControlName="username" class="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label>Password</label>
+					<div class="input-group">
+						<input type="password" class="form-control" formControlName="password" #passwordInput />
+						<div class="input-group-append">
+							<button class="input-group-text" type="button" (click)="
+									passwordInput.type == 'text'
+										? (passwordInput.type = 'password')
+										: (passwordInput.type = 'text')
+								">
+								<ng-container [ngSwitch]="passwordInput.type == 'text'">
+									<i *ngSwitchCase="false" class="fas fa-eye"></i>
+									<i *ngSwitchCase="true" class="fas fa-eye-slash"></i>
+								</ng-container>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="right-align captcha-code">
+					<div [innerHTML]="captcha" class="captcha-image" style="width: 130px;height: 61px;"></div>
+					<!-- <img src="assets/media/temp/captha.png" /> -->
+					<div class="captcha-btn">
+						<button class="btn-info" type="button" (click)="getCaptcha()" style="margin-left: 21px;width: 79px;">
+							<i class="fas fa-sync-alt"></i>
+							Refresh
+						</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="right-align enter-captcha">
+						<label>CAPTCHA</label>
+						<div class="input-group">
+							<input type="text" formControlName="captcha" class="form-control" />
+						</div>
+					</div>
+				</div>
+
+				<div class="d-flex flex-wrap bottom">
+					<div>
+						<button class="btn btn-primary" [disabled]="form.invalid" type="submit">
+							<!-- Sign in  -->
+							{{loader?'Loading...':'Sign In'}}
+							<span *ngIf="loader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+							<span *ngIf="loader" class="sr-only"></span>
+						</button>
+					</div>
+
+					<span style="flex-basis: 10px;"></span>
+					<div class="d-flex flex-column">
+						<a routerLink=".">Reset Password</a>
+
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

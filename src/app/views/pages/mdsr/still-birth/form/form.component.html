@@ -1,0 +1,1405 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<kt-portlet-header [title]="'Add Notification'" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<a mat-raised-button color="warn" (click)="backClicked()"> Back </a>
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+
+	<kt-portlet-body>
+		<div class="kt-form">
+			<!-- [compareWith] -->
+			<form [formGroup]="form">
+				<!--begin: Wizard -->
+				<fieldset [disabled]="viewOnly">
+					<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
+						data-ktwizard-state="step-first">
+						<div class="kt-grid__item">
+							<!--begin: Form Wizard Nav -->
+							<div class="kt-wizard-v3__nav">
+								<div class="kt-wizard-v3__nav-items scrollbar" id="scrollbar" style="overflow-x: auto">
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step"
+										data-ktwizard-state="current">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">Basic Information</div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">Pregnancy Care </div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">Labour & birth</div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">Cause of death </div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">Associated factors</div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+
+								</div>
+							</div>
+							<!--end: Form Wizard Nav -->
+						</div>
+						<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+							<!--begin: Form Wizard Form-->
+							<div class="kt-form" id="kt_form">
+								<!--begin: Form Wizard Step 1-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content"
+									data-ktwizard-state="current">
+									<!-- <div class="kt-heading kt-heading--md"> HEADING </div> -->
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionA">
+										<div class="row">
+
+											<!--  -->
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">State </label>
+												<ng-select [items]="states" bindLabel="statename" [readonly]="viewOnly"
+													formControlName="state" (change)="getDistricts(selectedState)"
+													[clearable]="false" [(ngModel)]="selectedState" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.state')?.errors &&
+															(form.get('sectionA.state')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionA.state')?.errors" label="State"></span>
+											</div>
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">District </label>
+												<ng-select [items]="districts" bindLabel="districtname"
+													[readonly]="viewOnly" (change)="getBlocks(selectedDistrict)"
+													formControlName="district" [clearable]="false"
+													[(ngModel)]="selectedDistrict" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.district')?.errors &&
+															(form.get('sectionA.district')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionA.district')?.errors"
+													label="District"></span>
+											</div>
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Block </label>
+												<ng-select [items]="blocks" bindLabel="subdistrictname"
+													[readonly]="viewOnly" formControlName="block" [clearable]="false"
+													[(ngModel)]="selectedBlock" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.block')?.errors &&
+															(form.get('sectionA.block')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionA.block')?.errors" label="Block"></span>
+											</div>
+
+											<!-- <div class="form-group col-md-3">
+												<label class="i-field-required">Village </label>
+												 <ng-select
+													[items]="villages"
+													bindLabel="villagename"
+													[readonly]="viewOnly"
+													formControlName="village"
+													[clearable]="false"
+													[ngClass]="{
+														'is-invalid':
+															form.get('sectionA.village')?.errors &&
+															(form.get('sectionA.village')?.touched ||
+																isSubmitted)
+													}"
+												></ng-select> 
+												<span
+													class="invalid-feedback"
+													show-error
+													[errors]="form.get('sectionA.village')?.errors"
+													label="Village"
+												></span> 
+											</div>  -->
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label>Block Name(If not found in list)</label>
+												<input type="text" class="form-control"
+													formControlName="other_block_name" [readonly]="viewOnly" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.other_block_name')
+																?.errors &&
+															(form.get('sectionA.other_block_name')
+																?.touched ||
+																isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.other_block_name')?.errors
+													" label="Block Name(If not found in list)"></span>
+											</div>
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Name of facility</label>
+												<input type="text" class="form-control"
+													formControlName="name_of_facility" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.name_of_facility')
+																?.errors &&
+															(form.get('sectionA.name_of_facility')
+																?.touched ||
+																isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.name_of_facility')?.errors
+													" label="Name of facility"></span>
+											</div>
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Type of facility</label>
+												<ng-select [items]="[
+														'Medical College (MC)',
+														'District Hospital (DH)',
+														'Sub District Hospital (SDH)',
+														'First Referral unit (FRU)',
+														'Community Health Centre (CHC)',
+														'24*7 Primary Health Centre'
+														]" [multiple]="false" [readonly]="viewOnly" (ngModelChange)="medicalCollage()"
+													formControlName="type_of_facility" [clearable]="false" [ngClass]="{
+															'is-invalid':
+															form.get('sectionA.type_of_facility')?.errors &&
+																(form.get('sectionA.type_of_facility')?.touched ||
+																	isSubmitted)
+														}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionA.type_of_facility')?.errors"
+													label="Type of facility"></span>
+
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Baby's Hospital Record Number</label>
+												<input type="text" class="form-control"
+													formControlName="baby_hospital_record_no" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.baby_hospital_record_no')
+																?.errors &&
+															(form.get('sectionA.baby_hospital_record_no')
+																?.touched ||
+																isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.baby_hospital_record_no')?.errors
+													" label="Baby\'s Hospital Record No"></span>
+											</div>
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Mother MCTS Number</label>
+												<input type="text" class="form-control"
+													formControlName="mother_hospital_record_no" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.mother_hospital_record_no')
+																?.errors &&
+															(form.get('sectionA.mother_hospital_record_no')
+																?.touched ||
+																isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.mother_hospital_record_no')
+															?.errors
+													" label="Mother\'s Hospital Record No."></span>
+											</div>
+
+											<div class="form-group col-md-3">
+												<label>Stillbirth Number </label>
+												<input type="text" class="form-control" [readonly]="true"
+													formControlName="stillBirthNo" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.stillBirthNo')
+																?.errors &&
+															(form.get('sectionA.stillBirthNo')
+																?.touched ||
+																isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.stillBirthNo')
+															?.errors
+													" label="Stillbirth No."></span>
+											</div>
+											<!-- <div class="form-group col-md-3">
+												<label>Total Deliveries of facility in month</label>
+												<input type="number" class="form-control" [readonly]="viewOnly"
+													formControlName="deliveries_in_month" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.deliveries_in_month')
+																?.errors &&
+															(form.get('sectionA.deliveries_in_month')
+																?.touched ||
+																isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.deliveries_in_month')
+															?.errors
+													" label="Total Deliveries of facility in month"></span>
+											</div> -->
+
+											<!--  -->
+											<!-- <div class="form-group col-md-3">
+												<label class="i-field-required">NBBD Number</label>
+												<input
+													type="text"
+													class="form-control"
+													formControlName="nbbd_number"
+													[ngClass]="{
+														'is-invalid':
+															form.get('sectionA.nbbd_number')?.errors &&
+															(form.get('sectionA.nbbd_number')?.touched ||
+																isSubmitted)
+													}"
+												/>
+												<span
+													class="invalid-feedback"
+													show-error
+													[errors]="form.get('sectionA.nbbd_number')?.errors"
+													label="NBBD Number"
+												></span>
+											</div> -->
+										</div>
+
+										<div class="row">
+											<h5 class="col-12">Basic Information</h5>
+										</div>
+
+										<!---->
+										<div class="row">
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Date of Still Birth</label>
+												<input type="date" class="form-control"
+													formControlName="date_of_still_birth" [max]="today" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.date_of_still_birth')
+																?.errors &&
+															(form.get('sectionA.date_of_still_birth')
+																?.touched ||
+																isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.date_of_still_birth')?.errors
+													" label="Date of Still Birth"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Intramural </label>
+												<mat-icon class="v-align-left" matTooltip="Intramural-If stillbirth occurred within the institution/facility
+												">info</mat-icon>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+													formControlName="intramural" [clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.intramural')?.errors &&
+															(form.get('sectionA.intramural')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionA.intramural')?.errors"
+													label="Intramural"></span>
+											</div>
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Mother's age</label>
+												<input type="number" class="form-control" formControlName="mother_age"
+													[ngClass]="{
+														'is-invalid':
+															form.get('sectionA.mother_age')?.errors &&
+															(form.get('sectionA.mother_age')?.touched ||
+																isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionA.mother_age')?.errors"
+													label="Mother\'s age"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Consanguineous Marriage
+												</label>
+												<ng-select [items]="['Yes', 'No', 'Unknown']" [readonly]="viewOnly"
+													formControlName="consanguineous_marriage" [clearable]="false"
+													[ngClass]="{
+														'is-invalid':
+															form.get('sectionA.consanguineous_marriage')?.errors &&
+															(form.get('sectionA.consanguineous_marriage')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionA.consanguineous_marriage')?.errors"
+													label="Consanguineous Marriage"></span>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+
+								<!--Section B start..-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content"
+									data-ktwizard-state="current">
+									<!-- <div class="kt-heading kt-heading--md"> HEADING </div> -->
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionB">
+
+										<!--  -->
+										<div class="row"
+											*ngIf="form.get('sectionB.obstetrical_history') as obstetrical_history">
+
+											<h5 class="col-12">Obstetrical History</h5>
+											<div class="form-group col-md-3" formArrayName="obstetrical_history">
+												<label class="i-field-required">Gravida
+												</label>
+												<mat-icon class="v-align-left"
+													matTooltip="Total number of pregnancies irrespective of gestational age including most recent pregnancy. Pregnancies with twins or other multiples are counted as one pregnancy">
+													info</mat-icon>
+												<input type="number" class="form-control" formControlName="gravida"
+													[ngClass]="{
+														'is-invalid':
+														obstetrical_history.get('gravida')?.errors &&
+															(obstetrical_history.get('gravida')?.touched || isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error
+													[errors]="obstetrical_history.get('gravida')?.errors"
+													label="Gravida"></span>
+
+
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="obstetrical_history">
+												<label class="i-field-required">Para
+												</label>
+												<mat-icon class="v-align-left"
+													matTooltip="Total number of deliveries the woman has had of babies of gestational age 28 weeks or more. Include delivery of the fetus or neonate being discussed. Deliveries of twins or other multiples are counted as one delivery">
+													info</mat-icon>
+												<input type="number" class="form-control" formControlName="para"
+													[ngClass]="{
+														'is-invalid':
+														obstetrical_history.get('para')?.errors &&
+															(obstetrical_history.get('para')?.touched || isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error
+													[errors]="obstetrical_history.get('para')?.errors"
+													label="Para"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="obstetrical_history">
+												<label class="i-field-required">Abortion
+												</label>
+												<mat-icon class="v-align-left"
+													matTooltip="Number of previous abortions">info</mat-icon>
+												<input type="number" class="form-control" formControlName="abortion"
+													[ngClass]="{
+														'is-invalid':
+														obstetrical_history.get('abortion')?.errors &&
+															(obstetrical_history.get('abortion')?.touched || isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error
+													[errors]="obstetrical_history.get('abortion')?.errors"
+													label="Abortion"></span>
+											</div>
+
+
+
+										</div>
+										<!--  -->
+										<div class="row">
+											<h5 class="col-12">Pregnancy Care</h5>
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Significant Past History
+												</label>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+													formControlName="past_history" (ngModelChange)="pastHistory()"
+													[clearable]="false" [ngClass]="{
+																								'is-invalid':
+																									form.get('sectionB.past_history')?.errors &&
+																									(form.get('sectionB.past_history')?.touched ||
+																										isSubmitted)
+																							}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.past_history')?.errors"
+													label="Significant Past History"></span>
+											</div>
+
+											<div class="form-group col-md-3" *ngIf="past_history_details">
+												<label class="i-field-required">Past History Details
+												</label>
+												<ng-select [items]="[
+																							'Anemia',
+																							'Urinary Infection',
+																							'TORCH',
+																							'Obesity',
+																							'Hypertension',
+																							'Under Nutrition',
+																							'Gestational Diabetes Mellitus',
+																							'DNK']" [multiple]="true" [readonly]="viewOnly" formControlName="past_history_details"
+													[clearable]="false" [ngClass]="{
+																								'is-invalid':
+																									form.get('sectionB.past_history_details')?.errors &&
+																									(form.get('sectionB.past_history_details')?.touched ||
+																										isSubmitted)
+																							}"></ng-select>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Previous Still Birth
+												</label>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+													formControlName="previous_still_birth" [clearable]="false"
+													[ngClass]="{
+																								'is-invalid':
+																									form.get('sectionB.previous_still_birth')?.errors &&
+																									(form.get('sectionB.previous_still_birth')?.touched ||
+																										isSubmitted)
+																							}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.previous_still_birth')?.errors"
+													label="Previous Still Birth"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Previous Birth Defect
+												</label>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+													formControlName="previous_birth_defect" [clearable]="false"
+													[ngClass]="{
+																								'is-invalid':
+																									form.get('sectionB.previous_birth_defect')?.errors &&
+																									(form.get('sectionB.previous_birth_defect')?.touched ||
+																										isSubmitted)
+																							}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.previous_birth_defect')?.errors"
+													label="Previous Birth Defect"></span>
+											</div>
+
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Prev C-section
+												</label>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+													formControlName="prev_c_section" [clearable]="false" [ngClass]="{
+																								'is-invalid':
+																									form.get('sectionB.prev_c_section')?.errors &&
+																									(form.get('sectionB.prev_c_section')?.touched ||
+																										isSubmitted)
+																							}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.prev_c_section')?.errors"
+													label="Prev C-section"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">RH Negative
+												</label>
+												<ng-select [items]="['RH positive', 'RH negative', 'DNK']"
+													[readonly]="viewOnly" formControlName="rh_negative"
+													[clearable]="false" [ngClass]="{
+																						'is-invalid':
+																							form.get('sectionB.rh_negative')?.errors &&
+																							(form.get('sectionB.rh_negative')?.touched ||
+																								isSubmitted)
+																					}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.rh_negative')?.errors"
+													label="RH Negative"></span>
+											</div>
+										</div>
+										<!----->
+
+										<div class="row">
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Antenatal Care Received
+												</label>
+												<ng-select [items]="[
+													'None',
+													'At least 1',
+													'Minimum 4',
+													'4+ visit',
+													'8+ visit',
+													'DNK'
+												]" [readonly]="viewOnly" formControlName="antenatal_care_received" [clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionB.antenatal_care_received')?.errors &&
+															(form.get('sectionB.antenatal_care_received')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.antenatal_care_received')?.errors"
+													label="Antenatal Care Received"></span>
+											</div>
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label>TT Vaccination
+												</label>
+												<ng-select [items]="[
+													'TT2+',
+													'TT1',
+													'TT Booster',
+													'Not needed',
+													'Not given',
+													'DNK'
+												]" [readonly]="viewOnly" formControlName="tt_Vaccination" [clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionB.tt_Vaccination')?.errors &&
+															(form.get('sectionB.tt_Vaccination')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Iron/Folic Acid
+												</label>
+												<ng-select [items]="['Given', 'Not Given', 'DNK']" [readonly]="viewOnly"
+													formControlName="iron_folic_acid" [clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionB.iron_folic_acid')?.errors &&
+															(form.get('sectionB.iron_folic_acid')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.antenatal_care_received')?.errors"
+													label="Antenatal Care Received"></span>
+											</div>
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label>Syphilis Test
+												</label>
+												<ng-select [items]="['Syphilis Positive', 'Negative', 'Not done']"
+													[readonly]="viewOnly" formControlName="syphilis_test"
+													[clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionB.syphilis_test')?.errors &&
+															(form.get('sectionB.syphilis_test')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+										</div>
+
+										<div class="row">
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label>Hemoglobin
+												</label>
+												<ng-select [items]="[
+															'Not done',
+															'>11 gm/dl',
+															'10.9-10 gm/dl',
+															'9.9-7 gm/dl',
+															'<7 gm/dl',
+															'DNK'
+														]" [readonly]="viewOnly" formControlName="hemoglobin" [clearable]="false" [ngClass]="{
+																'is-invalid':
+																	form.get('sectionB.hemoglobin')?.errors &&
+																	(form.get('sectionB.hemoglobin')?.touched ||
+																		isSubmitted)
+															}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.hemoglobin')?.errors"
+													label="Hemoglobin"></span>
+											</div>
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label>HIV Status
+												</label>
+												<ng-select [items]="['HIV-positive', 'HIV-negative', 'Not done', 'DNK'
+														]" [readonly]="viewOnly" formControlName="hiv_Status" [clearable]="false" [ngClass]="{
+																'is-invalid':
+																	form.get('sectionB.hiv_Status')?.errors &&
+																	(form.get('sectionB.hiv_Status')?.touched ||
+																		isSubmitted)
+															}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.hiv_Status')?.errors"
+													label="HIV Status"></span>
+											</div>
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label>Malaria
+												</label>
+												<ng-select [items]="['Not available', 'IPT3+', 'IPT2', 'IPT1', 'DNK']"
+													[readonly]="viewOnly" formControlName="malaria" [clearable]="false"
+													[ngClass]="{
+																'is-invalid':
+																	form.get('sectionB.malaria')?.errors &&
+																	(form.get('sectionB.malaria')?.touched ||
+																		isSubmitted)
+															}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.malaria')?.errors"
+													label="Malaria"></span>
+											</div>
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required"> Gestational Diabetes Mellitus
+												</label>
+												<ng-select [items]="['Yes','No']" [readonly]="viewOnly"
+													formControlName="gestational_diabetes_mellitus" [clearable]="false"
+													[ngClass]="{
+																'is-invalid':
+																	form.get('sectionB.gestational_diabetes_mellitus')?.errors &&
+																	(form.get('sectionB.gestational_diabetes_mellitus')?.touched ||
+																		isSubmitted)
+															}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.gestational_diabetes_mellitus')?.errors"
+													label="Gestational Diabetes Mellitus"></span>
+											</div>
+
+											<!-- <div class="form-group col-md-3" [hidden]="form.value.sectionB.gestational_diabetes_mellitus == ''||form.value.sectionB.gestational_diabetes_mellitus == 'No'">
+														<label class="i-field-required"
+															> Diagnosed With
+														</label>
+														<ng-select
+															[items]="['Random Blood Sugar','HB1AC','GTT','GCT','DNK']"
+															[readonly]="viewOnly"
+															formControlName="diagnosed_with"
+															[clearable]="false"
+														></ng-select>
+													</div> -->
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label>Pre-Natal Ultrasound
+												</label>
+												<ng-select [items]="[
+															'Anomaly (BD) detected',
+															'Normal',
+															'Not done',
+															'DNK']" [readonly]="viewOnly" formControlName="pre_natal_ultrasound" [clearable]="false" [ngClass]="{
+																'is-invalid':
+																	form.get('sectionB.pre_natal_ultrasound')?.errors &&
+																	(form.get('sectionB.pre_natal_ultrasound')?.touched ||
+																		isSubmitted)
+															}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionB.pre_natal_ultrasound')?.errors"
+													label="Pre-Natal Ultrasound"></span>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<!--Section B End..-->
+
+								<!--Section C start..-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content"
+									data-ktwizard-state="current">
+									<!-- <div class="kt-heading kt-heading--md"> HEADING </div> -->
+
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionC">
+
+										<!-- <h5 class="col-12">Examination</h5> -->
+										<div class="row"
+											*ngIf="form.get('sectionC.examination_on_admission') as examination_on_admission">
+											<h5 class="col-12">Examination on Admission</h5>
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="examination_on_admission">
+												<label class="i-field-required">Fetal Heart Sound
+												</label>
+												<ng-select [items]="['Present', 'Absent', 'DNK']" [readonly]="viewOnly"
+													formControlName="fetal_heart_sound" [clearable]="false" [ngClass]="{
+													'is-invalid':
+													examination_on_admission.get('fetal_heart_sound')?.errors &&
+														(examination_on_admission.get('fetal_heart_sound')?.touched ||
+															isSubmitted)
+												}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="examination_on_admission.get('fetal_heart_sound')?.errors"
+													label="Fetal Heart Sound"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="examination_on_admission">
+												<label class="i-field-required">Blood pressure
+												</label>
+												<ng-select [items]="['Done', 'Not Done']" [readonly]="viewOnly"
+													formControlName="blood_pressure" (ngModelChange)="bpDone()"
+													[clearable]="false" [ngClass]="{
+													'is-invalid':
+													examination_on_admission.get('blood_pressure')?.errors &&
+														(examination_on_admission.get('blood_pressure')?.touched ||
+															isSubmitted)
+												}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="examination_on_admission.get('blood_pressure')?.errors"
+													label="Blood pressure"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="examination_on_admission"
+												*ngIf="systolic">
+												<label class="i-field-required">Systolic
+												</label>
+												<input type="text" class="form-control" formControlName="systolic"
+													[ngClass]="{
+													'is-invalid':
+													examination_on_admission.get('systolic')?.errors &&
+														(examination_on_admission.get('systolic')?.touched ||
+															isSubmitted)
+												}" />
+												<span class="invalid-feedback" show-error
+													[errors]="examination_on_admission.get('systolic')?.errors"
+													label="Mother\'s age"></span>
+											</div>
+
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="examination_on_admission"
+												*ngIf="diastolic">
+												<label class="i-field-required">Diastolic</label>
+												<input type="text" class="form-control" formControlName="diastolic"
+													[ngClass]="{
+													'is-invalid':
+													examination_on_admission.get('diastolic')?.errors &&
+														(examination_on_admission.get('diastolic')?.touched ||
+															isSubmitted)
+												}" />
+												<span class="invalid-feedback" show-error
+													[errors]="examination_on_admission.get('diastolic')?.errors"
+													label="Mother\'s age"></span>
+											</div>
+
+										</div>
+
+										<div class="row"
+											*ngIf="form.get('sectionC.examination_on_admission') as examination_on_admission">
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="examination_on_admission">
+												<label class="i-field-required">Per Vaginal Bleeding
+												</label>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+													formControlName="per_vaginal_bleeding" [clearable]="false"
+													[ngClass]="{
+													'is-invalid':
+													examination_on_admission.get('per_vaginal_bleeding')?.errors &&
+														(examination_on_admission.get('per_vaginal_bleeding')?.touched ||
+															isSubmitted)
+												}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="examination_on_admission.get('per_vaginal_bleeding')?.errors"
+													label="Per Vaginal Bleeding"></span>
+											</div>
+
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="examination_on_admission">
+												<label class="i-field-required">Fever
+												</label>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+													formControlName="fever" [clearable]="false" [ngClass]="{
+													'is-invalid':
+													examination_on_admission.get('fever')?.errors &&
+														(examination_on_admission.get('fever')?.touched ||
+															isSubmitted)
+												}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="examination_on_admission.get('fever')?.errors"
+													label="Fever"></span>
+											</div>
+
+
+
+										</div>
+
+										<!-- -->
+										<div class="row"
+											*ngIf="form.get('sectionC.delivery_details') as delivery_details">
+											<h5 class="col-12">Delivery Details</h5>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="delivery_details">
+												<label class="i-field-required">Partograph used
+												</label>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+													formControlName="partograph_used" [clearable]="false" [ngClass]="{
+														'is-invalid':
+														delivery_details.get('partograph_used')?.errors &&
+															(delivery_details.get('partograph_used')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="delivery_details.get('partograph_used')?.errors"
+													label="Fever"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="delivery_details">
+												<label>Type of labour
+												</label>
+												<ng-select [items]="['Spontaneous', 'Induced']" [readonly]="viewOnly"
+													formControlName="type_of_labour" [clearable]="false" [ngClass]="{
+														'is-invalid':
+														delivery_details.get('type_of_labour')?.errors &&
+															(delivery_details.get('type_of_labour')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="delivery_details">
+												<label class="i-field-required">Mode of delivery
+												</label>
+												<ng-select [items]="[
+													'Normal Vaginal Delivery',
+													'Breech Delivery',
+													'Instrumental Delivery',
+													'Emergency Cesarean Section',
+													'Elective Cesarean Section'
+													]" [readonly]="viewOnly" formControlName="mode_of_delivery" [clearable]="false" [ngClass]="{
+														'is-invalid':
+														delivery_details.get('mode_of_delivery')?.errors &&
+															(delivery_details.get('mode_of_delivery')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="delivery_details.get('mode_of_delivery')?.errors"
+													label="Mode of delivery"></span>
+											</div>
+
+
+										</div>
+
+
+										<!-- -->
+										<div class="row" *ngIf="form.get('sectionC.birth_details') as birth_details">
+											<h5 class="col-12">Birth Details</h5>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="birth_details">
+												<label>Baby weight (in gram)</label>
+												<input type="number" class="form-control" formControlName="baby_weight"
+													[ngClass]="{
+														'is-invalid':
+														birth_details.get('baby_weight')?.errors &&
+															(birth_details.get('baby_weight')?.touched ||
+																isSubmitted)
+													}" />
+
+												<span class="invalid-feedback" *ngIf="
+												birth_details.get('baby_weight').hasError('min')">
+													Weight should be greater than 500gm
+												</span>
+												<span class="invalid-feedback" *ngIf="
+												birth_details.get('baby_weight').hasError('max')">
+													Weight should be less than 5000gm
+												</span>
+
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="birth_details">
+												<label class="i-field-required">Sex of baby
+												</label>
+												<ng-select [items]="['Male', 'Female', 'Ambiguous']"
+													[readonly]="viewOnly" formControlName="sex_of_baby"
+													[clearable]="false" [ngClass]="{
+														'is-invalid':
+														birth_details.get('sex_of_baby')?.errors &&
+															(birth_details.get('sex_of_baby')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="birth_details.get('sex_of_baby')?.errors"
+													label="Sex of baby"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="birth_details">
+												<label class="i-field-required">Gestation age</label>
+												<div class="form-group col-md-12 d-flex">
+													<input type="number" placeholder="Week" class="form-control"
+														formControlName="gestation_age_week" [ngClass]="{
+														'is-invalid':
+														birth_details.get('gestation_age_week')?.errors &&
+															(birth_details.get('gestation_age_week')?.touched ||
+																isSubmitted)
+													}" />
+													<span class="invalid-feedback" show-error
+														[errors]="birth_details.get('gestation_age_week')?.errors"
+														label="Gestation age"></span><label
+														style="margin-top: 7px;margin-left: 2px;margin-right: 2px;">(Weeks)</label>
+													<input type="number" placeholder="Days" class="form-control"
+														formControlName="gestation_age_days" [ngClass]="{
+														'is-invalid':
+														birth_details.get('gestation_age_days')?.errors &&
+															(birth_details.get('gestation_age_days')?.touched ||
+																isSubmitted)
+													}" /><label style="margin-top: 7px;margin-left: 2px;margin-right: 2px;">(Days)</label>
+													<span class="invalid-feedback" show-error
+														[errors]="birth_details.get('gestation_age_days')?.errors"
+														label="Gestation age"></span>
+												</div>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3" formArrayName="birth_details">
+												<label>Confirmation of Gestation Age by
+												</label>
+												<ng-select [items]="[
+													'Last Menstruation Period LMP',
+													'Ultrasound USG',
+													'DNK'
+													]" [readonly]="viewOnly" formControlName="confirmation_of_gestation_age_by" [clearable]="false" [ngClass]="{
+														'is-invalid':
+														birth_details.get('confirmation_of_gestation_age_by')?.errors &&
+															(birth_details.get('confirmation_of_gestation_age_by')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+
+
+										</div>
+
+										<!-- -->
+									</div>
+
+
+								</div>
+								<!--Section C End ..-->
+
+								<!--Section D start..-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content"
+									data-ktwizard-state="current">
+									<!-- <div class="kt-heading kt-heading--md"> HEADING </div> -->
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionD">
+										<div class="row">
+											<h5 class="col-12">Details of Still Birth</h5>
+
+											<!--  -->
+											<div class="form-group col-md-6">
+												<label class="i-field-required">Type of Still birth
+												</label>
+												<ng-select [items]="[
+													'Ante-Partum / Macerated Stillbirth (MSB)',
+													'Intra-Partum / Fresh Stillbirth (FSB)'
+													]" [readonly]="viewOnly" (ngModelChange)="StillBirth()" formControlName="type_of_still_birth"
+													[clearable]="false" [ngClass]="{
+														'is-invalid':
+														form.get('sectionD.type_of_still_birth')?.errors &&
+															(form.get('sectionD.type_of_still_birth')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionD.type_of_still_birth')?.errors"
+													label="Type of Still birth"></span>
+											</div>
+
+											<!-- -->
+
+											<div class="form-group col-md-6" *ngIf="stillBirthType">
+												<label class="i-field-required">Maternal Condition Associated with Fetal
+													Death
+												</label>
+												<ng-select [items]="[
+													{
+														label:
+															'M1 : Complications of Placenta, Cord & Membranes',
+														value: 'M1'
+													},
+													{
+														label: 'M2 : Maternal Complications of Pregnancy',
+														value: 'M2'
+													},
+													{
+														label:
+															'M3 : Other Complecations of Labour and Delivery',
+														value: 'M3'
+													},
+													{
+														label:
+															'M4 : Maternal Medical & Surgical Conditions; Noxious Influences',
+														value: 'M4'
+													},
+													{
+														label:
+															'M5 : No Maternal Condition Identified (Healthy Mother)',
+														value: 'M5'
+													}
+												
+													]" [readonly]="viewOnly" formControlName="maternal_condition_associated_with_fetal_death"
+													[clearable]="false" (ngModelChange)="fetalDeath()" [ngClass]="{
+														'is-invalid':
+														form.get('sectionD.maternal_condition_associated_with_fetal_death')?.errors &&
+															(form.get('sectionD.maternal_condition_associated_with_fetal_death')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionD.maternal_condition_associated_with_fetal_death')?.errors"
+													label="Maternal Condition Associated with Fetal Death"></span>
+											</div>
+
+											<!---->
+
+											<div class="form-group col-md-6" *ngIf='medicalCollageShow' [hidden]="
+											form.value.sectionD.maternal_condition_associated_with_fetal_death == '' || form.value.sectionD.maternal_condition_associated_with_fetal_death == ''
+										">
+												<label class="i-field-required">Details of Maternal Condition Associated
+													with Fetal Death
+												</label>
+												<ng-select [items]="items" [readonly]="viewOnly"
+													formControlName="details_of_MCAWFD" [clearable]="false" [ngClass]="{
+														'is-invalid':
+														form.get('sectionD.details_of_MCAWFD')?.errors &&
+															(form.get('sectionD.details_of_MCAWFD')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+
+											<!-- -->
+
+											<div class="form-group col-md-6" *ngIf="stillBirthType">
+												<label class="i-field-required">Fetal Death Main Cause
+												</label>
+												<ng-select [items]="itemsStillBirth" [readonly]="viewOnly"
+													formControlName="fetal_death_main_cause" [clearable]="false"
+													[ngClass]="{
+														'is-invalid':
+														form.get('sectionD.fetal_death_main_cause')?.errors &&
+															(form.get('sectionD.fetal_death_main_cause')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionD.fetal_death_main_cause')?.errors"
+													label="Fetal Death Main Cause"></span>
+											</div>
+
+											<!-- -->
+
+
+										</div>
+										<div class="row">
+											<div class="form-group col-md-6">
+												<label class="i-field-required">Birth Defect
+												</label>
+												<ng-select [items]="['Yes','No' ]" [readonly]="viewOnly"
+													formControlName="birthDefect" (ngModelChange)="birthDefect()"
+													[clearable]="false" [ngClass]="{
+														'is-invalid':
+														form.get('sectionD.birthDefect')?.errors &&
+															(form.get('sectionD.birthDefect')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionD.birthDefect')?.errors"
+													label="Birth Defect"></span>
+											</div>
+
+											<div class="form-group col-md-6" *ngIf="showbirthDefect">
+												<label>Types
+												</label>
+												<ng-select [items]="birthDefectItems" [readonly]="viewOnly"
+													formControlName="birthDefectOption" [clearable]="false"></ng-select>
+											</div>
+
+										</div>
+										<div class="row"
+											*ngIf="form.get('sectionD.birthDefectOption').value=='Others, specify'">
+											<div class="form-group col-md-6">
+												<label>Other, Specify</label>
+												<input type="text" class="form-control"
+													formControlName="birthDefectOptionOther" />
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+								<!--Section D End ..-->
+								<!-- Section E Start-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content"
+									data-ktwizard-state="current">
+									<!-- <div class="kt-heading kt-heading--md"> HEADING </div> -->
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionE">
+
+										<div class="row">
+											<!--  -->
+											<!-- <div class="form-group col-md-3">
+													<label class="i-field-required"
+														>Other Associated Conditions
+													</label>
+													<input
+															type="text"
+															class="form-control"
+															formControlName="other_associated_conditions"
+															[ngClass]="{
+																'is-invalid':
+																form.get('sectionE.other_associated_conditions')?.errors &&
+																	(form.get('sectionE.other_associated_conditions')?.touched ||
+																		isSubmitted)
+															}"
+														/>
+														<span
+															class="invalid-feedback"
+															show-error
+															[errors]="form.get('sectionE.other_associated_conditions')?.errors"
+															label="Other Associated Conditions"
+														></span>
+													
+												</div> -->
+
+
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label>Modifiable factors
+												</label>
+												<ng-select [items]="[
+													'Yes',
+													'No'
+													]" [readonly]="viewOnly" (ngModelChange)="modifiable_factors()" formControlName="modifiable_factors"
+													[clearable]="false" [ngClass]="{
+														'is-invalid':
+														form.get('sectionE.modifiable_factors')?.errors &&
+															(form.get('sectionE.modifiable_factors')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+											<!-- -->
+											<div class="form-group col-md-3" *ngIf="familyRelated">
+												<label>Family related
+												</label>
+												<ng-select [items]="[
+													'Late',
+													'No antenatal care',
+													'Cultural inhibition to seeking care',
+													'No knowledge of danger signs',
+													'Financial constraints',
+													'Partner restricts care-seeking',
+													'Use of traditional/herbal medicine',
+													'Smoking',
+													'drug',
+													'alcohol abuse',
+													'Attempted termination',
+													'Other'
+												]" [readonly]="viewOnly" [multiple]="true" formControlName="family_related" [clearable]="false" [ngClass]="{
+														'is-invalid':
+														form.get('sectionE.family_related')?.errors &&
+															(form.get('sectionE.family_related')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+											<!-- -->
+
+											<!-- -->
+											<div class="form-group col-md-3" *ngIf="familyRelated">
+												<label>Administration related
+												</label>
+
+												<ng-select [items]="[
+													'Neonatal facilities',
+													'Theatre facilities',
+													'Resuscitation equipment',
+													'Blood products',
+													'Lack of training',
+													'Insufficient staff numbers',
+													'Anesthetic delay',
+													'No antenatal documentation',
+													'Other']" [readonly]="viewOnly" [multiple]="true" formControlName="administration_related"
+													[clearable]="false" [ngClass]="{
+														'is-invalid':
+														form.get('sectionE.administration_related')?.errors &&
+															(form.get('sectionE.administration_related')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+
+											<!-- -->
+											<div class="form-group col-md-3" *ngIf="familyRelated">
+												<label>Provider related
+												</label>
+												<ng-select [items]="[
+											'Partogram not used',
+											'Action not taken',
+											'Inappropriate action taken',
+											'Iatrogenic delivery',
+											'Delay in referral',
+											'Inadequate monitoring',
+											'Delay in calling for assistance',
+											'Inappropriate discharge',
+											'Other'
+										]" [readonly]="viewOnly" [multiple]="true" formControlName="provider_related" [clearable]="false" [ngClass]="{
+														'is-invalid':
+														form.get('sectionE.provider_related')?.errors &&
+															(form.get('sectionE.provider_related')?.touched ||
+																isSubmitted)
+													}"></ng-select>
+											</div>
+
+
+										</div>
+
+										<div class="row">
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Critical delay</label>
+												<ng-select [items]="[
+														'Delay in care seeking',
+														'Delay in reaching health facility',
+														'Delay in receiving care at health facility'
+														]" [readonly]="viewOnly" [multiple]="true" formControlName="critical_delay" [clearable]="false"
+													[ngClass]="{
+															'is-invalid':
+															form.get('sectionE.critical_delay')?.errors &&
+																(form.get('sectionE.critical_delay')?.touched ||
+																	isSubmitted)
+														}"></ng-select>
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionE.critical_delay')?.errors"
+													label="Critical delay"></span>
+											</div>
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Name of Professional Filling the
+													Form</label>
+												<input type="text" class="form-control" formControlName="filled_by"
+													[ngClass]="{
+															'is-invalid':
+															form.get('sectionE.filled_by')?.errors &&
+																(form.get('sectionE.filled_by')?.touched ||
+																	isSubmitted)
+														}" />
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionE.filled_by')?.errors"
+													label="Name of the Professional Filling the Form"></span>
+											</div>
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Filling date</label>
+												<input type="date" [max]="today" class="form-control"
+													formControlName="filled_date" [ngClass]="{
+															'is-invalid':
+															form.get('sectionE.filled_date')?.errors &&
+																(form.get('sectionE.filled_date')?.touched ||
+																	isSubmitted)
+														}" />
+												<span class="invalid-feedback" show-error
+													[errors]="form.get('sectionE.filled_by')?.errors"
+													label="Name of the Professional Filling the Form"></span>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-12">
+													<h6>Upload File(Like : Autopsy report, photograph etc.)</h6>
+													<input style="display: none" type="file" multiple
+														formControlName="stillBirth" (change)="selectFile($event)"
+														#selectedFile>
+
+													<button class="col-lg-4 mr-2" type="button"
+														(click)="selectedFile.click()"
+														class="btn m-btn--pill m-btn--air btn-outline-success active col-sm-4">
+
+														<span matTooltip="Upload Image only"><i
+																class="fa fa-upload"></i>&nbsp;&nbsp;File</span>
+													</button>
+													<button [disabled]="isDisableUploadBtnStillBirth" type="button"
+														(click)="upload('stillBirth')"
+														class="btn m-btn--pill m-btn--air btn-outline-success active col-sm-4 ml-2">
+														<span matTooltip="Upload Image only">upload</span>
+													</button>
+
+													<div class="progress m-progress--sm mb-2 mt-1"
+														style="height: 15px; width: 21rem;"
+														*ngIf="isImageProgessShowStill">
+														<div class="progress-bar progress-bar-striped bg-success"
+															role="progressbar" [style.width.%]="imageProgressStill"
+															aria-valuenow="imageProgressStill" aria-valuemin="0"
+															aria-valuemax="100">
+															<b>{{imageProgressStill}}%</b>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- <div *ngIf="providerStillBirthUrl"></div> -->
+
+											<ng-container *ngFor="let imgSrc of imageShowArray;index as i">
+												<div class="mt-3 ml-5">
+													<div class="avatar-upload">
+														<div class="avatar-edit" *ngIf="isShowClearImage">
+															<mat-icon class="font-weight-bold" color="warn"
+																matTooltip="Remove StillBirth"
+																matTooltipPosition="above"
+																(click)="removeUploadedStillBirth(i)">clear</mat-icon>
+														</div>
+														<div class="avatar-preview">
+															<img [attr.src]="imgSrc" (click)="viewCastImage(imageURL[i])"
+																alt="" />
+														</div>
+													</div>
+												</div>
+											</ng-container>
+
+										</div>
+
+
+
+
+
+
+									</div>
+
+								</div>
+
+								<!--Section E end-->
+
+								<!--begin: Form Actions -->
+								<div class="kt-form__actions">
+									<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+										data-ktwizard-type="action-prev">
+										Previous
+									</div>
+									<div *ngIf="!viewOnly"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+										data-ktwizard-type="action-submit" (click)="onSubmit()">
+										Save
+									</div>
+									<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+										data-ktwizard-type="action-next">
+										Next Step
+									</div>
+								</div>
+								<!--end: Form Actions -->
+
+
+
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

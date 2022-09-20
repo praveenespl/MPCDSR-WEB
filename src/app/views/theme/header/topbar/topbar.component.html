@@ -1,0 +1,115 @@
+<!-- begin:: Header Topbar -->
+<div class="kt-header__topbar">
+	<!--begin: Notifications -->
+	<ng-container *ngIf="this.currentUser.accessupto == 'National'">
+		<button mat-icon-button color="accent" [matMenuTriggerFor]="menu"
+			aria-label="Example icon button with a heart icon">
+			<mat-icon color="primary" matBadge="403" matBadgeColor="warn" class="mr-3 pointer">add_alert</mat-icon>
+		</button>
+	</ng-container>
+	<ng-container *ngIf="this.currentUser.accessupto == 'State'">
+		<button mat-icon-button color="accent" [matMenuTriggerFor]="menu"
+			aria-label="Example icon button with a heart icon">
+			<mat-icon color="primary" matBadge="227" matBadgeColor="warn" class="mr-3 pointer">add_alert</mat-icon>
+		</button>
+	</ng-container>
+	<ng-container *ngIf="this.currentUser.accessupto == 'Block'">
+		<button mat-icon-button color="accent" [matMenuTriggerFor]="menu"
+			aria-label="Example icon button with a heart icon">
+			<mat-icon color="primary" matBadge="12" matBadgeColor="warn" class="mr-3 pointer">add_alert</mat-icon>
+		</button>
+	</ng-container>
+	<ng-container *ngIf="this.currentUser.accessupto == 'District'">
+		<button mat-icon-button color="accent" [matMenuTriggerFor]="menu"
+			aria-label="Example icon button with a heart icon">
+			<mat-icon color="primary" matBadge="20" matBadgeColor="warn" class="mr-3 pointer">add_alert</mat-icon>
+		</button>
+	</ng-container>
+	<mat-menu #menu="matMenu">
+		<ng-container *ngIf="this.currentUser.accessupto == 'National'">
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">403</span>
+				<span>MD Reported</span>
+			</button>
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">219</span>
+				<span>CBMDR Pending</span>
+			</button>
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">101</span>
+				<span>FBMDR Pending</span>
+			</button>
+		</ng-container>
+		<ng-container *ngIf="this.currentUser.accessupto == 'State'">
+
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">227</span>
+				<span>MD Reported</span>
+			</button>
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">114</span>
+				<span>CBMDR Pending</span>
+			</button>
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">60</span>
+				<span>FBMDR Pending</span>
+			</button>
+		</ng-container>
+		<ng-container *ngIf="this.currentUser.accessupto == 'Block'">
+
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">12</span>
+				<span>MD Reported</span>
+			</button>
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">2</span>
+				<span>CBMDR Pending</span>
+			</button>
+		</ng-container>
+		<ng-container *ngIf="this.currentUser.accessupto == 'District'">
+
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">20</span>
+				<span>MD Reported</span>
+			</button>
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">5</span>
+				<span>CBMDR Pending</span>
+			</button>
+			<button mat-menu-item>
+				<span class="font-weight-bold mr-3 text-danger">4</span>
+				<span>FBMDR Pending</span>
+			</button>
+		</ng-container>
+	</mat-menu>
+	<!-- <span>
+		<mat-icon class="mat-36" inline=true style="font-size: 48px;">notifications</mat-icon>
+	</span> -->
+	<!-- <kt-notification [type]="'brand'" [iconType]="'success'" [skin]="'light'" [icon]="'./assets/media/icons/svg/General/Notification%232.svg'" [useSVG]="true"></kt-notification> -->
+	<!--end: Notifications -->
+
+	<!--begin: Quick actions -->
+	<!-- <kt-quick-action [iconType]="'warning'" [icon]="'./assets/media/icons/svg/Media/Equalizer.svg'" [useSVG]="true"></kt-quick-action> -->
+	<!--end: Quick actions -->
+
+	<!--begin: My Cart -->
+	<!-- <kt-cart [iconType]="'brand'" [bgImage]="'./assets/media/misc/bg-1.jpg'" [icon]="'./assets/media/icons/svg/Shopping/Cart%233.svg'" [useSVG]="true"></kt-cart> -->
+	<!--end: My Cart -->
+
+	<!--begin: Quick panel toggler -->
+	<!-- <div class="kt-header__topbar-item kt-header__topbar-item--quick-panel" data-placement="left" ngbTooltip="Quick panel">
+		<div class="kt-header__topbar-wrapper">
+			<span class="kt-header__topbar-icon kt-header__topbar-icon--danger" id="kt_quick_panel_toggler_btn">
+			<span class="kt-svg-icon kt-svg-icon--danger" [inlineSVG]="'./assets/media/icons/svg/Layout/Layout-4-blocks.svg'"></span>
+			</span>
+		</div>
+	</div> -->
+	<!--end: Quick panel toggler -->
+	<!--begin: Language bar -->
+	<!-- <kt-language-selector [iconType]="'brand'"></kt-language-selector> -->
+	<!--end: Language bar -->
+	<!--begin: User bar -->
+	<kt-user-profile [greeting]="true"></kt-user-profile>
+	<!--end: User bar -->
+</div>
+<!-- end:: Header Topbar -->

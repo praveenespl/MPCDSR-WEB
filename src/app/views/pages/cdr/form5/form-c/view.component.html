@@ -1,0 +1,349 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+	<kt-portlet-header [title]="tabularViewTitle" [class]="'kt-portlet__head--lg'">
+		<!-- [viewLoading$]="dataSource.loading$" -->
+		<ng-container ktPortletTools>
+			<span class="mx-1 d-none d-md-block"></span>
+			<button mat-raised-button color="primary" (click)="showFilers()">
+				<!-- (click)="showFilers()" -->
+				<i class="fas fa-filter"></i>
+			</button>
+			<ng-container>
+				<button mat-raised-button color="primary" class="ml-2" (click)="ExportTable()">
+					Export
+				</button>
+			</ng-container>
+		</ng-container>
+	</kt-portlet-header>
+
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body class="p-0">
+		<div class="position-relative" style="min-height: 200px;">
+			<div class="loading-shade" *ngIf="isLoadingResults || isMaxLimitReached">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+				<div class="example-rate-limit-reached" *ngIf="isMaxLimitReached">
+					Please wait...
+				</div>
+			</div>
+			<!-- <div style="padding: 10px 20px;color:blue">
+				NOTE: Only those CDR Death is viewing whose age is between (29 days - 5 years).
+			</div> -->
+			<div style="overflow-y: auto;">
+				<div class="table-container">
+					<table mat-table [dataSource]="dataSource" class="w-100" matSort matSortDisableClear>
+						<ng-container matColumnDef="indicators">
+							<th mat-header-cell *matHeaderCellDef>Indicators</th>
+							<td mat-cell *matCellDef="let row;let i = index">
+								Case {{i+1}}
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="mcts">
+							<th mat-header-cell *matHeaderCellDef>MCTS ID</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row?.cdrForm4as[0]?.sectionA?.inpatient_number || '----'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row?.cdrForm4bs[0]?.sectionA?.inpatient_number || '----'}}</span>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="category">
+							<th mat-header-cell *matHeaderCellDef>Category</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row?.cdrForm4as[0]?.sectionA?.category || '----'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row?.cdrForm4bs[0]?.sectionA?.category || '----'}}</span>
+
+							</td>
+						</ng-container>
+
+						<ng-container *ngFor="let column of columns">
+							<ng-container [matColumnDef]="column.key" *ngIf="!column?.isActionField">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header>
+									{{ column?.name }}
+								</th>
+
+								<td mat-cell *matCellDef="let row">
+									{{ objectPath.get(row, column?.key) || "--" }}
+								</td>
+							</ng-container>
+						</ng-container>
+
+						<ng-container matColumnDef="lastWeight">
+							<th mat-header-cell *matHeaderCellDef>Birth weight (grams)</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row?.cdrForm4as[0]?.sectionA?.child_weight_at_birth || '----'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row?.cdrForm4bs[0]?.sectionA?.child_weight_at_birth || '----'}}</span>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="immunization_status">
+							<th mat-header-cell *matHeaderCellDef>Immunisation Status</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row?.cdrForm4as[0]?.sectionA?.immunisation_history || '----'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row?.cdrForm4bs[0]?.sectionA?.immunisation_history || '----'}}</span>
+
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="date_of_add">
+							<th mat-header-cell *matHeaderCellDef>Date of Admission</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row.cdrForm4as[0]?.sectionA?.date_of_admission | date: 'dd/MM/yyyy'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row.cdrForm4bs[0]?.sectionA?.date_of_admission | date: 'dd/MM/yyyy'}}</span>
+							</td>
+						</ng-container>
+
+						<!-- Date fields-->
+						<ng-container matColumnDef="date_of_birth">
+							<th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row.date_of_birth | date: 'dd/MM/yyyy'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row.date_of_birth | date: 'dd/MM/yyyy'}}</span>
+
+							</td>
+						</ng-container>
+						<ng-container matColumnDef="date_of_death">
+							<th mat-header-cell *matHeaderCellDef>Date of Death</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row.date_of_death | date: 'dd/MM/yyyy'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row.date_of_death | date: 'dd/MM/yyyy'}}</span>
+
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="probableCauseOfDeath">
+							<th mat-header-cell *matHeaderCellDef>Probable Cause Of Death</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">
+									<ng-container *ngFor="let disease of row?.cdrForm4as[0]?.sectionF?.probable_direct_cause_of_death">
+									{{disease?.disease_name || '----'}} /
+									</ng-container>
+								</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">
+									<ng-container *ngFor="let disease of row?.cdrForm4bs[0]?.sectionF?.probable_direct_cause_of_death">
+										{{disease?.disease_name || '----'}} /
+										</ng-container>
+									</span>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="finalCauseOfDeath">
+							<th mat-header-cell *matHeaderCellDef>Final Diagnosis</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">
+									<ng-container *ngFor="let disease of row?.cdrForm4as[0]?.sectionE?.final_diagnosis">
+									{{disease?.disease_name || '----'}} /
+									</ng-container>
+								</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">
+									<ng-container *ngFor="let disease of row?.cdrForm4bs[0]?.sectionE?.final_diagnosis">
+										{{disease?.disease_name || '----'}} /
+										</ng-container>
+									</span>
+							</td>
+						</ng-container>
+
+
+						<ng-container matColumnDef="verbalAutopsy">
+							<th mat-header-cell *matHeaderCellDef>Facility Based CDR conducted</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row?.cdrForm4as.length>0 ? 'YES' : 'NO'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row?.cdrForm4bs.length>0 ? 'YES' : 'NO'}}</span>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="nameOfTreated">
+							<th mat-header-cell *matHeaderCellDef>Name of the treating Doctor</th>
+							<td mat-cell *matCellDef="let row">
+								<span
+									*ngIf="row?.cdrForm4as?.length === 1">{{row?.cdrForm4as[0]?.sectionA?.certified_by || '----'}}</span>
+								<span
+									*ngIf="row?.cdrForm4bs?.length === 1">{{row?.cdrForm4bs[0]?.sectionA?.certified_by || '----'}}</span>
+							</td>
+						</ng-container>
+
+						<tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+						<tr mat-row *matRowDef="let dataSource; columns: columnsToDisplay"></tr>
+					</table>
+				</div>
+			</div>
+
+			<mat-paginator [length]="totalRecords" [pageSize]="pageSize"></mat-paginator>
+		</div>
+	</kt-portlet-body>
+	<!-- <kt-portlet-body class="p-0">
+		<div class="position-relative">
+			<div class="table-container overflow-x-auto">
+				<h5>Cumulative deaths reported from public health facilities</h5>
+				<table class="table table-bordered">
+					<tbody class="bg-primary text-white">
+						<tr>
+							<th scope="col">Male</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="col">Female</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="col">SC/ST</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="col">OBC</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="col">General</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="col">Total</th>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table table-bordered">
+					<thead class="bg-primary text-white">
+						<tr>
+							<th scope="col">Indicators</th>
+							<th scope="col">Case 1</th>
+							<th scope="col">Case 2</th>
+							<th scope="col">Case 3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">MCTS ID</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Name</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">Mother’s name</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Sex</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Category</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Age</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Place of death</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Birth weight (kg)</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">
+								Current weight (last recorded weight in MCP card)
+							</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Immunisation status : complete as per age</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Date of admission</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Date of death</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">
+								Cause assigned at time of death/ final diagnosis
+							</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Facility Based CDR conducted</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Name of the treating Doctor</th>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</kt-portlet-body> -->
+</kt-portlet>

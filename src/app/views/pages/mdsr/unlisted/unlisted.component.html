@@ -1,0 +1,178 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+	<kt-portlet-header [title]="'Unlisted'" [class]="'kt-portlet__head--lg'">
+		<!-- [viewLoading$]="dataSource.loading$" -->
+		<ng-container ktPortletTools>
+			<button mat-raised-button color="primary" (click)="showFilers()">
+				<i class="fas fa-filter"></i>
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body>
+		<div class="text-right">
+			<button value="" class="btn btn-primary mb-2" (click)="save()">
+				Save
+			</button>
+		</div>
+		<!--  -->
+		<table
+			mat-table
+			[dataSource]="dataSource"
+			class="w-100"
+			matSort
+			matSortDisableClear
+			multiTemplateDataRows
+		>
+			<ng-container matColumnDef="name">
+				<th mat-header-cell *matHeaderCellDef>Name of Deceased</th>
+				<td mat-cell *matCellDef="let row">{{ row.getName }}</td>
+			</ng-container>
+			<ng-container matColumnDef="husband">
+				<th mat-header-cell *matHeaderCellDef>Husband</th>
+				<td mat-cell *matCellDef="let row">
+					{{ row.husband_name }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="state">
+				<th mat-header-cell *matHeaderCellDef>State</th>
+				<td mat-cell *matCellDef="let row">{{ row.state_id.statename }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="district">
+				<th mat-header-cell *matHeaderCellDef>District</th>
+				<td mat-cell *matCellDef="let row">
+					{{ row.district_id.districtname }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="block">
+				<th mat-header-cell *matHeaderCellDef>Current block</th>
+				<td mat-cell *matCellDef="let row">
+					{{ row.block_id.subdistrictname }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="village">
+				<th mat-header-cell *matHeaderCellDef>Village</th>
+				<td mat-cell *matCellDef="let row">
+					{{ row?.village_id?.villagename || "--" }}
+				</td>
+			</ng-container>
+
+			<!-- <ng-container matColumnDef="isMaternal death">
+				<th mat-header-cell *matHeaderCellDef>Maternal death</th>
+				<td mat-cell *matCellDef="let row">
+					yes
+				</td>
+			</ng-container> -->
+
+			<ng-container matColumnDef="place_of_death">
+				<th mat-header-cell *matHeaderCellDef>Place of death</th>
+				<td mat-cell *matCellDef="let row">{{ row.place_of_death }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="remark">
+				<th mat-header-cell *matHeaderCellDef>Remark</th>
+				<td mat-cell *matCellDef="let row">{{ row.remark }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="new_state">
+				<th mat-header-cell *matHeaderCellDef>State</th>
+				<td mat-cell *matCellDef="let row" style="width: 150px;">
+					<select
+						class="form-control form-control-sm m-0 border-dark"
+						[(ngModel)]="row.newState"
+						(change)="(row.newDistrict == '')"
+					>
+						<option value=""></option>
+						<option
+							[ngValue]="{
+								statecode: state.statecode,
+								statename: state.statename
+							}"
+							*ngFor="let state of states"
+							>{{ state.statename }}</option
+						>
+					</select>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="new_district">
+				<th mat-header-cell *matHeaderCellDef>District</th>
+				<td mat-cell *matCellDef="let row" style="width: 150px;">
+					<select
+						class="form-control form-control-sm m-0 border-dark"
+						[(ngModel)]="row.newDistrict"
+						(change)="(row.newBlock == '')"
+					>
+						<option value=""></option>
+						<option
+							[ngValue]="{
+								districtcode: district.districtcode,
+								districtname: district.districtname
+							}"
+							*ngFor="
+								let district of getDistricts(
+									row.newState?.statecode || row.state_id.statecode
+								)
+							"
+							>{{ district.districtname }}</option
+						>
+					</select>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="new_block">
+				<th mat-header-cell *matHeaderCellDef>Block</th>
+				<td mat-cell *matCellDef="let row" style="width: 150px;">
+					<select
+						class="form-control form-control-sm m-0 border-dark"
+						[(ngModel)]="row.newBlock"
+					>
+						<option value=""></option>
+						<option
+							[ngValue]="{
+								subdistrictcode: block.subdistrictcode,
+								subdistrictname: block.subdistrictname
+							}"
+							*ngFor="
+								let block of row.newState
+									? getBlocks(row.newDistrict?.districtcode)
+									: getBlocks(
+											row.newDistrict?.districtcode ||
+												row.district_id.districtcode
+									  )
+							"
+							>{{ block.subdistrictname }}</option
+						>
+					</select>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="action">
+				<th mat-header-cell *matHeaderCellDef></th>
+				<td mat-cell *matCellDef="let row" style="width: 40px;">
+					<a href="javascript:void(0)">
+						<mat-icon>remove_red_eye</mat-icon>
+					</a>
+				</td>
+			</ng-container>
+			<!--  -->
+			<tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+			<tr mat-row *matRowDef="let row; columns: columns"></tr>
+		</table>
+
+		<!--  -->
+		<div class="text-right">
+			<button value="" class="btn btn-primary mt-2" (click)="save()">
+				Save
+			</button>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

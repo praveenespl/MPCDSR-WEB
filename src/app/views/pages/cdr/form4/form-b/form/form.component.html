@@ -1,0 +1,2436 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<kt-portlet-header [title]="'4B: Facility Based Post Neonatal Death review Form'" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<a mat-raised-button color="warn" (click)="backClicked()">
+				Back
+			</a>
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body>
+		<div class="kt-form">
+			<div>
+				<strong>Note:</strong>
+				<ul>
+					<li>
+						This form must be completed for new born deaths (upto 29 days to
+						5 year) occurring in the hospital.
+					</li>
+					<li>
+						Complete the form in duplicate within 48 hours of the newborn death.
+						The original remains at the institution where the death occurred and
+						one copy is sent to the within one month.
+					</li>
+					<li>
+						Attach a copy of the case records to this form.
+					</li>
+				</ul>
+			</div>
+			<hr />
+
+			<form [formGroup]="form">
+				<!--begin: Wizard -->
+				<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
+					data-ktwizard-state="step-first">
+					<div class="kt-grid__item">
+						<!--begin: Form Wizard Nav -->
+						<div class="kt-wizard-v3__nav">
+							<div class="kt-wizard-v3__nav-items scrollbar" id="scrollbar" style="overflow-x: auto;">
+								<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step"
+									data-ktwizard-state="current">
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											 Basic
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+								<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section A
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+								<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section B
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+
+								<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section C
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+								<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section D
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+								<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+									<div class="kt-wizard-v3__nav-body">
+										<div class="kt-wizard-v3__nav-label">
+											Section E
+										</div>
+										<div class="kt-wizard-v3__nav-bar"></div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<!--end: Form Wizard Nav -->
+					</div>
+					<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+						<!--begin: Form Wizard Form-->
+						<div class="kt-form" id="kt_form">
+							<!--begin: Form Wizard Step 1-->
+							<div class="kt-wizard-v3__content" data-ktwizard-type="step-content"
+								data-ktwizard-state="current">
+								<div class="kt-heading kt-heading--md sub-heading">
+									Name and Address of facility where death occured
+						</div>
+								<div class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('basic') as formBasic">
+									<div class="row">
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formBasic.get('fbcdr_no'),
+												label: 'FBCDR no',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formBasic.get('year'),
+												label: 'Year',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formBasic.get('facility_name'),
+												label: 'Facility name',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formBasic.get('state'),
+												label: 'State',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: states,
+													bindLabel: 'statename'
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												" [errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formBasic.get('district'),
+												label: 'District',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: districts,
+													bindLabel: 'districtname'
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formBasic.get('block'),
+												label: 'Block',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: blocks,
+													bindLabel: 'subdistrictname'
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input.type"
+												[label]="form_input.label" [errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												" [errors]="form_input?.control?.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<!-- <div class="form-group col-md-3" *ngIf="{
+												control: formBasic.get('village'),
+												label: 'Village',
+												required: false,
+												type: 'select',
+												selectOptions: {
+													items: villages,
+													bindLabel: 'villagename'
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input.type"
+												[label]="form_input.label" [errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												" [errors]="form_input?.control?.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div> -->
+										<!--  -->
+									</div>
+								</div>
+							</div>
+							<!--end: Form Wizard Step 1-->
+
+							<!--begin: Form Wizard Step 2-->
+							<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+								<div class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('sectionA') as formSectionA">
+									<div class="row">
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('inpatient_number'),
+												label: 'Inpatient number/ID',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('age'),
+												label: 'Age (In Days)',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('sex'),
+												label: 'Sex',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Male', 'Female']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('category'),
+												label: 'Category',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['SC','ST', 'OBC', 'General','NA']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('child_name'),
+												label: 'Name of the child',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												" [errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('mother_name'),
+												label: 'Name of the Mother',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!-- Address -->
+										<!-- TODO: address inpu items change -->
+										<div class="col-md-12">
+											<div class="row" *ngIf="formSectionA.get('address') as addressForm">
+												<div class="col-12">
+													<h6>Address</h6>
+													<hr />
+												</div>
+												<div class="form-group col-md-3" *ngIf="{
+														control: addressForm.get('state'),
+														label: 'State',
+														tooltip: '',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: states,
+															bindLabel: 'statename'
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip" [errorLabel]="
+															form_input?.label || form_input?.errorLabel
+														" [errors]="form_input?.control.errors" [required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: addressForm.get('district'),
+														label: 'District',
+														tooltip: '',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: districts,
+															bindLabel: 'districtname'
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip" [errorLabel]="
+															form_input?.label || form_input?.errorLabel
+														" [errors]="form_input?.control.errors" [required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: addressForm.get('block'),
+														label: 'Block',
+														tooltip: '',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: blocks,
+															bindLabel: 'subdistrictname'
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip" [errorLabel]="
+															form_input?.label || form_input?.errorLabel
+														" [errors]="form_input?.control.errors" [required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: addressForm.get('village'),
+														label: 'Village',
+														tooltip: '',
+														required: false,
+														type: 'select',
+														selectOptions: {
+															items: villages,
+															bindLabel: 'villagename'
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip" [errorLabel]="
+															form_input?.label || form_input?.errorLabel
+														" [errors]="form_input?.control.errors" [required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: addressForm.get('colony'),
+														label: 'Colony',
+														tooltip: '',
+														required: false,
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip" [errorLabel]="
+															form_input?.label || form_input?.errorLabel
+														" [errors]="form_input?.control.errors" [required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: addressForm.get('house_number'),
+														label: 'House number',
+														tooltip: '',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: addressForm.get('pincode'),
+														label: 'Pincode',
+														tooltip: '',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: addressForm.get('landmark'),
+														label: 'Landmark',
+														tooltip: '',
+														required: false,
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip" [errorLabel]="
+															form_input?.label || form_input?.errorLabel
+														" [errors]="form_input?.control.errors" [required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="col-12">
+													<hr />
+												</div>
+											</div>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('date_of_birth'),
+												label: 'Date of birth',
+												required: true,
+												type: 'datepicker'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('place_of_birth'),
+												label: 'Place of birth',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Home', 'Health facility', 'Transit']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+										formSectionA.get('place_of_birth').value != 'Transit'
+									" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('actual_place_of_birth'),
+												label: 'Actual Place of Birth',
+												tooltip: '',
+												required: formSectionA.value.place_of_birth == 'Transit',
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Home to facility',
+														'facility to facility',
+														'facility to home'
+													]
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="
+													form_input?.label || form_input?.errorLabel
+												" [errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('child_weight_at_birth'),
+												label: 'Child weight at birth (In Grams)',
+												required: true,
+												type: 'number'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[max]="'15000'" [min]="'400'"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('date_of_admission'),
+												label: 'Date of admission',
+												required: true,
+												type: 'datepicker'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('time_of_admission'),
+												label: 'Time of admission',
+												required: true,
+												type: 'timepicker'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+											control: formSectionA.get('date_of_death'),
+											label: 'Date of death',
+											required: true,
+											type: 'datepicker'
+										} as form_input">
+										<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+											[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+											[errors]="form_input?.control.errors" [required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+									</div>
+									<!--  -->
+									<div class="form-group col-md-3" *ngIf="{
+											control: formSectionA.get('time_of_death'),
+											label: 'Time of death',
+											required: true,
+											type: 'timepicker'
+										} as form_input">
+										<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+											[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+											[errors]="form_input?.control.errors" [required]="form_input?.required"
+											[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+									</div>
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('certified_by'),
+												label: 'Death certified by(Name)',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('certified_by_designation'),
+												label: 'Designation of the doctor',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('facility_type'),
+												label: 'Facility Type',
+												tooltip: 'Type of facility where death took place',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'CHC/FRU/RH',
+														'Sub district hospital/Taluq hospital',
+														'District Hospital',
+														'Medical college/tertiary hospital'
+													]
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="col-12">
+											<h6>Main complaints at the time of admission</h6>
+											<hr />
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('inability_to_feed'),
+												label: 'Inability to feed',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="formSectionA.value.inability_to_feed != 'Yes'"
+											class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('inability_to_feed_days'),
+												label: 'Inability to feed (days)',
+												required: formSectionA.value.inability_to_feed == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('fever'),
+												label: 'Fever',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="formSectionA.value.fever != 'Yes'" class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionA.get('fever_days'),
+												label: 'Fever (days)',
+												required: formSectionA.value.fever == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('loose_stools'),
+												label: 'Loose stools',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="formSectionA.value.loose_stools != 'Yes'"
+											class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('loose_stools_days'),
+												label: 'Loose stools (days)',
+												required: formSectionA.value.loose_stools == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('vomiting'),
+												label: 'Vomiting',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="formSectionA.value.vomiting != 'Yes'" class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionA.get('vomiting_days'),
+												label: 'Vomiting (days)',
+												required: formSectionA.value.vomiting == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get(
+													'cough_or_difficult_breathing'
+												),
+												label: 'Cough or difficult breathing',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+												formSectionA.value.cough_or_difficult_breathing != 'Yes'
+											" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get(
+													'cough_or_difficult_breathing_days'
+												),
+												label: 'Cough or difficult breathing (days)',
+												required:
+													formSectionA.value.cough_or_difficult_breathing ==
+													'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('convulsions'),
+												label: 'Convulsions',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="formSectionA.value.convulsions != 'Yes'"
+											class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('convulsions_days'),
+												label: 'Convulsions (days)',
+												required: formSectionA.value.convulsions == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('lethargic_or_unconscious'),
+												label: 'Lethargic or unconscious',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+												formSectionA.value.lethargic_or_unconscious != 'Yes'
+											" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get(
+													'lethargic_or_unconscious_days'
+												),
+												label: 'Lethargic or unconscious (days)',
+												required:
+													formSectionA.value.lethargic_or_unconscious == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('appearance_of_skin_rashes'),
+												label: 'Appearance of skin rashes',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+												formSectionA.value.appearance_of_skin_rashes != 'Yes'
+											" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get(
+													'appearance_of_skin_rashes_days'
+												),
+												label: 'Appearance of skin rashes (days)',
+												required:
+													formSectionA.value.appearance_of_skin_rashes == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('bleeding'),
+												label: 'bleeding',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="formSectionA.value.bleeding != 'Yes'" class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionA.get('bleeding_days'),
+												label: 'bleeding (days)',
+												required: formSectionA.value.bleeding == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('injury'),
+												label: 'Injury (like fractures, wounds)',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="formSectionA.value.injury != 'Yes'" class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionA.get('injury_days'),
+												label: 'Injury (like fractures, wounds) (days)',
+												required: formSectionA.value.injury == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('corneal_ulcer'),
+												label: 'Corneal ulcer',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="formSectionA.value.corneal_ulcer != 'Yes'"
+											class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('corneal_ulcer_days'),
+												label: 'Corneal ulcer (days)',
+												required: formSectionA.value.corneal_ulcer == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('stunted_growth_ulcer'),
+												label: 'Stunted growth ulcer',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+												formSectionA.value.stunted_growth_ulcer != 'Yes'
+											" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('stunted_growth_ulcer_days'),
+												label: 'Stunted growth ulcer (days)',
+												required:
+													formSectionA.value.stunted_growth_ulcer == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('severe_muscle_wasting'),
+												label: 'Severe muscle wasting',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+												formSectionA.value.severe_muscle_wasting != 'Yes'
+											" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('severe_muscle_wasting_days'),
+												label: 'Severe muscle wasting (days)',
+												required:
+													formSectionA.value.severe_muscle_wasting == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get(
+													'oedema_of_both_hand_and_feet'
+												),
+												label: 'Oedema of both hand & feet',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+												formSectionA.value.oedema_of_both_hand_and_feet != 'Yes'
+											" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get(
+													'oedema_of_both_hand_and_feet_days'
+												),
+												label: 'Oedema of both hand & feet (days)',
+												required:
+													formSectionA.value.oedema_of_both_hand_and_feet ==
+													'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('unknown_bites_or_stings'),
+												label: 'Unknown bites or stings',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="
+												formSectionA.value.unknown_bites_or_stings != 'Yes'
+											" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get(
+													'unknown_bites_or_stings_days'
+												),
+												label:
+													'Unknown bites or stings(days)',
+												required:
+													formSectionA.value.unknown_bites_or_stings == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('other'),
+												label: 'Any Other Symptom',
+												required: false,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div [hidden]="!formSectionA.value.other" class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('other_days'),
+												label: 'Any Other symptom(days)',
+												required: false,
+												required: !!formSectionA.value.other,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="col-12">
+											<hr />
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('child_weight_at_admission'),
+												label: 'Child weight at admission(In Grams)',
+												required: true,
+												type: 'number'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[max]="'15000'" [min]="'400'"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionA.get('immunisation_history'),
+												label: 'Immunisation history',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Diphtheria, Pertussis & Tetanus (DPT) booster- 1',
+														'MR 2nd dose',
+														'OPV Booster',
+														'JE-2',
+														'Vitamin A*** (2nd to 9th dose)',
+														'DNK',
+														'NA'
+													],
+													multiple: true
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+									</div>
+									<!--  -->
+								</div>
+							</div>
+							<!--end: Form Wizard Step 2-->
+
+							<!--begin: Form Wizard Step 3-->
+							<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+								<div class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('sectionB') as formSectionB">
+									<div class="row">
+										<h6 class="col-12">Condition on Admission</h6>
+										<!--  -->
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionB.get('breathing_status'),
+												label: 'Breathing status as admission',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Normal breathing',
+														'Severe chest indrawing',
+														'Apnoeic episodes',
+														'Central cyanosis',
+														'Gasping',
+														'Not breathing'
+													]
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionB.get('consciousness_level'),
+												label:
+													'Consciousness level of child at the time of admission',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Alert, responds to normal stimuli',
+														'Semi-conscious, responds to painful stimuli',
+														'High pitched cry or Persistent crying',
+														'Lethargic',
+														'Inability to suck',
+														'Unconscious'
+													]
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionB.get('circulation_status'),
+												label:
+													'Circulation status of child at the time of admission',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Capillary refill time < 3 seconds',
+														'Capillary refill time > 3 seconds',
+														'Extremities: warm to touch and colder than the abdomen',
+														'Pulse: Not palpable',
+														'Pulse: Weak pulse',
+														'Pulse: fast pulse'
+													]
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<!-- <div
+											class="form-group col-md-3"
+											*ngIf="{
+												control: formSectionB.get('circulation_status'),
+												label:
+													'Circulation status of child at the time of admission',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Capillary refill time < 3 seconds',
+														'Capillary refill time > 3 seconds',
+														'Extremities: warm to touch and colder than the abdomen',
+														'Pulse: Not palpable',
+														'Pulse: Weak pulse',
+														'Pulse: fast pulse'
+													]
+												}
+											} as form_input"
+										>
+											<kt-form-input
+												[formControl]="form_input?.control"
+												[type]="form_input?.type"
+												[label]="form_input?.label"
+												[tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors"
+												[required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"
+											></kt-form-input>
+										</div> -->
+										<!--  -->
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionB.get('other_symptoms'),
+												label: 'Did baby have any other symptoms',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'Dehydration',
+														'Bleeding',
+														'Icterus',
+														'Petechial rashes or bruising',
+														'Trauma/other surgical condition',
+														'Congenital malformation',
+														'Bulging fontanelle',
+														'Hypothermia',
+														'Hyperthermia',
+														'Sclerema',
+														'NA'
+													]
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionB.get(
+													'duration_of_stay_in_health_facility'
+												),
+												label: 'Duration of stay in the health facility',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'<24 hours',
+														'<48 hours',
+														'48 hours -7 days',
+														'8-14 days',
+														'14-21 days',
+														'More than 21 days'
+													]
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="col-12">
+											<div class="row" *ngIf="
+													formSectionB.get(
+														'investigations_done'
+													) as investigationsDone
+												">
+												<div class="col-12">
+													<h6>Investigations done</h6>
+													<hr />
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+													control: investigationsDone.get('investigation_not_done'),
+													label: 'Investigation(Done/Not Done)',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: ['Done', 'Not Done']
+													}
+												} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('blood_glucose'),
+														label: 'Blood glucose',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="
+														investigationsDone.value.blood_glucose != 'Yes'
+													" class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'blood_glucose_result'
+														),
+														label: 'Blood glucose result',
+														required:
+															investigationsDone.value.blood_glucose == 'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('cbc'),
+														label: 'CBC',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="investigationsDone.value.cbc != 'Yes'"
+													class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('cbc_result'),
+														label: 'CBC result',
+														required: investigationsDone.value.cbc == 'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('urine_test'),
+														label: 'Urine test',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="
+														investigationsDone.value.urine_test != 'Yes'
+													" class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'urine_test_result'
+														),
+														label: 'Urine test result',
+														required:
+															investigationsDone.value.urine_test == 'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'renal_function_tests'
+														),
+														label: 'Renal function tests',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="
+														investigationsDone.value.renal_function_tests !=
+														'Yes'
+													" class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'renal_function_tests_result'
+														),
+														label: 'Renal function tests result',
+														required:
+															investigationsDone.value.renal_function_tests ==
+															'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('csf'),
+														label: 'CSF',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="investigationsDone.value.csf != 'Yes'"
+													class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('csf_result'),
+														label: 'CSF result',
+														required: investigationsDone.value.csf == 'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('widal_test'),
+														label: 'Widal test',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="
+														investigationsDone.value.widal_test != 'Yes'
+													" class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'widal_test_result'
+														),
+														label: 'Widal test result',
+														required:
+															investigationsDone.value.widal_test == 'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('serum_bilirubin'),
+														label: 'Serum Bilirubin',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="
+														investigationsDone.value.serum_bilirubin != 'Yes'
+													" class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'serum_bilirubin_result'
+														),
+														label: 'Serum Bilirubin result',
+														required:
+															investigationsDone.value.serum_bilirubin == 'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('blood_culture'),
+														label: 'Blood culture',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="
+														investigationsDone.value.blood_culture != 'Yes'
+													" class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'blood_culture_result'
+														),
+														label: 'Blood culture result',
+														required:
+															investigationsDone.value.blood_culture == 'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'liver_function_test'
+														),
+														label: 'Liver Function Test',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="
+														investigationsDone.value.liver_function_test !=
+														'Yes'
+													" class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'liver_function_test_result'
+														),
+														label: 'Liver Function Test result',
+														required:
+															investigationsDone.value.liver_function_test ==
+															'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('urine_culture'),
+														label: 'Urine culture',
+														required: true,
+														type: 'select',
+														selectOptions: {
+															items: ['Yes', 'No']
+														}
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="
+														investigationsDone.value.urine_culture != 'Yes'
+													" class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get(
+															'urine_culture_result'
+														),
+														label: 'Urine culture result',
+														required:
+															investigationsDone.value.urine_culture == 'Yes',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('others'),
+														label: 'Other',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+												<div [hidden]="!investigationsDone.value.others"
+													class="form-group col-md-3" *ngIf="{
+														control: investigationsDone.get('others_result'),
+														label: 'Other result',
+														required: investigationsDone.value.others != '',
+														type: 'text'
+													} as form_input">
+													<kt-form-input [formControl]="form_input?.control"
+														[type]="form_input?.type" [label]="form_input?.label"
+														[tooltip]="form_input?.tooltip"
+														[errorLabel]="form_input?.errorLabel"
+														[errors]="form_input?.control.errors"
+														[required]="form_input?.required"
+														[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+												</div>
+												<!--  -->
+											</div>
+										</div>
+										<!--  -->
+									</div>
+								</div>
+							</div>
+							<!--end: Form Wizard Step 3-->
+
+							<!--begin: Form Wizard Step 4-->
+							<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+								<div class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('sectionC') as formSectionC">
+									<div class="row">
+										<h6 class="col-12">Referral Details</h6>
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionC.get('referred'),
+												label: 'Was the child referred from another Centre?',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No', 'DNK']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<ng-container *ngIf="{
+												required: formSectionC.value.referred == 'Yes'
+											} as referralConditions">
+											<!--  -->
+											<div [hidden]="!referralConditions.required" class="form-group col-md-4"
+												*ngIf="{
+													control: formSectionC.get(
+														'last_referred_facility_type'
+													),
+													label: 'Type of facility from which last referred?',
+													required: referralConditions.required,
+													type: 'select',
+													selectOptions: {
+														items: [
+															'24x7PHC',
+															'SDH/Rural Hospital/CHC',
+															'District Hospital',
+															'Private Hospital',
+															'Private clinic',
+															'Other'
+														]
+													}
+												} as form_input">
+												<kt-form-input [formControl]="form_input?.control"
+													[type]="form_input?.type" [label]="form_input?.label"
+													[tooltip]="form_input?.tooltip"
+													[errorLabel]="form_input?.errorLabel"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+											</div>
+											<!--  -->
+											<div [hidden]="
+													!referralConditions.required ||
+													formSectionC.value.last_referred_facility_type !=
+														'Other'
+												" class="form-group col-md-4" *ngIf="{
+													control: formSectionC.get(
+														'last_referred_facility_type_other'
+													),
+													label: 'Facility other',
+													required:
+														referralConditions.required &&
+														formSectionC.value.last_referred_facility_type ==
+															'Yes',
+													type: 'text'
+												} as form_input">
+												<kt-form-input [formControl]="form_input?.control"
+													[type]="form_input?.type" [label]="form_input?.label"
+													[tooltip]="form_input?.tooltip"
+													[errorLabel]="form_input?.errorLabel"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+											</div>
+											<!--  -->
+											<div [hidden]="!referralConditions.required" class="form-group col-md-4"
+												*ngIf="{
+													control: formSectionC.get('referred_multiple'),
+													label:
+														'Have multiple referrals been made? (include both private and public health facilities)',
+													required: referralConditions.required,
+													type: 'select',
+													selectOptions: {
+														items: ['Yes', 'No', 'DNK']
+													}
+												} as form_input">
+												<kt-form-input [formControl]="form_input?.control"
+													[type]="form_input?.type" [label]="form_input?.label"
+													[tooltip]="form_input?.tooltip"
+													[errorLabel]="form_input?.errorLabel"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+											</div>
+											<!--  -->
+											<div [hidden]="
+													!referralConditions.required ||
+													formSectionC.value.referred_multiple != 'Yes'
+												" class="form-group col-md-4" *ngIf="{
+													control: formSectionC.get('how_many'),
+													label: 'How many?',
+													required:
+														referralConditions.required &&
+														formSectionC.value.referred_multiple == 'Yes',
+													type: 'select',
+													selectOptions: {
+														items: [
+															'One',
+															'Two',
+															'Three',
+															'Four',
+															'More Than 4'
+														]
+													}
+												} as form_input">
+												<kt-form-input [formControl]="form_input?.control"
+													[type]="form_input?.type" [label]="form_input?.label"
+													[tooltip]="form_input?.tooltip"
+													[errorLabel]="form_input?.errorLabel"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+											</div>
+											<!--  -->
+										</ng-container>
+									</div>
+								</div>
+							</div>
+							<!--end: Form Wizard Step 4-->
+
+							<!--begin: Form Wizard Step 5-->
+							<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+								<div class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('sectionD') as formSectionD">
+									<div class="row">
+										<h6 class="col-12">Treatment Details</h6>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('resuscitation'),
+												label: 'Resuscitation',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('oxygen_use'),
+												label: 'Oxygen use',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('iv_fluids'),
+												label: 'IV Fluids',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!-- Details -->
+										<div [hidden]="formSectionD.value.iv_fluids != 'Yes'"
+											class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('iv_fluids_details'),
+												label: 'IV Fluids details',
+												required: formSectionD.value.iv_fluids == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('antibiotics'),
+												label: 'Antibiotics',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('anticonvulsants'),
+												label: 'Anticonvulsants',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('bronchodilators'),
+												label: 'Bronchodilators',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('blood_components'),
+												label: 'Blood components',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!-- Details -->
+										<div [hidden]="formSectionD.value.blood_components != 'Yes'"
+											class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('blood_components_details'),
+												label: 'Blood components details',
+												required: formSectionD.value.blood_components == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('antituvercular_drugs'),
+												label: 'Antituvercular drugs',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('antiretroviral_drugs'),
+												label: 'Antiretroviral drugs',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('vasopressors'),
+												label:
+													'Vasopressors (Dopamine, dobutamine)',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('respiratory_support'),
+												label: 'Respiratory support (CPAP/Ventilator)',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('surgical_interventions'),
+												label: 'Surgical interventions',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!-- Details -->
+										<div [hidden]="
+												formSectionD.value.surgical_interventions != 'Yes'
+											" class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get(
+													'surgical_interventions_details'
+												),
+												label: 'Surgical interventions details',
+												required:
+													formSectionD.value.surgical_interventions == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<!--  -->
+										<div class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get('other_interventions'),
+												label: 'Other interventions',
+												required: false,
+												type: 'select',
+												selectOptions: {
+													items: ['Yes', 'No']
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!-- Details -->
+										<div [hidden]="formSectionD.value.other_interventions != 'Yes'"
+											class="form-group col-md-3" *ngIf="{
+												control: formSectionD.get(
+													'other_interventions_details'
+												),
+												label: 'Other interventions details',
+												required:
+													formSectionD.value.other_interventions == 'Yes',
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<!--  -->
+									</div>
+								</div>
+							</div>
+							<!--end: Form Wizard Step 5-->
+
+							<!--begin: Form Wizard Step 6-->
+							<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+								<div class="kt-form__section kt-form__section--first"
+									*ngIf="form.get('sectionE') as formSectionE">
+									<div class="row">
+										<h6 class="col-12">Diagnosis</h6>
+										<!--  -->
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionE.get('death_was'),
+												label: 'Death With In(Days)',
+												required: true,
+												type: 'select',
+												selectOptions: {
+													items: [
+														'in first Year (day 29-365 days)',
+														'in the late post neonatal period (1-5 years)'
+													]
+												}
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionE.get(
+													'provisional_diagnosis_at_time_of_admission'
+												),
+												label: 'Provisional diagnosis at time of admission',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div class="form-group col-md-4" *ngIf="{
+												control: formSectionE.get(
+													'provisional_diagnosis_at_time_of_death'
+												),
+												label: 'Provisional diagnosis at time of death',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions" [isSubmitted]="isSubmitted" [viewOnly]="viewOnly"></kt-form-input>
+										</div>
+										<!--  -->
+										<div
+												class="form-group col-md-6"
+												*ngIf="{
+													control: formSectionE.get(
+													'probable_direct_cause_of_death'
+												),
+												label: 'Probable direct cause of death (As per ICD-10 Classification)',
+													tooltip: '',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: icd10CdrCode,
+														bindLabel: 'disease_name',
+														multiple: true
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[tooltip]="form_input?.tooltip"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+										<!-- <div class="form-group col-md-3" *ngIf="{
+												control: formSectionE.get(
+													'probable_direct_cause_of_death'
+												),
+												label: 'Probable direct cause of death',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"></kt-form-input>
+										</div> -->
+										<!--  -->
+										<div
+												class="form-group col-md-6"
+												*ngIf="{
+													control: formSectionE.get('indirect_cause_of_death'),
+												    label: 'Indirect cause of death (As per ICD-10 Classification)',
+													tooltip: '',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: icd10CdrCode,
+														bindLabel: 'disease_name',
+														multiple: true
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[tooltip]="form_input?.tooltip"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+										<!-- <div class="form-group col-md-3" *ngIf="{
+												control: formSectionE.get('indirect_cause_of_death'),
+												label: 'Indirect cause of death',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"></kt-form-input>
+										</div> -->
+										<!--  -->
+										<div
+												class="form-group col-md-6"
+												*ngIf="{
+													control: formSectionE.get('final_diagnosis'),
+												label: 'Final Diagnosis (Within one week) (As per ICD-10 Classification)',
+													tooltip: '',
+													required: true,
+													type: 'select',
+													selectOptions: {
+														items: icd10CdrCode,
+														bindLabel: 'disease_name',
+														multiple: true
+													}
+												} as form_input"
+											>
+												<kt-form-input
+													[formControl]="form_input?.control"
+													[type]="form_input?.type"
+													[label]="form_input?.label"
+													[tooltip]="form_input?.tooltip"
+													[errorLabel]="
+														form_input?.label || form_input?.errorLabel
+													"
+													[errors]="form_input?.control.errors"
+													[required]="form_input?.required"
+													[selectOptions]="form_input?.selectOptions"
+													[isSubmitted]="isSubmitted"
+													[viewOnly]="viewOnly"
+												></kt-form-input>
+											</div>
+										<!-- <div class="form-group col-md-4" *ngIf="{
+												control: formSectionE.get('final_diagnosis'),
+												label: 'Final Diagnosis (Within one week)',
+												required: true,
+												type: 'text'
+											} as form_input">
+											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
+												[label]="form_input?.label" [tooltip]="form_input?.tooltip"
+												[errorLabel]="form_input?.errorLabel"
+												[errors]="form_input?.control.errors" [required]="form_input?.required"
+												[selectOptions]="form_input?.selectOptions"></kt-form-input>
+										</div> -->
+										<!--  -->
+									</div>
+								</div>
+							</div>
+							<!--end: Form Wizard Step 6-->
+
+							<!--begin: Form Actions -->
+							<div class="kt-form__actions">
+								<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+									data-ktwizard-type="action-prev">
+									Previous
+								</div>
+								<div *ngIf="!viewOnly" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+									data-ktwizard-type="action-submit" (click)="onSubmit()">
+									Save
+								</div>
+								<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+									data-ktwizard-type="action-next">
+									Next Step
+								</div>
+							</div>
+							<!--end: Form Actions -->
+						</div>
+						<!--end: Form Wizard Form-->
+					</div>
+				</div>
+				<!--end: Wizard -->
+			</form>
+		</div>
+	</kt-portlet-body>
+	<!-- end::Body (attribute: ktPortletBody) -->
+</kt-portlet>

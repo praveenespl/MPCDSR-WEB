@@ -1,0 +1,69 @@
+@import "../../../../../../assets/sass/mat-table.scss";
+.kt-portlet__body {
+	display: flex !important;
+	flex-direction: column !important;
+	padding: 5px !important;
+	border-radius: 4px !important;
+}
+.card-blue {
+	background: linear-gradient(135deg, #0ff0b3 0%, #036ed9 100%);
+	color: white;
+}
+.card-orange {
+	background: linear-gradient(135deg, #fad961 0%, #f76b1c 100%);
+	color: white;
+}
+.card-red {
+	background: linear-gradient(135deg, #f5515f 0%, #a1051d 100%);
+	color: white;
+}
+.card-green {
+	background: linear-gradient(135deg, #61a34d 0%, #0ba29d 100%);
+	color: white;
+}
+.card-cbmdr {
+	background: linear-gradient(135deg, #184e68 0%, #57ca85 100%);
+	color: white;
+}
+.card-fbmdr {
+	background: linear-gradient(135deg, #5b247a 0%, #1bcedf 100%);
+	color: white;
+}
+
+.mat-card-mdr {
+    text-align: center;
+    font-weight: bold;
+		font-family: 'Roboto', sans-serif;
+    //font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: white;
+    cursor:pointer;
+}
+
+th.mat-header-cell {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    background-color: #26a69a !important;
+}
+
+
+.mat-raised-button {
+	background-color: #26a69a;
+	color:#fff;
+}
+
+.pointer {
+    cursor:pointer
+}
+
+::ng-deep .kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.text-india {
+	color:#d24c18;
+}

@@ -1,0 +1,126 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+	<kt-portlet-header
+		[title]="'Form 3A: Verbal Autopsy Form: Neonatal Deaths'"
+		
+		[class]="'kt-portlet__head--lg'"
+	>
+		<!-- [viewLoading$]="dataSource.loading$" -->
+		<ng-container ktPortletTools>
+			<!-- <a
+				routerLink="add"
+				mat-raised-button
+				color="primary"
+				matTooltip="Add new record"
+			>
+				+Add new
+			</a>
+			<span class="mx-1 d-none d-md-block"></span>
+			<button mat-raised-button color="primary">
+				<i class="fas fa-filter"></i>
+			</button> -->
+		</ng-container>
+	</kt-portlet-header>
+
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body class="p-0">
+		
+		<div class="position-relative" style="min-height: 200px;">
+			<div class="loading-shade" *ngIf="isLoadingResults || isMaxLimitReached">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+				<div class="example-rate-limit-reached" *ngIf="isMaxLimitReached">
+					Please wait...
+				</div>
+			</div>
+			<div style="padding: 10px 20px;color:blue">
+				NOTE: This form must be completed for neonatal deaths (0-28 days).
+			</div>
+			<div class="table-container">
+				<table
+					mat-table
+					[dataSource]="dataSource"
+					class="w-100"
+					matSort
+					matSortDisableClear
+				>
+					<ng-container *ngFor="let column of columns">
+						<ng-container
+							[matColumnDef]="column.key"
+							*ngIf="!column?.isActionField"
+						>
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>
+								{{ column?.name }}
+							</th>
+
+							<td mat-cell *matCellDef="let row">
+								{{ objectPath.get(row, column?.key) || "--" }}
+							</td>
+						</ng-container>
+					</ng-container>
+
+					<!-- Date fields-->
+					<ng-container matColumnDef="date_of_birth">
+						<th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.date_of_birth | date: 'dd/MM/yyyy'}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="date_of_death">
+						<th mat-header-cell *matHeaderCellDef>Date of Death</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.date_of_death | date: 'dd/MM/yyyy'}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="date_of_notification">
+						<th mat-header-cell *matHeaderCellDef>Date of Notification</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.date_of_notification | date: 'dd/MM/yyyy'}}
+						</td>
+					</ng-container>
+
+
+					<!-- ACTION FIELDS -->
+					<ng-container matColumnDef="action">
+						<th mat-header-cell *matHeaderCellDef>Action</th>
+						<td mat-cell *matCellDef="let row">
+							<!-- <a [routerLink]="[row.id]">
+								<mat-icon>edit</mat-icon>
+							</a> -->
+							<!-- <a [routerLink]="['view', row.id]">
+								<mat-icon>remove_red_eye</mat-icon>
+							</a> -->
+
+							<a *ngIf="row.cdrForm3s.length===0" [routerLink]="['add',row.id]" matTooltip="Add New Record">
+								<mat-icon>add_circle</mat-icon>
+							</a>
+							<a *ngIf="row.cdrForm3s.length>0" [routerLink]="[row?.cdrForm3s[0]?.id]" matTooltip="Edit Record">
+								
+								<mat-icon>edit</mat-icon>
+							</a>
+							<a *ngIf="row.cdrForm3s.length>0" [routerLink]="[row?.cdrForm3s[0]?.id]" [queryParams]="{ view: true }" matTooltip="View Record">
+								<mat-icon>remove_red_eye</mat-icon>
+							</a>
+						</td>
+					</ng-container>
+
+					<tr
+						mat-header-row
+						*matHeaderRowDef="columnsToDisplay; sticky: true"
+					></tr>
+					<tr
+						mat-row
+						*matRowDef="let dataSource; columns: columnsToDisplay"
+					></tr>
+				</table>
+			</div>
+
+			<mat-paginator
+				[length]="totalRecords"
+				[pageSize]="pageSize"
+			></mat-paginator>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

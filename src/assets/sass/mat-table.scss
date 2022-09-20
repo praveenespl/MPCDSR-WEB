@@ -1,0 +1,33 @@
+::ng-deep {
+	.mat-row:nth-child(even) {
+		background-color: rgb(240, 245, 239);
+	}
+
+	mat-footer-row,
+	mat-header-row,
+	mat-row,
+	td.mat-cell,
+	td.mat-footer-cell,
+	th.mat-header-cell {
+		border: 1px solid #ccc;
+		padding: 5px !important;
+	}
+
+	th.mat-header-cell {
+		background-color: #26a69a;
+		//background-color: #337ab7;
+
+		color: #ffff;
+		font-size: 14px;
+	}
+
+	.mat-header-row,
+	.mat-row {
+		height: 30px !important;
+		min-height: 0px !important;
+	}
+
+	.mat-sort-header-arrow{
+		color: #fff;
+	}
+}

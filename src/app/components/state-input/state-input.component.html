@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline">
+	<mat-label>Select States</mat-label>
+	<mat-select [formControl]="states" multiple (selectionChange)="onStateChange()">
+		<mat-option #allSelected (click)="toggleAllSelection()" [value]="0" (click)="tosslePerOne(allSelected.viewValue)">
+			All</mat-option>
+		<mat-option *ngFor="let state of stateList" [value]="state.statecode">{{state.statename}}</mat-option>
+	</mat-select>
+</mat-form-field>

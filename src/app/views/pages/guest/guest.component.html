@@ -1,0 +1,262 @@
+<div class="home-container d-flex flex-column">
+	<nav
+		class="navbar navbar-expand navbar-dark bg-primary py-0 kt-px65-desktop"
+		style="position: sticky; top: 0;"
+	>
+		<ul class="navbar-nav mr-auto">
+			<li
+				class="nav-item"
+				routerLinkActive="active nav-link-active"
+				[routerLinkActiveOptions]="{ exact: true }"
+			>
+				<a class="nav-link py-2 px-3" routerLink="/">Home</a>
+			</li>
+			<li
+				class="nav-item"
+				routerLinkActive="active nav-link-active"
+				[routerLinkActiveOptions]="{ exact: true }"
+			>
+				<a class="nav-link py-2 px-3">Feedback</a>
+			</li>
+			<li
+				class="nav-item d-inline-block"
+				ngbDropdown
+				#myDrop="ngbDropdown"
+			>
+				<a
+					class="nav-link py-2 px-3"
+					style="cursor: pointer;"
+					id="dropdownManual"
+					ngbDropdownAnchor
+					(click)="myDrop.open()"
+				>
+					About
+				</a>
+				<ul ngbDropdownMenu aria-labelledby="dropdownManual">
+					<li><a ngbDropdownItem routerLink=".">Mission</a></li>
+					<li><a ngbDropdownItem routerLink=".">History</a></li>
+					<li>
+						<a ngbDropdownItem routerLink=".">Director's Message</a>
+					</li>
+					<li>
+						<a ngbDropdownItem routerLink="."
+							>Mandate &amp; Objectives</a
+						>
+					</li>
+					<li>
+						<a ngbDropdownItem routerLink=".">IDSP Milestones</a>
+					</li>
+					<li>
+						<a ngbDropdownItem routerLink="."
+							>Organizational Structure</a
+						>
+					</li>
+					<li>
+						<a ngbDropdownItem routerLink=".">IDSP Achievements</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		<!-- <ul class="navbar-nav">
+			<li
+				class="nav-item"
+				routerLinkActive="active nav-link-active"
+				[routerLinkActiveOptions]="{ exact: true }"
+			>
+				<a class="nav-link py-2 px-3" routerLink="/login">Sign in</a>
+			</li>
+		</ul> -->
+	</nav>
+	<div class="container-fluid py-4">
+		<header
+			class="d-flex flex-column flex-lg-row align-items-lg-center kt-px65-desktop"
+		>
+			<div class="nav-brand d-flex align-items-center">
+				<img
+					style="height: 90px;"
+					src="assets/media/app/images/logos/emblem_of_India.png"
+					alt="national-health-mission"
+				/>
+				<div class="px-2 text-muted">
+					<!-- <h3 class="mb-0 font-weight-600 text-primary">
+						Maternal and Child Death Surveillance and Response
+					</h3> -->
+					<h4 class="mb-0 font-weight-600 text-primary">
+						Maternal, Perinatal, Child Death Surveillance and Response
+					</h4>
+					<h4 class="mb-0 font-weight-400">
+						A digital initiative under National Health Mission
+					</h4>
+					<p class="mb-0">
+						Ministry of Health and Family Welfare, Government of
+						India
+					</p>
+				</div>
+			</div>
+			<div class="d-flex flex-column ml-md-5">
+				<!-- <a class="text-danger font-weight-600">0-000-000-000</a> -->
+				<a class="text-danger font-weight-550">MPCDSR Helpdesk</a>
+				<a href="javascript:void(0)">Report Problem</a>
+			</div>
+
+			<div class="d-flex align-items-center ml-auto">
+				<div class="logo">
+					<img
+						class="mw-100 mh-100"
+						src="assets/media/app/images/logos/suman.png"
+						alt="national-health-mission"
+					/>
+				</div>
+				<div class="logo">
+					<img
+						class="mw-100 mh-100"
+						src="assets/media/app/images/logos/di_nuhm.png"
+						alt="national-health-mission"
+					/>
+				</div>
+			</div>
+		</header>
+	</div>
+
+	<div class="container-fluid">
+		<nav class="kt-px65-desktop">
+			<div
+				class="border-bottom border-primary border-width-2 navbar navbar-expand py-0"
+			>
+				<ul class="navbar-nav">
+					<li
+						class="nav-item text-center p-3 hover"
+						ngbDropdown
+						#aboutDrop="ngbDropdown"
+					>
+						<a
+							href="javascript:void(0)"
+							style="cursor: pointer;"
+							ngbDropdownAnchor
+							(click)="aboutDrop.toggle()"
+						>
+							<div
+								class="rounded-nav-icon d-flex justify-content-center align-items-center bg-primary text-white mx-auto"
+							>
+								<i class="fas fa-home"></i>
+							</div>
+							<span>Home <i class="fas fa-caret-down"></i></span>
+						</a>
+						<ul ngbDropdownMenu aria-labelledby="dropdownManual">
+							<li>
+								<a ngbDropdownItem routerLink=".">Mission</a>
+							</li>
+							<li>
+								<a ngbDropdownItem routerLink=".">History</a>
+							</li>
+							<li>
+								<a ngbDropdownItem routerLink="."
+									>Director's Message</a
+								>
+							</li>
+							<li>
+								<a ngbDropdownItem routerLink="."
+									>Mandate &amp; Objectives</a
+								>
+							</li>
+							<li>
+								<a ngbDropdownItem routerLink="."
+									>IDSP Milestones</a
+								>
+							</li>
+							<li>
+								<a ngbDropdownItem routerLink="."
+									>Organizational Structure</a
+								>
+							</li>
+							<li>
+								<a ngbDropdownItem routerLink="."
+									>IDSP Achievements</a
+								>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item text-center p-3 hover">
+						<a href="javascript:void(0)">
+							<div
+								class="rounded-nav-icon d-flex justify-content-center align-items-center bg-primary text-white mx-auto"
+							>
+								<i class="fas fa-phone"></i>
+							</div>
+							<span>Contact</span>
+						</a>
+					</li>
+					<li class="nav-item text-center p-3 hover">
+						<a routerLink="/login">
+							<div
+								class="rounded-nav-icon d-flex justify-content-center align-items-center bg-primary text-white mx-auto"
+							>
+								<i class="fas fa-user"></i>
+							</div>
+							<span>Sign in</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div class="container-fluid">
+		<div class="kt-px65-desktop">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+
+	<footer class="container-fluid mt-auto">
+		<div class="kt-px65-desktop">
+			<div
+				class="border-top border-primary border-width-2 pt-3 pb-4 d-flex flex-column flex-lg-row justify-content-between"
+			>
+				<div class="d-flex flex-column">
+					<p class="font-weight-600 text-muted">
+						<a href="javascript:void(0)"
+							>National Health Programmes</a
+						>
+						<span
+							class="d-inline-block text-center"
+							style="width: 15px;"
+							>|</span
+						>
+						<a href="javascript:void(0)">Help</a>
+						<span
+							class="d-inline-block text-center"
+							style="width: 15px;"
+							>|</span
+						>
+						<a href="javascript:void(0)">Privacy</a>
+						<span
+							class="d-inline-block text-center"
+							style="width: 15px;"
+							>|</span
+						>
+						<a href="javascript:void(0)"> Terms</a>
+						<span
+							class="d-inline-block text-center"
+							style="width: 15px;"
+							>|</span
+						>
+						<a href="javascript:void(0)">Acknowledgements</a>
+					</p>
+					<p class="font-weight-600 text-muted">
+						Ministry of Health and Family Welfare, Government of
+						India
+					</p>
+					<p class="font-weight-600 text-muted">
+						Software Version: 1.3 Website Last Updated On: Tue, Sep
+						14, 2021
+					</p>
+				</div>
+				<div class="todat date">
+					<p class="font-weight-600 text-muted">Date Time</p>
+					{{ clock | async | date: "MMM dd, yyyy hh:mm a" }}
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>

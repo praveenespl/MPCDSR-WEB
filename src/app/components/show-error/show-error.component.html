@@ -1,0 +1,70 @@
+<ng-container *ngIf="errors">
+	<ng-container *ngIf="!!errors?.required; else minLengthTemplate">
+		{{ label }} is required.
+	</ng-container>
+	<ng-template #minLengthTemplate>
+		<ng-container *ngIf="errors?.minlength; else maxLengthTemplate">
+			{{ label }} minimum length should be
+			{{ errors?.minlength?.requiredLength }}
+		</ng-container>
+	</ng-template>
+	<ng-template #maxLengthTemplate>
+		<ng-container *ngIf="errors?.maxlength; else alphaOnly">
+			{{ label }} maximum length should be
+			{{ errors?.maxlength?.requiredLength }}
+		</ng-container>
+	</ng-template>
+	<ng-template #alphaOnly>
+		<ng-container *ngIf="errors?.alphaOnly; else numberOnly">
+			{{ label }} allowed alphabets only
+		</ng-container>
+	</ng-template>
+	<ng-template #numberOnly>
+		<ng-container *ngIf="errors?.numberOnly; else alphaNumber">
+			{{ label }} allowed numbers only
+		</ng-container>
+	</ng-template>
+	<ng-template #alphaNumber>
+		<ng-container *ngIf="errors?.alphaNumber; else dateOfDeath">
+			{{ label }} allowed alphabets and numbers only
+		</ng-container>
+	</ng-template>
+	<ng-template #dateOfDeath>
+		<ng-container *ngIf="errors?.dateOfDeath; else dateOfNotification">
+			{{ label }} should be more than or equal to Date of Birth.
+		</ng-container>
+	</ng-template>
+	<ng-template #dateOfNotification>
+		<ng-container *ngIf="errors?.dateOfNotification; else decimalNumber">
+			{{ label }} should be more than or equal to Date of Death.
+		</ng-container>
+	</ng-template>
+	<ng-template #decimalNumber>
+		<ng-container *ngIf="errors?.decimalNumber; else ageValidation">
+			{{ label }} not valid.
+		</ng-container>
+	</ng-template>
+	<ng-template #ageValidation>
+		<ng-container *ngIf="errors?.ageValidation; else mobileNumber">
+			{{ label }} must be less than equal to 5 and more than 0.
+		</ng-container>
+	</ng-template>
+	<ng-template #mobileNumber>
+		<ng-container *ngIf="errors?.mobileNumber; else landline">
+			{{ label }} must begin with 6, 7, 8 or 9.
+		</ng-container>
+	</ng-template>
+	<ng-template #landline>
+		<ng-container *ngIf="errors?.landline; else weight">
+			{{ label }} is not valid. Enter STD Code-Number.
+		</ng-container>
+	</ng-template>
+	<ng-template #weight>
+		<ng-container *ngIf="errors?.max || errors?.min; else notImplemented">
+			{{ label }} must be between {{min}} - {{max}}.
+		</ng-container>
+	</ng-template>
+	<ng-template #notImplemented>
+		Error message not set yet "{{ errors | json }}"
+	</ng-template>
+</ng-container>

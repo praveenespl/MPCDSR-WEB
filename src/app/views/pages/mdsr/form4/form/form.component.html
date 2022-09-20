@@ -1,0 +1,282 @@
+<kt-portlet [hidden]="!selectedRecord && !editRecordValue">
+	<kt-portlet-header [title]="'Form 4: Facility Based Maternal Death Review Form'" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<!-- <button
+				mat-raised-button
+				color="warn"
+				(click)="selectedRecord = null; editRecordValue = null"
+				[hidden]="!showOnEdit"
+			>
+				Back
+			</button> -->
+			<button *ngIf="editRecordValue?.id"
+				mat-raised-button
+				color="warn"
+				(click)="pdfGeneration()"
+			>
+				PDF
+			</button>&nbsp;
+			<button mat-raised-button color="warn" (click)="backClicked()">
+				<!-- [hidden]="showOnEdit" -->
+				Back
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<!--begin: Wizard -->
+		<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white no-alert" id="kt_wizard_v3"
+			data-ktwizard-state="step-first">
+			<div class="kt-grid__item">
+				<!--begin: Form Wizard Nav -->
+				<div class="kt-wizard-v3__nav">
+					<div class="kt-wizard-v3__nav-items scrollbar" id="scrollbar" style="overflow-x: auto;">
+						<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step"
+							data-ktwizard-state="current">
+							<div class="kt-wizard-v3__nav-body">
+								<div class="kt-wizard-v3__nav-label">
+									<span>1</span> General Information
+								</div>
+								<div class="kt-wizard-v3__nav-bar"></div>
+							</div>
+						</a>
+						<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v3__nav-body">
+								<div class="kt-wizard-v3__nav-label">
+									<span>2</span> Patient History
+								</div>
+								<div class="kt-wizard-v3__nav-bar"></div>
+							</div>
+						</a>
+						<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v3__nav-body">
+								<div class="kt-wizard-v3__nav-label">
+									<span>3</span> On Admission
+								</div>
+								<div class="kt-wizard-v3__nav-bar"></div>
+							</div>
+						</a>
+
+						<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v3__nav-body">
+								<div class="kt-wizard-v3__nav-label">
+									<span>4</span> Condition on Admission
+								</div>
+								<div class="kt-wizard-v3__nav-bar"></div>
+							</div>
+						</a>
+
+						<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v3__nav-body">
+								<div class="kt-wizard-v3__nav-label">
+									<span>5</span> Diagnosis
+								</div>
+								<div class="kt-wizard-v3__nav-bar"></div>
+							</div>
+						</a>
+
+						<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v3__nav-body">
+								<div class="kt-wizard-v3__nav-label">
+									<span>6</span> Interventions
+								</div>
+								<div class="kt-wizard-v3__nav-bar"></div>
+							</div>
+						</a>
+
+						<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v3__nav-body">
+								<div class="kt-wizard-v3__nav-label"><span>7</span> Other</div>
+								<div class="kt-wizard-v3__nav-bar"></div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<!--end: Form Wizard Nav -->
+			</div>
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+				<!--begin: Form Wizard Form-->
+				<div class="kt-form" id="kt_form">
+					<!--begin: Form Wizard Step 1-->
+					<div class="kt-wizard-v3__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<!-- <div class="kt-heading kt-heading--md">
+                                HEADING
+                            </div> -->
+						<div class="kt-form__section kt-form__section--first">
+
+							<formio [refresh]="step1refresh" #form4Ref [form]="generalInformationForm" (submit)="onSubmit()"
+								(change)="onChange($event)">
+							</formio>
+							<!-- (submit)="changeStep($event)" -->
+						</div>
+					</div>
+					<!--end: Form Wizard Step 1-->
+
+					<!--begin: Form Wizard Step 2-->
+					<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+						<!-- <div class="kt-heading kt-heading--md">
+                                Enter the Details of your Delivery
+                            </div> -->
+						<div class="kt-form__section kt-form__section--first">
+							<formio #form4Ref [refresh]="step2refresh" [form]="patientHistoryForm" (submit)="onSubmit()"
+								(change)="onChange($event)">
+							</formio>
+							<!-- (submit)="changeStep($event)" -->
+						</div>
+					</div>
+					<!--end: Form Wizard Step 2-->
+
+					<!--begin: Form Wizard Step 3-->
+					<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+						<div class="kt-form__section kt-form__section--first">
+							<formio #form4Ref [refresh]="step3refresh" [form]="onAdmissionForm" (submit)="onSubmit()"
+								(change)="onStep3Change($event)">
+							</formio>
+							<!-- (submit)="changeStep($event)" -->
+						</div>
+					</div>
+					<!--end: Form Wizard Step 3-->
+
+					<!--begin: Form Wizard Step 4-->
+					<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+						<div class="kt-form__section kt-form__section--first formio_table">
+							<formio #form4Ref [form]="conditionOnAdmissionForm" [refresh]="step4refresh" (submit)="onSubmit()"
+								(change)="onChange($event)" (formLoad)="formLoaded()"></formio>
+							<!-- (submit)="changeStep($event)" -->
+						</div>
+					</div>
+					<!--end: Form Wizard Step 4-->
+
+					<!--begin: Form Wizard Step 5-->
+					<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+						<div class="kt-form__section kt-form__section--first">
+							<mat-accordion class="example-headers-align">
+								<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" >
+									<mat-expansion-panel-header>
+										<mat-panel-title>
+											Diagnosis at time of admission
+										</mat-panel-title>
+									</mat-expansion-panel-header>
+									<formio #form4Ref [form]="diagnosisForm1" [refresh]="step5refresh_1"
+										(change)="diagnosisForm1Change($event)" (formLoad)="formLoaded()" (submit)="onSubmit()"></formio>
+
+									<mat-action-row>
+										<button mat-button color="primary" (click)="nextStep(!stepToEnable)">
+											Next
+										</button>
+									</mat-action-row>
+								</mat-expansion-panel>
+
+								<mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
+									<mat-expansion-panel-header>
+										<mat-panel-title>
+											Abortion (to be filled if applicable)
+										</mat-panel-title>
+									</mat-expansion-panel-header>
+
+									<formio #form4Ref [refresh]="step5refresh_2" [form]="diagnosisForm2" (formLoad)="formLoaded()" (submit)="onSubmit()">
+									</formio>
+
+									<mat-action-row>
+										<button mat-button color="warn" (click)="prevStep()">
+											Previous
+										</button>
+										<button mat-button color="primary" (click)="nextStep()">
+											Next
+										</button>
+									</mat-action-row>
+								</mat-expansion-panel>
+
+								<mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" >
+									<mat-expansion-panel-header>
+										<mat-panel-title>
+											Antenatal Care
+										</mat-panel-title>
+									</mat-expansion-panel-header>
+									<formio #form4Ref [refresh]="step5refresh_3" [form]="diagnosisForm3" (formLoad)="formLoaded()" (submit)="onSubmit()">
+									</formio>
+									<mat-action-row>
+										<button mat-button color="warn" (click)="prevStep(!stepToEnable)">
+											Previous
+										</button>
+										<button mat-button color="primary" (click)="nextStep()" *ngIf="diagnosisStep4Enable">
+											Next
+										</button>
+									</mat-action-row>
+								</mat-expansion-panel>
+
+								<mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" >
+									<mat-expansion-panel-header>
+										<mat-panel-title>
+											DELIVERY, PUERPERIUM AND NEONATAL INFORMATION (If
+											Applicable)
+										</mat-panel-title>
+									</mat-expansion-panel-header>
+
+									<formio #form4Ref [refresh]="step5refresh_4" [form]="diagnosisForm4" (formLoad)="formLoaded()" (submit)="onSubmit()">
+									</formio>
+
+									<mat-action-row>
+										<button mat-button color="warn" (click)="prevStep()">
+											Previous
+										</button>
+									</mat-action-row>
+								</mat-expansion-panel>
+							</mat-accordion>
+
+							<!-- (submit)="changeStep($event)" -->
+						</div>
+					</div>
+					<!--end: Form Wizard Step 5-->
+
+					<!--begin: Form Wizard Step 6-->
+					<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+						<div class="kt-form__section kt-form__section--first">
+							<formio #form4Ref [refresh]="step6refresh" (submit)="onSubmit()" [form]="interventionsForm"></formio>
+							<!-- (submit)="changeStep($event)" -->
+						</div>
+					</div>
+					<!--end: Form Wizard Step 6-->
+
+					<!--begin: Form Wizard Step 7-->
+					<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+						<div class="kt-form__section kt-form__section--first">
+							<formio #form4Ref [refresh]="step7refresh" (submit)="onSubmit(true)" (change)="onChange($event)"
+								[form]="otherForm"></formio>
+							<ng-container>
+								<div id="editor">
+									<mat-label>Case Summary</mat-label>
+									<quill-editor [styles]="{height: '200px'}" placeholder="Case summary..." [(ngModel)]="case_summary">
+									</quill-editor>
+								</div>
+							</ng-container>
+							<!-- <formio #form4Ref [refresh]="step8refresh" (submit)="onSubmit(true)" (change)="onChange($event)" [form]="doctorDetailsForm">
+							</formio> -->
+						</div>
+					</div>
+					<!--end: Form Wizard Step 7-->
+
+					<!--begin: Form Actions -->
+					<div class="kt-form__actions">
+						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-prev">
+							Previous
+						</div>
+						<!-- <div (click)="onSubmit(true)"
+							class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-submi
+							t">
+							Save
+						</div> -->
+						<!-- <div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-next" (click)="onSubmit()">
+							Next Step
+						</div> -->
+					</div>
+					<!--end: Form Actions -->
+				</div>
+				<!--end: Form Wizard Form-->
+			</div>
+		</div>
+		<!--end: Wizard -->
+	</kt-portlet-body>
+</kt-portlet>

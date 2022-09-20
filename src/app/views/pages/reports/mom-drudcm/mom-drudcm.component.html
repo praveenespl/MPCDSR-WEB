@@ -1,0 +1,241 @@
+<kt-portlet>
+    <kt-portlet-header [title]="'Minutes of the Maternal Death Review under District Collector/Magistrate'"
+        [class]="'kt-portlet__head--lg'">
+        <!-- <ng-container ktPortletTools>
+            <a routerLink="add" mat-raised-button color="primary" matTooltip="Add new record">
+                +Add new
+            </a>
+        </ng-container>
+        <ng-container ktPortletTools>
+            &nbsp;&nbsp;
+            <button mat-raised-button color="primary" (click)="showFilers()">
+                <i class="fas fa-filter"></i>
+            </button>
+        </ng-container> -->
+    </kt-portlet-header>
+
+
+    <kt-portlet-body class="py-3 px-4">
+        <div class="position-relative">
+            <form autocomplete="off" [formGroup]="meetingForm">
+                <div class="row">
+                    <div class=" col-md-3">
+                        <label>District</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="text" matInput formControlName="district" readonly/>
+                            <mat-error> District is Required !! </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Date of Conduct of District MDR Committee Meeting: </label>
+                        <div class="input-group">
+
+                            <input class="form-control" placeholder="dd-mm-yyyy" readonly [owlDateTime]="dateOfMeeting"
+                                [owlDateTimeTrigger]="dateOfMeeting" formControlName="dateOfMeeting" />
+                            <owl-date-time  [pickerType]="'calendar'" #dateOfMeeting>
+                            </owl-date-time>
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary trigger"
+                                    [owlDateTimeTrigger]="dateOfMeeting" type="button">
+                                    <i class="fas fa-calendar text-white"></i>
+                                </button>
+                            </div>
+                            <span class="invalid-feedback" show-error [errors]="meetingForm.get('dateOfMeeting').errors"
+                                label="Date of Meeting"></span>
+                        </div>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Number of maternal deaths in present month:</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="number" matInput formControlName="maternalDeathsPM" />
+                            <mat-error> Maternal deaths in present month is <strong>Required</strong> !! </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Number of maternal deaths in present month [Reviewed]:</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="number" matInput formControlName="maternalDeathsPMReviewed" />
+                            <mat-error> Maternal deaths reviewed in present month is <strong>Required</strong> !!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label class="mb-4">Cumulative Maternal Deaths from April:</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="number" matInput formControlName="maternalDeathsFromApril" />
+                            <mat-error> Maternal deaths in present month is <strong>Required</strong> !! </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Cumulative Maternal Deaths from April [Reviewed]:</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="number" matInput formControlName="maternalDeathsFromAprilReviewed" />
+                            <mat-error> Maternal deaths reviewed in present month is <strong>Required</strong> !!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                <div class="m-form__heading">
+                    <h5 class="m-form__heading-title">
+                        Review of recommendations of previous meeting
+                    </h5>
+                </div>
+                <div class="mat-elevation-z2">
+                    <div class="table-height overflow-auto">
+                        <table mat-table [dataSource]="recommendationsOfPrevMeetingDataSource" formArrayName="recommendationsOfPrevMeeting" class="w-100">
+                            <ng-container matColumnDef="recommendationsPrevMeeting">
+                                <th mat-header-cell *matHeaderCellDef> Recommendations of Prev Meeting </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.recommendationsPrevMeeting ? element.recommendationsPrevMeeting : '---'}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="sn">
+                                <th mat-header-cell *matHeaderCellDef> SN. </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.i+1}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="responsiblePerson">
+                                <th mat-header-cell *matHeaderCellDef> Responsible Person </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.responsiblePerson ? element.responsiblePerson : '---'}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="actionTaken">
+                                <th mat-header-cell *matHeaderCellDef style="background: #6dc171;border: 2px solid #6dc171;text-align:center;"> Action Taken </th>
+                                <td mat-cell *matCellDef="let element; let i=index;" [formGroupName]="element.i" style="border: 2px solid #6dc171;">
+                                    <input type="text" matInput placeholder="Action taken" formControlName="actionTaken" > </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="recommendationsOfPrevMeetingDisplayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: recommendationsOfPrevMeetingDisplayedColumns; "></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Review of maternal deaths of present month -->
+                <div class="m-form__heading mt-4">
+                    <h5 class="m-form__heading-title">
+                        Review of maternal deaths of present month
+                        <button mat-mini-fab color="primary" aria-label="Add more" (click)="addMDPresentMonthReview()">
+                            <mat-icon>plus_one</mat-icon>
+                        </button>
+                    </h5>
+                </div>
+                <div formArrayName="MDPresentMonthReview"
+                    *ngFor="let a of meetingForm.get('MDPresentMonthReview')['controls']; let i = index">
+                    <div class="row" [formGroupName]="i">
+                        <p class="form_array_index">{{i+1}}</p>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Issue Identified</mat-label>
+                                <input type="text" matInput formControlName="issueIdentified" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Recommendations</mat-label>
+                                <input type="text" matInput formControlName="recommendations" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Responsible Person With Timeline</mat-label>
+                                <input type="text" matInput formControlName="responsiblePersonWithTimeline" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <span (click)="removeMDPresentMonthReview(i)" class="remove_button">
+                            <mat-icon color="accent">delete</mat-icon>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Family of deceased who narrated the event to DM/DC at MDR committee -->
+                <div class="m-form__heading mt-3">
+                    <h5 class="m-form__heading-title">
+                        Family of deceased who narrated the event to DM/DC at MDR committee
+                        <button mat-mini-fab color="primary" aria-label="Add more" (click)="addFamilyOfDeceased()">
+                            <mat-icon>plus_one</mat-icon>
+                        </button>
+                    </h5>
+                </div>
+                <div formArrayName="familyOfDeceased"
+                    *ngFor="let a of meetingForm.get('familyOfDeceased')['controls']; let i = index">
+                    <div class="row" [formGroupName]="i">
+                        <p class="form_array_index">{{i+1}}</p>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Name of deceased</mat-label>
+                                <input type="text" matInput formControlName="nameOfDeceased" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Family Members Name</mat-label>
+                                <input type="text" matInput formControlName="familyMemberName" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Relationship with the deceased</mat-label>
+                                <input type="text" matInput formControlName="relationWithDeceased" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <span (click)="removeFamilyOfDeceased(i)" class="remove_button">
+                            <mat-icon color="accent">delete</mat-icon>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- List of committee Member Present -->
+                <div class="m-form__heading mt-3">
+                    <h5 class="m-form__heading-title">
+                        List of Committee member present
+                        <button mat-mini-fab color="primary" aria-label="Add more" (click)="addcommitteeMembersList()">
+                            <mat-icon>plus_one</mat-icon>
+                        </button>
+                    </h5>
+                </div>
+                <div formArrayName="committeeMembersList"
+                    *ngFor="let a of meetingForm.get('committeeMembersList')['controls']; let i = index">
+                    <div class="row" [formGroupName]="i">
+                        <p class="form_array_index">{{i+1}}</p>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <input type="text" matInput formControlName="name" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Designation</mat-label>
+                                <input type="text" matInput formControlName="designation" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Signature</mat-label>
+                                <input type="text" matInput formControlName="signature" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <span (click)="removecommitteeMembersList(i)" class="remove_button">
+                            <mat-icon color="accent">delete</mat-icon>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </kt-portlet-body>
+    <br/>
+    <br/>
+    <button mat-raised-button color="primary" class="savemeeting"  (click)="SaveMeetingForm()">Save meeting</button>
+</kt-portlet>

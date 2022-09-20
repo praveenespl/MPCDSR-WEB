@@ -1,0 +1,1016 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<kt-portlet-header [title]="'First Brief Investigation Report'" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<button mat-raised-button color="warn" (click)="backClicked()">
+				Back
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+
+	<kt-portlet-body>
+		<div class="kt-form">
+			<!-- [compareWith] -->
+			<form [formGroup]="form">
+				<!--begin: Wizard -->
+				<fieldset [disabled]="viewOnly">
+					<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
+						data-ktwizard-state="step-first">
+						<div class="kt-grid__item">
+							<!--begin: Form Wizard Nav -->
+							<div class="kt-wizard-v3__nav">
+								<div class="kt-wizard-v3__nav-items scrollbar" id="scrollbar" style="overflow-x: auto">
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step"
+										data-ktwizard-state="current">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">
+												Section A
+											</div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">
+												Section B
+											</div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">
+												Section C
+											</div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">
+												Section D
+											</div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+
+									<a class="kt-wizard-v3__nav-item" href="javascript:;" data-ktwizard-type="step">
+										<div class="kt-wizard-v3__nav-body">
+											<div class="kt-wizard-v3__nav-label">
+												Section E
+											</div>
+											<div class="kt-wizard-v3__nav-bar"></div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<!--end: Form Wizard Nav -->
+						</div>
+						<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+							<!--begin: Form Wizard Form-->
+							<div class="kt-form" id="kt_form">
+								<!--begin: Form Wizard Step 1-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+									<!-- <div class="kt-heading kt-heading--md">
+							HEADING
+						</div> -->
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionA">
+										<div class="row">
+											<h5 class="col-12">Background Information</h5>
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Name of the Child
+												</label>
+												<input onlyAlphabets type="text" class="form-control" formControlName="child_name" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.child_name')?.errors &&
+															(form.get('sectionA.child_name')?.touched || isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.child_name')?.errors"
+													label="Child name"></span>
+											</div>
+											<!--  -->
+
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Date of Birth and Time</label>
+												<div class="input-group" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.date_of_birth').errors &&
+															(form.get('sectionA.date_of_birth').touched || isSubmitted)
+													}">
+													<input class="form-control" placeholder="dd-mm-yyyy" readonly [owlDateTime]="date_of_death"
+														[owlDateTimeTrigger]="date_of_death" [max]="today" formControlName="date_of_birth"
+														[ngClass]="{
+															'is-invalid':
+																form.get('sectionA.date_of_birth').errors &&
+																(form.get('sectionA.date_of_birth').touched || isSubmitted)
+														}" />
+													<owl-date-time [disabled]="viewOnly" #date_of_death></owl-date-time>
+
+													<div class="input-group-append">
+														<button class="btn btn-primary trigger" [disabled]="viewOnly"
+															[owlDateTimeTrigger]="date_of_death" type="button">
+															<i class="fas fa-calendar text-white"></i>
+														</button>
+													</div>
+												</div>
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.date_of_birth')?.errors"
+													label="Date of birth"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Age</label>
+												<span class="i-badge ml-2" placement="top" ngbTooltip="Age in Days"
+													ngbTooltipClass="kt-tooltip">?</span>
+												<input type="text" class="form-control" formControlName="age" placeholder="YY-MM-DD-HH" readonly
+													[ngClass]="{
+														'is-invalid':
+															form.get('sectionA.age')?.errors &&
+															(form.get('sectionA.age')?.touched || isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.age')?.errors"
+													label="Age"></span>
+											</div>
+
+											<!-- [readonly]="viewOnly" -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Sex</label>
+												<ng-select [items]="['Male', 'Female','Ambiguous']" formControlName="sex" [readonly]="viewOnly"
+													[clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.sex').errors &&
+															(form.get('sectionA.sex').touched || isSubmitted)
+													}">
+												</ng-select>
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.sex')?.errors"
+													label="Sex"></span>
+											</div>
+											<!-- Address start -->
+											<div class="row col-12" formGroupName="address">
+												<div class="col-12">
+													<h5>Address</h5>
+													<hr />
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label class="i-field-required">State</label>
+													<ng-select [items]="states" [readonly]="viewOnly" bindLabel="statename"
+														formControlName="state" [clearable]="false" [ngClass]="{
+															'is-invalid':
+																form.get('sectionA.address.state').errors &&
+																(form.get('sectionA.address.state').touched || isSubmitted)
+														}">
+													</ng-select>
+													<span class="invalid-feedback" show-error [errors]="form.get('sectionA.address.state').errors"
+														label="State"></span>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label class="i-field-required">District/Tehsil</label>
+													<ng-select [items]="districts" [readonly]="viewOnly" bindLabel="districtname"
+														formControlName="district" [clearable]="false" [ngClass]="{
+															'is-invalid':
+																form.get('sectionA.address.district').errors &&
+																(form.get('sectionA.address.district').touched || isSubmitted)
+														}">
+													</ng-select>
+													<span class="invalid-feedback" show-error [errors]="
+															form.get('sectionA.address.district').errors
+														" label="District"></span>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label class="i-field-required">Block</label>
+													<ng-select [items]="blocks" [readonly]="viewOnly" bindLabel="subdistrictname"
+														formControlName="block" [clearable]="false" [ngClass]="{
+															'is-invalid':
+																form.get('sectionA.address.block').errors &&
+																(form.get('sectionA.address.block').touched || isSubmitted)
+														}">
+													</ng-select>
+													<span class="invalid-feedback" show-error [errors]="form.get('sectionA.address.block').errors"
+														label="Block"></span>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label class="">Village/Town/City</label>
+													<ng-select [items]="villages" [readonly]="viewOnly" bindLabel="villagename"
+														formControlName="village" [clearable]="false" [ngClass]="{
+															'is-invalid':
+																form.get('sectionA.address.village').errors &&
+																(form.get('sectionA.address.village').touched || isSubmitted)
+														}">
+													</ng-select>
+													<span class="invalid-feedback" show-error [errors]="
+															form.get('sectionA.address.village').errors
+														" label="Village"></span>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label class="">Mohalla/Colony/Area</label>
+													<input type="text" class="form-control" formControlName="colony" [ngClass]="{
+															'is-invalid':
+																form.get('sectionA.address.colony').errors &&
+																(form.get('sectionA.address.colony').touched || isSubmitted)
+														}" />
+
+													<span class="invalid-feedback" show-error [errors]="
+															form.get('sectionA.address.colony').errors
+														" label="Colony"></span>
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label>House/Flat/Apartment number</label>
+													<input type="text" class="form-control" formControlName="house_number" />
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label>Pincode</label>
+													<input onlyNumber maxlength="6" type="text" class="form-control" onlyNumber
+														formControlName="pincode" />
+
+												</div>
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label>Landmarks, if any</label>
+													<input type="text" class="form-control" formControlName="landmark" [ngClass]="{
+															'is-invalid':
+																form.get('sectionA.address.landmark').errors &&
+																(form.get('sectionA.address.landmark').touched || isSubmitted)
+														}" />
+
+													<span class="invalid-feedback" show-error [errors]="
+															form.get('sectionA.address.landmark').errors
+														" label="Landmark"></span>
+												</div>
+												<!--  -->
+												<div class="col-12">
+													<hr />
+												</div>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Name of Area PHC</label>
+												<input onlyAlphabets type="text" class="form-control" formControlName="phc_area_name" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.phc_area_name')?.errors &&
+															(form.get('sectionA.phc_area_name')?.touched || isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.phc_area_name')?.errors"
+													label="PHC area name"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Name of Area Sub-center Name</label>
+												<input onlyAlphabets type="text" class="form-control" formControlName="sub_center_name"
+													[ngClass]="{
+														'is-invalid':
+															form.get('sectionA.sub_center_name')?.errors &&
+															(form.get('sectionA.sub_center_name')?.touched || isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.sub_center_name')?.errors
+													" label="Sub-center name"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Order of Birth</label>
+												<ng-select [items]="['1', '2', '3', '4', '5 or more']" [readonly]="viewOnly"
+													formControlName="order_of_birth" [clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.order_of_birth')?.errors &&
+															(form.get('sectionA.order_of_birth')?.touched || isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.order_of_birth')?.errors"
+													label="Order of birth"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Category Belongs To</label>
+												<ng-select [items]="['SC','ST', 'OBC', 'General', 'NA']" [readonly]="viewOnly"
+													formControlName="belongs_to" [clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.belongs_to')?.errors &&
+															(form.get('sectionA.belongs_to')?.touched || isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.belongs_to')?.errors"
+													label="Belongs to"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Does family have BPL/Ayushman card
+													<span class="i-badge ml-2" placement="top" ngbTooltip="Does the family have a BPL card"
+														ngbTooltipClass="kt-tooltip">?</span>
+												</label>
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly" formControlName="below_poverty_line"
+													[clearable]="false" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.below_poverty_line')?.errors &&
+															(form.get('sectionA.below_poverty_line')?.touched || isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.below_poverty_line')?.errors
+													" label="Below poverty line"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Immunization Status</label>
+												<ng-select [items]="[
+												'Bacillus Calmette Guerin (BCG)',
+												'Hepatitis B - Birth dose',
+												'Oral Polio Vaccine (OPV)-0',
+												'OPV 1, 2 & 3',
+												'Pentavalent 1, 2 & 3',
+												'Pneumococcal Conjugate Vaccine(PCV)',
+												'Rotavirus (RVV)',
+												'Inactivated Polio Vaccine (IPV)',
+												'Measles Rubella (MR) 1st dose',
+												'Japanese Encephalitis (JE) - 1**',
+												'Vitamin A (1st dose)',
+												'Diphtheria, Pertussis & Tetanus (DPT) booster- 1',
+												'MR 2nd dose',
+												'MR 2nd dose',
+												'JE-2',
+												'Vitamin A*** (2nd to 9th dose)',
+												'DNK',
+												'NA'
+												]"  [readonly]="viewOnly" formControlName="immunization_status" [clearable]="false" [multiple]="true"
+
+													[ngClass]="{
+														'is-invalid':
+															form.get('sectionA.immunization_status')
+																?.errors &&
+															(form.get('sectionA.immunization_status')?.touched || isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.immunization_status')?.errors
+													" label="Immunization status"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Weight (in Grams)
+													<span class="i-badge ml-2" placement="top" ngbTooltip="(if recorded in the MCP card)"
+														ngbTooltipClass="kt-tooltip">?</span></label>
+												<input type="text" class="form-control" formControlName="weight" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.weight')?.errors &&
+															(form.get('sectionA.weight')?.touched || isSubmitted)
+													}" />
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.weight')?.errors"
+													label="Weight"
+													[max]="'15000'" [min]="'400'"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<!-- TODO: only if child age below 3 year -->
+												<label>Growth Curve</label>
+												<ng-select [items]="['Green zone', 'Yellow Zone', 'Orange Zone']" [readonly]="viewOnly"
+													formControlName="growth_curve" [clearable]="false" [multiple]="true" [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.growth_curve')?.errors &&
+															(form.get('sectionA.growth_curve')?.touched || isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionA.growth_curve')?.errors"
+													label="Growth curve"></span>
+											</div>
+
+											<!--  -->
+											<div class="form-group col-md-3">
+												<label class="i-field-required">Any h/o Illness/Injury</label>
+
+												<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly" formControlName="any_ho_illness_injury"
+													[clearable]="false" required [ngClass]="{
+														'is-invalid':
+															form.get('sectionA.any_ho_illness_injury')
+																?.errors &&
+															(form.get('sectionA.any_ho_illness_injury')
+																?.touched || isSubmitted)
+													}"></ng-select>
+												<span class="invalid-feedback" show-error [errors]="
+														form.get('sectionA.any_ho_illness_injury')?.errors
+													" label="Any h/o illness/injury"></span>
+											</div>
+
+											<!--  -->
+											<ng-container *ngIf="
+													form.value?.sectionA?.any_ho_illness_injury == 'Yes'
+												">
+												<!-- TODO: required if any_ho_illness_injury == 'yes' -->
+												<div class="form-group col-md-3">
+													<label class="i-field-required">Nature of Illness</label>
+													<input type="text" class="form-control" formControlName="nature_of_illness" [ngClass]="{
+															'is-invalid':
+																form.get('sectionA.nature_of_illness')
+																	?.errors &&
+																(form.get('sectionA.nature_of_illness')?.touched || isSubmitted)
+														}" />
+													<span class="invalid-feedback" show-error [errors]="
+															form.get('sectionA.nature_of_illness')?.errors
+														" label="Nature of illness"></span>
+												</div>
+
+												<!--  -->
+												<div class="col-12" formGroupName="symptoms_during_illness">
+													<div class="overflow-auto">
+														<table class="table table-bordered">
+															<thead>
+																<tr>
+																	<th>Symptoms During Illness</th>
+																	<th>Yes/No</th>
+																	<th>Days</th>
+																</tr>
+															</thead>
+															<tbody>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<label class="mb-2 i-field-required">Inability to feed</label>
+																	</td>
+																	<td>
+																		<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+																			formControlName="inability_to_feed" [clearable]="false" appendTo="body"
+																			style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.inability_to_feed'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.inability_to_feed'
+																					)?.touched
+																			}"></ng-select>
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.inability_to_feed'
+																				)?.errors
+																			"></span>
+																	</td>
+																	<td>
+																		<input type="number" min="1" class="form-control"
+																			formControlName="inability_to_feed_days" placeholder="days" style="width: 150px"
+																			[ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.inability_to_feed_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.inability_to_feed_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.inability_to_feed_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<label class="mb-2 i-field-required">Fever</label>
+																	</td>
+																	<td>
+																		<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly" formControlName="fever"
+																			[clearable]="false" appendTo="body" style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.fever'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.fever'
+																					)?.touched
+																			}"></ng-select>
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.fever'
+																				)?.errors
+																			"></span>
+																	</td>
+																	<td>
+																		<input type="number" min="1" class="form-control" formControlName="fever_days"
+																			placeholder="days" style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.fever_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.fever_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.fever_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<label class="mb-2 i-field-required">Loose stools</label>
+																	</td>
+																	<td>
+																		<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+																			formControlName="loose_stools" [clearable]="false" appendTo="body"
+																			style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.loose_stools'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.loose_stools'
+																					)?.touched
+																			}"></ng-select>
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.loose_stools'
+																				)?.errors
+																			"></span>
+																	</td>
+																	<td>
+																		<input type="number" min="1" class="form-control"
+																			formControlName="loose_stools_days" placeholder="days" style="width: 150px"
+																			[ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.loose_stools_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.loose_stools_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.loose_stools_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<label class="mb-2 i-field-required">Vomiting</label>
+																	</td>
+																	<td>
+																		<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly" formControlName="vomiting"
+																			[clearable]="false" appendTo="body" style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.vomiting'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.vomiting'
+																					)?.touched
+																			}"></ng-select>
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.vomiting'
+																				)?.errors
+																			"></span>
+																	</td>
+																	<td>
+																		<input type="number" min="1" class="form-control" formControlName="vomiting_days"
+																			placeholder="days" style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.vomiting_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.vomiting_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.vomiting_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<label class="mb-2 i-field-required">Fast breathing</label>
+																	</td>
+																	<td>
+																		<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+																			formControlName="fast_breathing" [clearable]="false" appendTo="body"
+																			style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.fast_breathing'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.fast_breathing'
+																					)?.touched
+																			}"></ng-select>
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.fast_breathing'
+																				)?.errors
+																			"></span>
+																	</td>
+																	<td>
+																		<input type="number" min="1" class="form-control"
+																			formControlName="fast_breathing_days" placeholder="days" style="width: 150px"
+																			[ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.fast_breathing_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.fast_breathing_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.fast_breathing_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<label class="mb-2 i-field-required">Convulsions</label>
+																	</td>
+																	<td>
+																		<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+																			formControlName="convulsions" [clearable]="false" appendTo="body"
+																			style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.convulsions'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.convulsions'
+																					)?.touched
+																			}"></ng-select>
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.convulsions'
+																				)?.errors
+																			"></span>
+																	</td>
+																	<td>
+																		<input type="number" min="1" class="form-control" formControlName="convulsions_days"
+																			placeholder="days" style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.convulsions_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.convulsions_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.convulsions_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<label class="mb-2 i-field-required">Appearance of Skin rashes</label>
+																	</td>
+																	<td>
+																		<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+																			formControlName="appearance_of_skin_rashes" [clearable]="false" appendTo="body"
+																			style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.appearance_of_skin_rashes'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.appearance_of_skin_rashes'
+																					)?.touched
+																			}"></ng-select>
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.appearance_of_skin_rashes'
+																				)?.errors
+																			"></span>
+																	</td>
+																	<td>
+																		<input type="number" min="1" class="form-control"
+																			formControlName="appearance_of_skin_rashes_days" placeholder="days"
+																			style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.appearance_of_skin_rashes_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.appearance_of_skin_rashes_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.appearance_of_skin_rashes_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<label class="mb-2 i-field-required">Injury</label>
+																		<span class="i-badge ml-2" placement="top" ngbTooltip="like fractures, wounds"
+																			ngbTooltipClass="kt-tooltip">?</span>
+																	</td>
+																	<td>
+																		<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly" formControlName="injury"
+																			[clearable]="false" appendTo="body" style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.injury'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.injury'
+																					)?.touched
+																			}"></ng-select>
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.injury'
+																				)?.errors
+																			"></span>
+																	</td>
+																	<td>
+																		<input type="number" min="1" class="form-control" formControlName="injury_days"
+																			placeholder="days" style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.injury_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.injury_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.injury_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+																<tr>
+																	<td class="align-middle w-100">
+																		<input type="text" class="form-control" formControlName="other"
+																			placeholder="Other" />
+																	</td>
+																	<td></td>
+																	<td>
+																		<input type="number" min="1" class="form-control" formControlName="other_days"
+																			placeholder="days" style="width: 150px" [ngClass]="{
+																				'is-invalid':
+																					form.get(
+																						'sectionA.symptoms_during_illness.other_days'
+																					)?.errors &&
+																					form.get(
+																						'sectionA.symptoms_during_illness.other_days'
+																					)?.touched
+																			}" />
+																		<span class="invalid-feedback" show-error [errors]="
+																				form.get(
+																					'sectionA.symptoms_during_illness.other_days'
+																				)?.errors
+																			" label="Days"></span>
+																	</td>
+																</tr>
+																<!--  -->
+															</tbody>
+														</table>
+													</div>
+												</div>
+
+												<!--  -->
+												<div class="form-group col-md-3">
+													<label class="i-field-required">Whether Treatment for Illness Was Taken</label>
+													<!-- TODO: treatment_for_illness_was_taken required if [any_ho_illness_injury == 'yes'] -->
+													<ng-select [items]="['Yes', 'No']" [readonly]="viewOnly"
+														formControlName="treatment_for_illness_was_taken" [clearable]="false" [ngClass]="{
+															'is-invalid':
+																form.get(
+																	'sectionA.treatment_for_illness_was_taken'
+																)?.errors &&
+																form.get(
+																	'sectionA.treatment_for_illness_was_taken'
+																)?.touched
+														}"></ng-select>
+													<span class="invalid-feedback" show-error [errors]="
+															form.get(
+																'sectionA.treatment_for_illness_was_taken'
+															)?.errors
+														" label="Treatment for illness was taken"></span>
+												</div>
+												<!--  -->
+												<!-- TODO: required if [treatment_for_illness_was_taken == 'yes'] -->
+												<div class="form-group col-md-3" *ngIf="
+														form.value?.sectionA
+															?.treatment_for_illness_was_taken == 'Yes'
+													">
+													<label class="i-field-required">Where was the Child Treated</label>
+													<ng-select [items]="[
+															'Public Health Facility-PHC',
+															'Public Health Facility-CHC',
+															'Public Health Facility-DH',
+															'Public Health Facility-SDH/Taluq Hospital',
+															'Private Hospital/Nursing Home',
+															'Qualified allopathic private practitioner',
+															'AYUSH practitioner',
+															'Unqualified provider (quack, informal provider)',
+															'Traditional healer'
+														]" [readonly]="viewOnly" formControlName="where_was_child_treated" [clearable]="false" [multiple]="true"
+														[ngClass]="{
+															'is-invalid':
+																form.get('sectionA.where_was_child_treated')
+																	?.errors &&
+																form.get('sectionA.where_was_child_treated')
+																	?.touched
+														}"></ng-select>
+													<span class="invalid-feedback" show-error [errors]="
+															form.get('sectionA.where_was_child_treated')
+																?.errors
+														" label="Where was the child treated"></span>
+												</div>
+												<!--  -->
+											</ng-container>
+
+											<!--  -->
+										</div>
+									</div>
+								</div>
+								<!--end: Form Wizard Step 1-->
+
+								<!--begin: Form Wizard Step 2-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+									<!-- <div class="kt-heading kt-heading--md">
+							Enter the Details of your Delivery
+						</div> -->
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionB">
+										<div class="row">
+											<h5 class="col-12">Probable Cause Of Death</h5>
+											<!--  -->
+											<ng-container *ngFor="let cause of causedOfDeath">
+												<div class="col-md-3">
+													<div class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" [id]="'causedOfDeath-' + cause.key"
+															[formControlName]="cause.key" />
+														<label class="custom-control-label" [for]="'causedOfDeath-' + cause.key">{{ cause.label
+															}}</label>
+													</div>
+												</div>
+											</ng-container>
+
+											<!--  -->
+											<!--  -->
+											<div class="col-md-3">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" class="custom-control-input" id="no_identifiable_cause"
+														formControlName="no_identifiable_cause" disabled />
+													<label class="custom-control-label" for="no_identifiable_cause">No Identifiable Cause</label>
+												</div>
+											</div>
+											<!-- -->
+											<div class="col-12 py-2"></div>
+											<!--  -->
+											<div class="form-group col-md-6">
+												<label class="">Other</label>
+												<input type="text" class="form-control" formControlName="other" />
+											</div>
+											<!--  -->
+											<div class="col-12"></div>
+										</div>
+									</div>
+								</div>
+								<!--end: Form Wizard Step 2-->
+
+								<!--begin: Form Wizard Step 3-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionC">
+										<div class="row">
+											<div class="form-group col-12">
+												<h5 class="i-field-required">According to the respondent parent, close family
+													member(As Narrative By Family),<br> What was the Cause Of Death?</h5>
+												<textarea type="text" class="form-control" formControlName="cause_of_death" [ngClass]="{
+														'is-invalid':
+															form.get('sectionC.cause_of_death')?.errors &&
+															(form.get('sectionC.cause_of_death')?.touched || isSubmitted)
+													}" rows="10" style="resize: none"></textarea>
+												<span class="invalid-feedback" show-error [errors]="form.get('sectionC.cause_of_death')?.errors"
+													label="Cause of death"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--end: Form Wizard Step 3-->
+
+								<!--begin: Form Wizard Step 4-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionD">
+										<div class="row">
+											<h5 class="col-12">
+												At Which Level Do You Think The Delay Occurred?
+											</h5>
+											<!--  -->
+											<div class="col-md-3">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" class="custom-control-input" id="delay_at_home"
+														formControlName="delay_at_home" />
+													<label class="custom-control-label" for="delay_at_home">Delay at Home</label>
+													<span class="i-badge ml-2" placement="top"
+														ngbTooltip="eg; seriousness of illness not recognized, treatment not sought, treatment sought at a late stage, family members did not allow treatment seeking"
+														ngbTooltipClass="kt-tooltip">?</span>
+												</div>
+											</div>
+											<!--  -->
+											<div class="col-md-3">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" class="custom-control-input" id="delay_in_transportation"
+														formControlName="delay_in_transportation" />
+													<label class="custom-control-label" for="delay_in_transportation">Delay in
+														Transportation</label>
+													<span class="i-badge ml-2" placement="top"
+														ngbTooltip="eg; transport facility not available, could not afford local transport, difficult/hilly terrain, long distance to the health facility"
+														ngbTooltipClass="kt-tooltip">?</span>
+												</div>
+											</div>
+											<!--  -->
+											<div class="col-md-3">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" class="custom-control-input" id="delay_at_facility"
+														formControlName="delay_at_facility" />
+													<label class="custom-control-label" for="delay_at_facility">Delay at Facility Level</label>
+													<span class="i-badge ml-2" placement="top"
+														ngbTooltip="eg; doctor/staff not available, drugs & equipment not available, delay in initiation of treatment"
+														ngbTooltipClass="kt-tooltip">?</span>
+												</div>
+											</div>
+											<!--  -->
+										</div>
+									</div>
+								</div>
+								<!--end: Form Wizard Step 4-->
+
+								<!--begin: Form Wizard Step 5-->
+								<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+									<div class="kt-form__section kt-form__section--first" formGroupName="sectionE">
+										<h5 class="i-field-required">
+											Based on your analysis of the situation in which the death
+											took place, what according to you could have been done to
+											avert this Death?
+										</h5>
+
+										<quill-editor [styles]="{ height: '200px' }" placeholder="Case summary..."
+											formControlName="case_summary" [readOnly]="viewOnly" [required]="true" [ngClass]="{
+												'is-invalid':
+													form.get('sectionE.case_summary')?.errors &&
+													(form.get('sectionE.case_summary')?.touched || isSubmitted)
+											}"></quill-editor>
+										<span class="invalid-feedback" *ngIf="form.get('sectionE.case_summary')?.errors &&
+											(form.get('sectionE.case_summary')?.touched || isSubmitted)">Case Summary is required</span>
+
+									</div>
+								</div>
+								<!--end: Form Wizard Step 5-->
+
+								<!--begin: Form Actions -->
+								<div class="kt-form__actions">
+									<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+										data-ktwizard-type="action-prev">
+										Previous
+									</div>
+									<div *ngIf="!viewOnly"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+										data-ktwizard-type="action-submit" (click)="onSubmit()">
+										Save
+									</div>
+									<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+										data-ktwizard-type="action-next">
+										Next Step
+									</div>
+								</div>
+								<!--end: Form Actions -->
+							</div>
+							<!--end: Form Wizard Form-->
+						</div>
+					</div>
+					<!--end: Wizard -->
+				</fieldset>
+			</form>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

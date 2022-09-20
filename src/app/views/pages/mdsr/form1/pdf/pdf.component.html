@@ -1,0 +1,28 @@
+
+	<kt-portlet-header
+
+	[class]="'kt-portlet__head--lg'"
+>
+	<!-- [viewLoading$]="dataSource.loading$" -->
+	<ng-container ktPortletTools>
+		<button
+		mat-raised-button
+		color="warn"
+		class="mb-2"
+		(click)="backClicked()"
+	>
+		Back
+	</button>
+
+	</ng-container>
+</kt-portlet-header>
+<div class="h-100" ktPdfContainerHeight>
+	<angular-formio-pdf
+		*ngIf="submission"
+		[component]="component"
+		[submission]="submission"
+		[pdf]="pdfConfig"
+
+	>
+	</angular-formio-pdf>
+</div>

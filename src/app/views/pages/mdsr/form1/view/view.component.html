@@ -1,0 +1,74 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+	<kt-portlet-header
+		[title]="'Notification Data ' + 'women name'"
+		[class]="'kt-portlet__head--lg'"
+	>
+		<!-- [viewLoading$]="dataSource.loading$" -->
+		<ng-container ktPortletTools>
+			<button
+			mat-raised-button
+			color="warn"
+			
+			(click)="backClicked()"
+		>
+			Back
+		</button>
+			<a *ngIf="record && this.currentUser.accessupto != 'District'"
+				[routerLink]="['/mdsr/form1/', record?.id]"
+				mat-raised-button
+				color="primary"
+				class="ml-2"
+				matTooltip="Add new record"
+			>
+				Edit
+			</a>
+			<button *ngIf="this.currentUser.accessupto != 'District'"
+				mat-raised-button
+				color="primary"
+				class="ml-2"
+				(click)="verifyRecord('verify')"
+			>
+				Verify
+			</button>
+			<button
+			*ngIf="this.currentUser.accessupto != 'District'"
+				mat-raised-button
+				color="primary"
+				class="ml-2"
+				(click)="verifyRecord('unlist')"
+			>
+				Unlist
+			</button>
+			<a *ngIf="record && this.currentUser.accessupto != 'District'" 
+			mat-raised-button 
+			color="primary" class="ml-2" 
+			[routerLink]="['../../pdf/', record?.id]">PDF
+				<!-- <i class="fas fa-download"></i> -->
+			</a>
+		</ng-container>
+	</kt-portlet-header>
+
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body>
+		<!-- start::FILTERS & GROUP ACTIONS -->
+		<div class="kt-form">
+			<div class="kt-form__filtration mb-0">
+				<formio [form]="form" [readOnly]="true" [refresh]="refresh"></formio>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>
+
+<!-- <div class="h-100" style="height:500px" ktPdfContainerHeight>
+	<angular-formio-pdf
+		*ngIf="submission"
+		[component]="component"
+		[submission]="submission"
+		[pdf]="pdfconfig"
+	>
+	</angular-formio-pdf>
+</div> -->

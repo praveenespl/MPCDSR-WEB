@@ -1,0 +1,20 @@
+<!-- begin:: Brand -->
+<div class="kt-header__brand kt-grid__item" [ngClass]="htmlClassService.getClasses('brand', true)" id="kt_header_brand">
+	<div class="kt-header__brand-logo">
+		<a routerLink="/">
+			<img alt="logo" [attr.src]="headerLogo" class="kt-header__brand-logo-default"/>
+			<img alt="logo" [attr.src]="headerStickyLogo" class="kt-header__brand-logo-sticky"/>
+		</a>
+	</div>
+	<div class="kt-header__brand-nav mr-4">
+		<!-- <h4 class="mb-0 text-white">Maternal and Child Death Surveillance and Response</h4> -->
+		<h4 class="mb-0 text-white">Maternal, Perinatal, Child Death Surveillance and Response</h4>
+	</div>
+	<div class="kt-header__brand-logo">
+		<a routerLink="/">
+			<img alt="logo" [attr.src]="headerSumanLogo" class="kt-header__brand-logo-default"/>
+			<img alt="logo" [attr.src]="headerStickySumanLogo" class="kt-header__brand-logo-sticky"/>
+		</a>
+	</div>
+</div>
+<!-- end:: Brand -->

@@ -1,0 +1,125 @@
+<div style="background-color: rgb(183, 214, 154);padding: 10px;">
+    <div style="align-items: center;"><h2>Labour & Birth</h2></div>
+    <div class="row">
+        <div class="col-lg-6">
+            <kt-portlet>
+                <!-- PORTLET LOADING | Binded to TABLE Datasource -->
+                <!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+                <kt-portlet-header [title]="'Antenatal Care Received  - Month wise'" [class]="'kt-portlet__head--lg'"
+                    style="color: white; min-height: 40px;">
+                    <ng-container ktPortletTools>
+                        <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
+                        </div>
+                    </ng-container>
+
+                </kt-portlet-header>
+                <!-- end::Header -->
+
+                <!-- start::Body (attribute: ktPortletBody) -->
+                <kt-portlet-body>
+                    <!-- start::FILTERS & GROUP ACTIONS -->
+                    <div class="kt-form no-alert">
+                        <!-- start::FILTERS -->
+                        <div class="kt-form__filtration mb-0">
+                            <div id="antenatalcareTrendGraph" style="height: 450px; width: 100%;"></div>
+                        </div>
+                    </div>
+                </kt-portlet-body>
+            </kt-portlet>
+        </div>
+        <div class="col-lg-6">
+            <kt-portlet>
+                <!-- PORTLET LOADING | Binded to TABLE Datasource -->
+                <!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+                <kt-portlet-header [title]="'Gestational Diabetes Mellitus'"
+                    [class]="'kt-portlet__head--lg'" style="color: white; min-height: 40px;">
+                    <ng-container ktPortletTools>
+                        <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
+                        </div>
+                    </ng-container>
+
+                </kt-portlet-header>
+                <!-- end::Header -->
+
+                <!-- start::Body (attribute: ktPortletBody) -->
+                <kt-portlet-body>
+                    <!-- start::FILTERS & GROUP ACTIONS -->
+                    <div class="kt-form no-alert">
+                        <!-- start::FILTERS -->
+                        <div class="kt-form__filtration mb-0">
+                            <div>
+                                <div id="GestationalDiabetesMellitus" style="height: 450px; width: 100%;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </kt-portlet-body>
+            </kt-portlet>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <kt-portlet>
+                <!-- PORTLET LOADING | Binded to TABLE Datasource -->
+                <!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+                <kt-portlet-header [title]="'Significant Past History  - Month wise'" [class]="'kt-portlet__head--lg'"
+                    style="color: white; min-height: 40px;">
+                    <ng-container ktPortletTools>
+                        <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
+                        </div>
+                    </ng-container>
+
+                </kt-portlet-header>
+                <!-- end::Header -->
+
+                <!-- start::Body (attribute: ktPortletBody) -->
+                <kt-portlet-body>
+                    <!-- start::FILTERS & GROUP ACTIONS -->
+                    <div class="kt-form no-alert">
+                        <!-- start::FILTERS -->
+                        <div class="kt-form__filtration mb-0">
+                            <div id="significantPastHistoryTrendGraph" style="height: 450px; width: 100%;"></div>
+                        </div>
+                    </div>
+                </kt-portlet-body>
+            </kt-portlet>
+        </div>
+        <div class="col-lg-6">
+            <kt-portlet>
+                <!-- PORTLET LOADING | Binded to TABLE Datasource -->
+                <!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+                <kt-portlet-header [title]="'Significant Past History Details'"
+                    [class]="'kt-portlet__head--lg'" style="color: white; min-height: 40px;">
+                    <ng-container ktPortletTools>
+                        <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
+                        </div>
+                    </ng-container>
+
+                </kt-portlet-header>
+                <!-- end::Header -->
+
+                <!-- start::Body (attribute: ktPortletBody) -->
+                <kt-portlet-body>
+                    <!-- start::FILTERS & GROUP ACTIONS -->
+                    <div class="kt-form no-alert">
+                        <!-- start::FILTERS -->
+                        <div class="kt-form__filtration mb-0">
+                            <div>
+                                <div id="pasthistorydetails" style="height: 450px; width: 100%;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </kt-portlet-body>
+            </kt-portlet>
+        </div>
+    </div>
+</div>

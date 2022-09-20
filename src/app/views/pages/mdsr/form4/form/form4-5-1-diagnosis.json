@@ -1,0 +1,1229 @@
+{
+	"components": [
+		{
+			"label": "Hemorrhage",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"values": [
+				{
+					"label": "Yes",
+					"value": "yes",
+					"shortcut": ""
+				},
+				{
+					"label": "No",
+					"value": "no",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.hemorrhage",
+			"type": "radio",
+			"input": true
+		},
+		{
+			"label": "Hemorrhage Causes",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"hideLabel": true,
+			"values": [
+				{
+					"label": "Abortion",
+					"value": "abortion",
+					"shortcut": ""
+				},
+				{
+					"label": "Ectopic Pregnancy",
+					"value": "ectopicPregnancy",
+					"shortcut": ""
+				},
+				{
+					"label": "Gestational Trophoblastic Disease",
+					"value": "gestationalTrophoblasticDisease",
+					"shortcut": ""
+				},
+				{
+					"label": "Antepartum Bleeding",
+					"value": "antepartumBleeding",
+					"shortcut": ""
+				},
+				{
+					"label": " Intrapartum Bleeding",
+					"value": "intrapartumBleeding",
+					"shortcut": ""
+				},
+				{
+					"label": "Postpartum bleeding",
+					"value": "postpartumBleeding",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.hemorrhage_causes",
+			"customConditional": "show = data.diagnosis.hemorrhage === 'yes'",
+			"type": "selectboxes",
+			"input": true,
+			"inputType": "checkbox"
+		},
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "HTML",
+							"tag": "label",
+							"className": "col-form-label font-weight-600",
+							"attrs": [],
+							"content": "If Antepartum Bleeding is Checked then",
+							"refreshOnChange": false,
+							"customClass": "",
+							"hidden": false,
+							"tableView": false,
+							"key": "html",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": null,
+								"when": null,
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "htmlelement",
+							"input": false,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"defaultValue": null,
+							"protected": false,
+							"unique": false,
+							"persistent": false,
+							"clearOnHide": true,
+							"refreshOn": "",
+							"redrawOn": "",
+							"labelPosition": "top",
+							"description": "",
+							"errorLabel": "",
+							"tooltip": "",
+							"hideLabel": false,
+							"tabindex": "",
+							"disabled": false,
+							"autofocus": false,
+							"dbIndex": false,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"widget": null,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"custom": "",
+								"customPrivate": false,
+								"strictDateValidation": false
+							},
+							"allowCalculateOverride": false,
+							"encrypted": false,
+							"alwaysEnabled": false,
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"hideOnChildrenHidden": false,
+							"id": "enyn4a"
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "Placentral Cause",
+							"labelPosition": "top",
+							"optionsLabelPosition": "right",
+							"description": "",
+							"tooltip": "",
+							"customClass": "",
+							"tabindex": "",
+							"inline": true,
+							"hidden": false,
+							"hideLabel": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": false,
+							"defaultValue": "",
+							"values": [
+								{
+									"label": "Placentra Previa",
+									"value": "placentraPrevia",
+									"shortcut": ""
+								},
+								{
+									"label": "Placentral Abruption",
+									"value": "placentralAbruption",
+									"shortcut": ""
+								}
+							],
+							"persistent": true,
+							"protected": false,
+							"dbIndex": false,
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validate": {
+								"required": false,
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"strictDateValidation": false
+							},
+							"errorLabel": "",
+							"minSelectedCountMessage": "",
+							"maxSelectedCountMessage": "",
+							"key": "diagnosis.hemorrhage_placental_cause",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": null,
+								"when": null,
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "selectboxes",
+							"input": true,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"unique": false,
+							"refreshOn": "",
+							"widget": null,
+							"validateOn": "change",
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"inputType": "checkbox",
+							"fieldSet": false,
+							"hideOnChildrenHidden": false,
+							"id": "elc7ygu"
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "Late Pregnancy Bleeding Other than placental cause",
+							"labelPosition": "top",
+							"optionsLabelPosition": "right",
+							"description": "",
+							"tooltip": "",
+							"customClass": "",
+							"tabindex": "",
+							"inline": true,
+							"hidden": false,
+							"hideLabel": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": false,
+							"defaultValue": "",
+							"values": [
+								{
+									"label": "Scar dehiscence",
+									"value": "scarDehiscence",
+									"shortcut": ""
+								},
+								{
+									"label": "Rupture Uterus",
+									"value": "ruptureUterus",
+									"shortcut": ""
+								},
+								{
+									"label": "Others",
+									"value": "others",
+									"shortcut": ""
+								}
+							],
+							"persistent": true,
+							"protected": false,
+							"dbIndex": false,
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validate": {
+								"required": false,
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"strictDateValidation": false
+							},
+							"errorLabel": "",
+							"minSelectedCountMessage": "",
+							"maxSelectedCountMessage": "",
+							"key": "diagnosis.hemorrhage_late_pregnancy",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": null,
+								"when": null,
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "selectboxes",
+							"input": true,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"unique": false,
+							"refreshOn": "",
+							"widget": null,
+							"validateOn": "change",
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"inputType": "checkbox",
+							"fieldSet": false,
+							"hideOnChildrenHidden": false,
+							"id": "e9r5fvhf"
+						},
+						{
+							"label": "Other specify",
+							"labelPosition": "top",
+							"placeholder": "Other Specify",
+							"description": "",
+							"tooltip": "",
+							"prefix": "",
+							"suffix": "",
+							"inputMask": "",
+							"allowMultipleMasks": false,
+							"customClass": "",
+							"tabindex": "",
+							"hidden": false,
+							"hideLabel": true,
+							"showWordCount": false,
+							"showCharCount": false,
+							"mask": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": true,
+							"multiple": false,
+							"defaultValue": "",
+							"persistent": true,
+							"inputFormat": "plain",
+							"protected": false,
+							"dbIndex": false,
+							"case": "",
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"strictDateValidation": false,
+								"pattern": "",
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"minLength": "",
+								"maxLength": ""
+							},
+							"unique": false,
+							"errorLabel": "",
+							"key": "diagnosis.hemorrhage_late_pregnancy_other",
+							"tags": "",
+							"properties": {},
+							"customConditional": "show = data.diagnosis.hemorrhage==='yes' && data.diagnosis.hemorrhage_causes.antepartumBleeding===true && data.diagnosis.hemorrhage_late_pregnancy.others===true",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "textfield",
+							"widget": {
+								"type": "input"
+							},
+							"input": true,
+							"refreshOn": "",
+							"inputType": "text",
+							"hideOnChildrenHidden": false,
+							"id": "eyhmlb"
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				}
+			],
+			"key": "columns",
+			"customConditional": "show = data.diagnosis.hemorrhage === 'yes' && data.diagnosis.hemorrhage_causes.antepartumBleeding===true",
+			"type": "columns",
+			"input": false,
+			"path": "columns",
+			"components": [
+				{
+					"label": "HTML",
+					"tag": "label",
+					"className": "col-form-label font-weight-600",
+					"content": "If Antepartum Bleeding is Checked then",
+					"refreshOnChange": false,
+					"key": "html",
+					"type": "htmlelement",
+					"input": false,
+					"hideOnChildrenHidden": false
+				},
+
+				{
+					"label": "Placentral Cause",
+					"optionsLabelPosition": "right",
+					"inline": true,
+					"values": [
+						{
+							"label": "Placentra Previa",
+							"value": "placentraPrevia",
+							"shortcut": ""
+						},
+						{
+							"label": "Placentral Abruption",
+							"value": "placentralAbruption",
+							"shortcut": ""
+						}
+					],
+					"key": "diagnosis.hemorrhage_placental_cause",
+					"type": "selectboxes",
+					"input": true,
+					"inputType": "checkbox",
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "Late Pregnancy Bleeding Other than placental cause",
+					"optionsLabelPosition": "right",
+					"inline": true,
+					"values": [
+						{
+							"label": "Scar dehiscence",
+							"value": "scarDehiscence",
+							"shortcut": ""
+						},
+						{
+							"label": "Rupture Uterus",
+							"value": "ruptureUterus",
+							"shortcut": ""
+						},
+						{
+							"label": "Others",
+							"value": "others",
+							"shortcut": ""
+						}
+					],
+					"key": "diagnosis.hemorrhage_late_pregnancy",
+					"type": "selectboxes",
+					"input": true,
+					"inputType": "checkbox",
+					"hideOnChildrenHidden": false
+				}
+			]
+		},
+		{
+			"label": "If Post Partum bleeding",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"values": [
+				{
+					"label": "Atonic",
+					"value": "atonic",
+					"shortcut": ""
+				},
+				{
+					"label": "Traumatic",
+					"value": "traumatic",
+					"shortcut": ""
+				},
+				{
+					"label": "Mixed",
+					"value": "mixed",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.hemorrhage_postpartum",
+			"customConditional": "show = data.diagnosis.hemorrhage === 'yes' && data.diagnosis.hemorrhage_causes.postpartumBleeding===true",
+			"type": "selectboxes",
+			"input": true,
+			"inputType": "checkbox",
+			"hideOnChildrenHidden": false
+		},
+		{
+			"label": "Hypertensive disorders of Pregancy",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"values": [
+				{
+					"label": "Yes",
+					"value": "yes",
+					"shortcut": ""
+				},
+				{
+					"label": "No",
+					"value": "no",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.hypertensive",
+			"type": "radio",
+			"input": true,
+			"hideOnChildrenHidden": false
+		},
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "Hypertensive disorders of Pregancy Yes",
+							"labelPosition": "top",
+							"optionsLabelPosition": "right",
+							"description": "",
+							"tooltip": "",
+							"customClass": "",
+							"tabindex": "",
+							"inline": true,
+							"hidden": false,
+							"hideLabel": true,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": false,
+							"defaultValue": "",
+							"values": [
+								{
+									"label": "Gestational Hypertension",
+									"value": "gestationalHypertension",
+									"shortcut": ""
+								},
+								{
+									"label": "Pre-eclampsia",
+									"value": "preEclampsia",
+									"shortcut": ""
+								},
+								{
+									"label": "Eclampsia",
+									"value": "eclampsia",
+									"shortcut": ""
+								},
+								{
+									"label": "Others",
+									"value": "others",
+									"shortcut": ""
+								}
+							],
+							"persistent": true,
+							"protected": false,
+							"dbIndex": false,
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validate": {
+								"required": false,
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"strictDateValidation": false
+							},
+							"errorLabel": "",
+							"minSelectedCountMessage": "",
+							"maxSelectedCountMessage": "",
+							"key": "diagnosis.hypertensive_cause",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "show = data.diagnosis.hypertensive==='yes'",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "selectboxes",
+							"input": true,
+							"inputType": "checkbox",
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"unique": false,
+							"refreshOn": "",
+							"widget": null,
+							"validateOn": "change",
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"fieldSet": false,
+							"id": "emel5o9",
+							"hideOnChildrenHidden": false
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [
+						{
+							"label": "Others Specify",
+							"labelPosition": "top",
+							"placeholder": "",
+							"description": "",
+							"tooltip": "",
+							"prefix": "",
+							"suffix": "",
+							"inputMask": "",
+							"allowMultipleMasks": false,
+							"customClass": "",
+							"tabindex": "",
+							"hidden": false,
+							"hideLabel": false,
+							"showWordCount": false,
+							"showCharCount": false,
+							"mask": false,
+							"autofocus": false,
+							"disabled": false,
+							"alwaysEnabled": false,
+							"tableView": true,
+							"multiple": false,
+							"defaultValue": "",
+							"persistent": true,
+							"inputFormat": "plain",
+							"protected": false,
+							"dbIndex": false,
+							"case": "",
+							"encrypted": false,
+							"redrawOn": "",
+							"clearOnHide": true,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"allowCalculateOverride": false,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"strictDateValidation": false,
+								"pattern": "",
+								"customMessage": "",
+								"custom": "",
+								"customPrivate": false,
+								"json": "",
+								"minLength": "",
+								"maxLength": ""
+							},
+							"unique": false,
+							"errorLabel": "",
+							"key": "diagnosis.hypertensive_other",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": null,
+								"when": null,
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "show = data.diagnosis.hypertensive==='yes' && data.diagnosis.hypertensive_cause.others===true",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "textfield",
+							"widget": {
+								"type": "input"
+							},
+							"input": true,
+							"refreshOn": "",
+							"inputType": "text",
+							"hideOnChildrenHidden": false,
+							"id": "ept5rdo"
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				}
+			],
+			"key": "columns1",
+			"type": "columns",
+			"input": false,
+			"path": "columns1",
+			"components": [
+				{
+					"label": "Hypertensive disorders of Pregancy Yes",
+					"optionsLabelPosition": "right",
+					"inline": true,
+					"hideLabel": true,
+					"values": [
+						{
+							"label": "Gestational Hypertension",
+							"value": "gestationalHypertension",
+							"shortcut": ""
+						},
+						{
+							"label": "Pre-eclampsia",
+							"value": "preEclampsia",
+							"shortcut": ""
+						},
+						{
+							"label": "Eclampsia",
+							"value": "eclampsia",
+							"shortcut": ""
+						},
+						{
+							"label": "Others",
+							"value": "others",
+							"shortcut": ""
+						}
+					],
+					"key": "diagnosis.hypertensive_cause",
+					"type": "selectboxes",
+					"input": true,
+					"inputType": "checkbox",
+					"hideOnChildrenHidden": false
+				},
+				{
+					"label": "Others Specify",
+					"key": "diagnosis.hypertensive_other",
+					"type": "textfield",
+					"input": true,
+					"hideOnChildrenHidden": false
+				}
+			]
+		},
+		{
+			"label": "Labour Related Disorders",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"values": [
+				{
+					"label": "Yes",
+					"value": "yes",
+					"shortcut": ""
+				},
+				{
+					"label": "No",
+					"value": "no",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.labour",
+			"type": "radio",
+			"input": true
+		},
+		{
+			"label": "Labour Related Disorders Yes",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"hideLabel": true,
+			"values": [
+				{
+					"label": "Normal labour",
+					"value": "normalLabour",
+					"shortcut": ""
+				},
+				{
+					"label": "Prolonged/Obstructed labour",
+					"value": "prolongedObstructedLabour",
+					"shortcut": ""
+				},
+				{
+					"label": "Inversion of Uterus",
+					"value": "inversionOfUterus",
+					"shortcut": ""
+				},
+				{
+					"label": "Retained Placenta",
+					"value": "retainedPlacenta",
+					"shortcut": ""
+				},
+				{
+					"label": "Others",
+					"value": "others",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.labour_cause",
+			"customConditional": "show = data.diagnosis.labour==='yes'",
+			"type": "selectboxes",
+			"input": true,
+			"inputType": "checkbox"
+		},
+		{
+			"label": "Other Specify",
+			"placeholder": "Other Specify",
+			"hideLabel": true,
+			"key": "diagnosis.labour_other",
+			"customConditional": "show = data.diagnosis.labour==='yes' && data.diagnosis.labour_cause.others===true",
+			"type": "textfield",
+			"input": true
+		},
+		{
+			"label": "Medical Disorders",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"values": [
+				{
+					"label": "Yes",
+					"value": "yes",
+					"shortcut": ""
+				},
+				{
+					"label": "No",
+					"value": "no",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.medical_disorder",
+			"type": "radio",
+			"input": true
+		},
+		{
+			"label": "Medical Disorders Yes",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"hideLabel": true,
+			"values": [
+				{
+					"label": "Anaemia",
+					"value": "anaemia",
+					"shortcut": ""
+				},
+				{
+					"label": "Heart Disease",
+					"value": "heartDisease",
+					"shortcut": ""
+				},
+				{
+					"label": "TB",
+					"value": "tb",
+					"shortcut": ""
+				},
+				{
+					"label": "Diabetes",
+					"value": "diabetes",
+					"shortcut": ""
+				},
+				{
+					"label": "Others",
+					"value": "others",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.medical_disorders_cause",
+			"customConditional": "show = data.diagnosis.medical_disorder==='yes'",
+			"type": "selectboxes",
+			"input": true,
+			"inputType": "checkbox"
+		},
+		{
+			"label": "Other Specify",
+			"placeholder": "Other Specify",
+			"hideLabel": true,
+			"key": "diagnosis.medical_disorders_other",
+			"customConditional": "show = data.diagnosis.medical_disorder==='yes' && data.diagnosis.medical_disorders_cause.others===true",
+			"type": "textfield",
+			"input": true
+		},
+		{
+			"label": "Infection",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"values": [
+				{
+					"label": "Yes",
+					"value": "yes",
+					"shortcut": ""
+				},
+				{
+					"label": "No",
+					"value": "no",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.infection",
+			"type": "radio",
+			"input": true
+		},
+		{
+			"label": "Infection Yes",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"hideLabel": true,
+			"values": [
+				{
+					"label": "Post abortal",
+					"value": "postAbortal",
+					"shortcut": ""
+				},
+				{
+					"label": "Antepartum",
+					"value": "antepartum",
+					"shortcut": ""
+				},
+				{
+					"label": "Intrapartum",
+					"value": "intrapartum",
+					"shortcut": ""
+				},
+				{
+					"label": "Postpartum",
+					"value": "postpartum",
+					"shortcut": ""
+				},
+				{
+					"label": "Viral such as Hepatitis/HIV AIDS/ Others",
+					"value": "viralSuchAsHepatitisHivAidsOthers",
+					"shortcut": ""
+				},
+				{
+					"label": "Malaria",
+					"value": "malaria",
+					"shortcut": ""
+				},
+				{
+					"label": "Dengue",
+					"value": "dengue",
+					"shortcut": ""
+				},
+				{
+					"label": "Lower Respiratory Tract Infection",
+					"value": "lowerRespiratoryTractInfection",
+					"shortcut": ""
+				},
+				{
+					"label": "Others",
+					"value": "others",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.infection_cause",
+			"customConditional": "show = data.diagnosis.infection==='yes'",
+			"type": "selectboxes",
+			"input": true,
+			"inputType": "checkbox"
+		},
+		{
+			"label": "Other Specify",
+			"placeholder": "Other Specify",
+			"hideLabel": true,
+			"key": "diagnosis.infection_causes_other",
+			"customConditional": "show = data.diagnosis.infection==='yes' && data.diagnosis.infection_cause.others===true",
+			"type": "textfield",
+			"input": true
+		},
+		{
+			"label": "Incidental/Accidental Disorders",
+			"optionsLabelPosition": "right",
+			"description": "E.g. Surgical including Iatrogenic, Trauma, Violence, Anaesthetic complications",
+			"inline": true,
+			"values": [
+				{
+					"label": "Yes",
+					"value": "yes",
+					"shortcut": ""
+				},
+				{
+					"label": "No",
+					"value": "no",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.incidental",
+			"type": "radio",
+			"input": true
+		},
+		{
+			"label": "Specify",
+			"autoExpand": false,
+			"key": "diagnosis.incidental_specify",
+			"customConditional": "show = data.diagnosis.incidental==='yes'",
+			"type": "textarea",
+			"input": true
+		},
+		{
+			"label": "Any Other",
+			"optionsLabelPosition": "right",
+			"inline": true,
+			"values": [
+				{
+					"label": "Yes",
+					"value": "yes",
+					"shortcut": ""
+				},
+				{
+					"label": "No",
+					"value": "no",
+					"shortcut": ""
+				}
+			],
+			"key": "diagnosis.other",
+			"type": "radio",
+			"input": true
+		},
+		{
+			"label": "Specify",
+			"autoExpand": false,
+			"key": "diagnosis.other_specify",
+			"customConditional": "show = data.diagnosis.other==='yes'",
+			"type": "textarea",
+			"input": true
+		},
+		{
+			"label": "Columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"label": "Columns",
+							"class": "d-flex justify-content-end",
+							"columns": [
+								{
+									"components": [
+										{
+											"label": "Save & Next",
+											"showValidations": true,
+											"key": "submit",
+											"type": "button",
+											"input": true,
+											"hideOnChildrenHidden": false,
+											"placeholder": "",
+											"prefix": "",
+											"customClass": "",
+											"suffix": "",
+											"multiple": false,
+											"defaultValue": null,
+											"protected": false,
+											"unique": false,
+											"persistent": false,
+											"hidden": false,
+											"clearOnHide": true,
+											"refreshOn": "",
+											"redrawOn": "",
+											"tableView": false,
+											"labelPosition": "top",
+											"description": "",
+											"errorLabel": "",
+											"tooltip": "",
+											"hideLabel": false,
+											"tabindex": "",
+											"disabled": false,
+											"autofocus": false,
+											"dbIndex": false,
+											"customDefaultValue": "",
+											"calculateValue": "",
+											"widget": {
+												"type": "input"
+											},
+											"attributes": {},
+											"validateOn": "change",
+											"validate": {
+												"required": false,
+												"custom": "",
+												"customPrivate": false,
+												"strictDateValidation": false
+											},
+											"conditional": {
+												"show": null,
+												"when": null,
+												"eq": ""
+											},
+											"overlay": {
+												"style": "",
+												"left": "",
+												"top": "",
+												"width": "",
+												"height": ""
+											},
+											"allowCalculateOverride": false,
+											"encrypted": false,
+											"alwaysEnabled": false,
+											"showCharCount": false,
+											"showWordCount": false,
+											"properties": {},
+											"allowMultipleMasks": false,
+											"size": "md",
+											"leftIcon": "",
+											"rightIcon": "",
+											"block": false,
+											"action": "submit",
+											"disableOnInvalid": false,
+											"theme": "info",
+											"dataGridLabel": true,
+											"id": "e88j9ipv"
+										}
+									],
+									"width": 12,
+									"offset": 0,
+									"push": 0,
+									"pull": 0
+								}
+							],
+							"autoAdjust": false,
+							"hideOnChildrenHidden": false,
+							"customClass": "",
+							"hidden": false,
+							"hideLabel": false,
+							"alwaysEnabled": false,
+							"tableView": false,
+							"key": "columns2",
+							"tags": "",
+							"properties": {},
+							"conditional": {
+								"show": "",
+								"when": "",
+								"eq": "",
+								"json": ""
+							},
+							"customConditional": "",
+							"logic": [],
+							"attributes": {},
+							"overlay": {
+								"style": "",
+								"page": "",
+								"left": "",
+								"top": "",
+								"width": "",
+								"height": ""
+							},
+							"type": "columns",
+							"input": false,
+							"placeholder": "",
+							"prefix": "",
+							"suffix": "",
+							"multiple": false,
+							"defaultValue": null,
+							"protected": false,
+							"unique": false,
+							"persistent": false,
+							"clearOnHide": false,
+							"refreshOn": "",
+							"redrawOn": "",
+							"labelPosition": "top",
+							"description": "",
+							"errorLabel": "",
+							"tooltip": "",
+							"tabindex": "",
+							"disabled": false,
+							"autofocus": false,
+							"dbIndex": false,
+							"customDefaultValue": "",
+							"calculateValue": "",
+							"widget": null,
+							"validateOn": "change",
+							"validate": {
+								"required": false,
+								"custom": "",
+								"customPrivate": false,
+								"strictDateValidation": false
+							},
+							"allowCalculateOverride": false,
+							"encrypted": false,
+							"showCharCount": false,
+							"showWordCount": false,
+							"allowMultipleMasks": false,
+							"tree": false,
+							"id": "diagnosis1",
+							"path": "columns2"
+						}
+					],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				},
+				{
+					"components": [],
+					"width": 12,
+					"offset": 0,
+					"push": 0,
+					"pull": 0
+				}
+			],
+			"customClass": "ml-1",
+			"key": "columns",
+			"type": "columns",
+			"input": false,
+			"path": "columns"
+		}
+	]
+}

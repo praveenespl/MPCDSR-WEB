@@ -1,0 +1,19 @@
+@import "sass/pages/wizard/wizard-3";
+.mat-row:nth-child(even) {
+	background-color: rgb(240, 245, 239);
+}
+
+::ng-deep mat-footer-row,
+mat-header-row,
+mat-row,
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+	border-bottom-color: black;
+}
+
+::ng-deep th.mat-header-cell {
+	background-color: #26a69a;
+	color: #FFFF;
+	font-size: 14px;
+}

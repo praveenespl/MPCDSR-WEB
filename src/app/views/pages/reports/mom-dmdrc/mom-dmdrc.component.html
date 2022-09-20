@@ -1,0 +1,191 @@
+<kt-portlet>
+    <kt-portlet-header [title]="'Minutes of the Meeting of District Maternal Death Review Committee'"
+        [class]="'kt-portlet__head--lg'">
+        <!-- <ng-container ktPortletTools>
+            <a routerLink="add" mat-raised-button color="primary" matTooltip="Add new record">
+                +Add new
+            </a>
+        </ng-container>
+        <ng-container ktPortletTools>
+            &nbsp;&nbsp;
+            <button mat-raised-button color="primary" (click)="showFilers()">
+                <i class="fas fa-filter"></i>
+            </button>
+        </ng-container> -->
+    </kt-portlet-header>
+
+
+    <kt-portlet-body class="py-3 px-4">
+        <div class="position-relative">
+            <form autocomplete="off" [formGroup]="meetingForm">
+                <div class="row">
+                    <div class=" col-md-3">
+                        <label>Month</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <!-- <mat-label>Month</mat-label> -->
+                            <mat-select formControlName="month">
+                                <mat-option *ngFor="let month of months" [value]="month.value">{{month.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error> Month is <strong>Required</strong> !! </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Year</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <!-- <mat-label>Year</mat-label> -->
+                            <mat-select formControlName="year">
+															<mat-option *ngFor="let year of years" [value]="year.value">{{year.value}}</mat-option>
+                            </mat-select>
+                            <mat-error> Year is Required !! </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>District</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="text" matInput formControlName="district" readonly />
+                            <mat-error> District is Required !! </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Date of Conduct of District MDR Committee Meeting: </label>
+                        <div class="input-group">
+
+                            <input class="form-control" placeholder="dd-mm-yyyy" readonly [owlDateTime]="dateOfMeeting"
+                                [owlDateTimeTrigger]="dateOfMeeting" formControlName="dateOfMeeting" />
+                            <owl-date-time  [pickerType]="'calendar'" #dateOfMeeting>
+                            </owl-date-time>
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary trigger"
+                                    [owlDateTimeTrigger]="dateOfMeeting" type="button">
+                                    <i class="fas fa-calendar text-white"></i>
+                                </button>
+                            </div>
+                            <span class="invalid-feedback" show-error [errors]="meetingForm.get('dateOfMeeting').errors"
+                                label="Date of Meeting"></span>
+                        </div>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Number of maternal deaths in present month (Facility/community):</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="number" matInput formControlName="maternalDeathsPM" />
+                            <mat-error> Maternal deaths in present month is <strong>Required</strong> !! </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Number of maternal deaths in present month [Reviewed]:</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="number" matInput formControlName="maternalDeathsPMReviewed" />
+                            <mat-error> Maternal deaths reviewed in present month is <strong>Required</strong> !!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label class="mb-4">Cumulative Maternal Deaths from April:</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="number" matInput formControlName="maternalDeathsFromApril" />
+                            <mat-error> Maternal deaths in present month is <strong>Required</strong> !! </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Cumulative Maternal Deaths from April [Reviewed]:</label>
+                        <mat-form-field style="width: 100%" appearance="outline">
+                            <input type="number" matInput formControlName="maternalDeathsFromAprilReviewed" />
+                            <mat-error> Maternal deaths reviewed in present month is <strong>Required</strong> !!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                <div class="m-form__heading">
+                    <h5 class="m-form__heading-title">
+                        Review of recommendations of previous meeting
+                    </h5>
+                </div>
+                <div>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <!-- <mat-label>Autosize textarea</mat-label> -->
+                        <textarea placeholder="Type here.." matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="m-form__heading">
+                    <h5 class="m-form__heading-title">
+                        Review of maternal deaths of present month
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>a) Corrective measures needed at community level:</label>
+                        <mat-form-field class="w-100" appearance="outline">
+                            <!-- <mat-label>Autosize textarea</mat-label> -->
+                            <textarea placeholder="Type here.." matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>b) Corrective measures needed at facility level:</label>
+                        <mat-form-field class="w-100" appearance="outline">
+                            <!-- <mat-label>Autosize textarea</mat-label> -->
+                            <textarea placeholder="Type here.." matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>c) Corrective measures requiring state support</label>
+                        <mat-form-field class="w-100" appearance="outline">
+                            <!-- <mat-label>Autosize textarea</mat-label> -->
+                            <textarea placeholder="Type here.." matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- List of committee Member Present -->
+                <div class="m-form__heading">
+                    <h5 class="m-form__heading-title">
+                        List of Committee member present
+                        <button mat-mini-fab color="primary" aria-label="Add more" (click)="addcommitteeMembersList()">
+                            <mat-icon>plus_one</mat-icon>
+                        </button>
+                    </h5>
+                </div>
+                <div formArrayName="committeeMembersList"
+                    *ngFor="let a of meetingForm.get('committeeMembersList')['controls']; let i = index">
+                    <div class="row" [formGroupName]="i">
+                        <p class="form_array_index">{{i+1}}</p>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <input type="text" matInput formControlName="name" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Designation</mat-label>
+                                <input type="text" matInput formControlName="designation" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-md-3">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>Signature</mat-label>
+                                <input type="text" matInput formControlName="signature" />
+                                <mat-error> Field is Required !! </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <span (click)="removecommitteeMembersList(i)" class="remove_button">
+                            <mat-icon color="accent">delete</mat-icon>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </kt-portlet-body>
+    <br/>
+
+    <button mat-raised-button color="primary" class="savemeeting"  (click)="SaveMeetingForm()">Save meeting</button>
+</kt-portlet>

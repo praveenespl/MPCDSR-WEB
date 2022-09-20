@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>[{{ data.type | titlecase }}] {{ data.form.getName }}</h1>
+<div mat-dialog-content>
+	<div class="row">
+		<!-- <div class="col-12">
+			<mat-checkbox [(ngModel)]="form.is_maternal_death" color="primary"
+				>Is maternal death</mat-checkbox
+			>
+		</div> -->
+
+		<!-- <div class="col-12 py-3" *ngIf="form.is_maternal_death">
+			<label class="d-block">When did death occur?</label>
+			<mat-radio-group
+				[(ngModel)]="form.when_death_occur"
+				color="primary"
+				class="d-flex flex-column"
+			>
+				<mat-radio-button value="During pregnancy"
+					>During pregnancy</mat-radio-button
+				>
+				<mat-radio-button value="During desavelivery"
+					>During delivery</mat-radio-button
+				>
+				<mat-radio-button value="Within 42 days after delivery"
+					>Within 42 days after delivery</mat-radio-button
+				>
+				<mat-radio-button
+					value="During abortion or within 6 weeks after abortion"
+					>During abortion or within 6 weeks after abortion</mat-radio-button
+				>
+			</mat-radio-group>
+		</div> -->
+
+		<div class="col-12" *ngIf="file">
+			<div *ngIf="file.type == 'application/pdf'">
+				<pdf-viewer [src]="selectFileData" [render-text]="true" [original-size]="false" [autoresize]="false"
+					style="display: block; width: 150px;height: 80px;"></pdf-viewer>
+				<!-- (click)="viewImage(UploadedImage)" -->
+			</div>
+			<div *ngIf="file.type == 'image/jpeg'">
+				<!-- (click)="viewImage(UploadedImage)" -->
+				<img [src]="selectFileData" style="display: block; max-width: 150px;max-height: 80px;" />
+			</div>
+		</div>
+		<div class="col-12 d-flex align-items-center">
+			<div>
+				<input class="d-none" id="file-upload" type="file" accept="image/jpeg,application/pdf"
+					(change)="onFileSelect($event)" />
+				<label for="file-upload" class="btn btn-primary btn-sm">
+					<mat-icon aria-hidden="false" style="vertical-align: middle;">attach_file</mat-icon>
+					Choose Files
+				</label>
+			</div>
+			<div class="flex-grow-1">{{ file?.name }}</div>
+		</div>
+		<div class="col-12">
+			<textarea class="form-control" [(ngModel)]="remark" placeholder="remark"></textarea>
+		</div>
+	</div>
+</div>
+<div mat-dialog-actions class="justify-content-end">
+	<button mat-button [mat-dialog-close]="false">Cancel</button>
+	<button mat-raised-button (click)="onSave()" [disabled]="!file || uploading || !remark" color="primary">
+		Save
+	</button>
+</div>

@@ -1,0 +1,49 @@
+@import "../../../../../assets/sass/mat-table.scss";
+@import "../../mdsr/dashboard/national-dashboard/national-dashboard.component.scss";
+
+::ng-deep {
+	.table-sm thead th {
+		padding: 0.3rem;
+	}
+}
+
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+	font-weight: 500;
+    // color: #FFF !important; ;
+}
+
+.height35{
+	min-height: 35;
+}
+
+.dashboard-top-number{
+	display: flex;
+	gap:10px;
+
+	& .mat-card{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		& .material-icons{
+			// color: red;
+			font-size: 36px !important;
+		}
+		h1{
+			font-size: 4rem;
+    		font-weight: 700;
+    		margin: 0 auto;
+    		color: #263238;
+    		text-shadow: 1px 3px #607d8b;
+    		padding: 15px;
+		}
+	}
+
+
+}
+

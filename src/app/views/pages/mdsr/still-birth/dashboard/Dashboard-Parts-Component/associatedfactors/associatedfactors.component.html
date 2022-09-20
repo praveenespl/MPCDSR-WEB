@@ -1,0 +1,99 @@
+<div style="background-color: rgb(233, 147, 233);padding: 10px;">
+    <div style="align-items: center;"><h2>Associated Factors</h2></div>
+    <div class="row">
+        <div class="col-lg-6">
+            <kt-portlet>
+                <!-- PORTLET LOADING | Binded to TABLE Datasource -->
+                <!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+                <kt-portlet-header [title]="'Modifiable Factors'" [class]="'kt-portlet__head--lg'"
+                    style="color: white; min-height: 40px;">
+                    <ng-container ktPortletTools>
+                        <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
+                        </div>
+                    </ng-container>
+
+                </kt-portlet-header>
+                <!-- end::Header -->
+
+                <!-- start::Body (attribute: ktPortletBody) -->
+                <kt-portlet-body>
+                    <!-- start::FILTERS & GROUP ACTIONS -->
+                    <div class="kt-form no-alert">
+                        <!-- start::FILTERS -->
+                        <div class="kt-form__filtration mb-0">
+                            <div id="modifiablefactorPie" style="height: 450px; width: 100%;"></div>
+                        </div>
+                    </div>
+                </kt-portlet-body>
+            </kt-portlet>
+        </div>
+        <div class="col-lg-6">
+            <kt-portlet>
+                <!-- PORTLET LOADING | Binded to TABLE Datasource -->
+                <!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+                <kt-portlet-header [title]="'Type Of Delay'"
+                    [class]="'kt-portlet__head--lg'" style="color: white; min-height: 40px;">
+                    <ng-container ktPortletTools>
+                        <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
+                        </div>
+                    </ng-container>
+
+                </kt-portlet-header>
+                <!-- end::Header -->
+
+                <!-- start::Body (attribute: ktPortletBody) -->
+                <kt-portlet-body>
+                    <!-- start::FILTERS & GROUP ACTIONS -->
+                    <div class="kt-form no-alert">
+                        <!-- start::FILTERS -->
+                        <div class="kt-form__filtration mb-0">
+                            <div>
+                                <div id="typeofdelay" style="height: 450px; width: 100%;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </kt-portlet-body>
+            </kt-portlet>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <kt-portlet>
+                <!-- PORTLET LOADING | Binded to TABLE Datasource -->
+                <!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
+                <kt-portlet-header [title]="'Modifiable Factors Details'"
+                    [class]="'kt-portlet__head--lg'" style="color: white; min-height: 40px;">
+                    <ng-container ktPortletTools>
+                        <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline">
+                        </div>
+                    </ng-container>
+
+                </kt-portlet-header>
+                <!-- end::Header -->
+
+                <!-- start::Body (attribute: ktPortletBody) -->
+                <kt-portlet-body>
+                    <!-- start::FILTERS & GROUP ACTIONS -->
+                    <div class="kt-form no-alert">
+                        <!-- start::FILTERS -->
+                        <div class="kt-form__filtration mb-0">
+                            <div>
+                                <div id="modifiablefactordetails" style="height: 450px; width: 100%;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </kt-portlet-body>
+            </kt-portlet>
+        </div>
+    </div>
+</div>
+
+

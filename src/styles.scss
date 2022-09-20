@@ -1,0 +1,313 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "~highlight.js/styles/googlecode.css";
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+// hide bootstrap dropdown arrow globally
+.dropdown-toggle::after {
+	display: none !important;
+}
+
+.mat-table__wrapper--dashboard .mat-table {
+	min-width: 600px !important;
+	width: 100% !important;
+}
+
+.position-static {
+	position: static;
+}
+
+// GRID::START
+$grid-percent-sizes: 20, 30, 40, 50, 60, 70, 80, 90, 100;
+%grid-padding {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.label {
+	color: black;
+}
+
+@each $size in $grid-percent-sizes {
+	.col-md-#{$size} {
+		@extend %grid-padding;
+		@media (min-width: 768px) {
+			flex: 0 0 $size * 1%;
+			max-width: $size * 1%;
+		}
+	}
+}
+
+// GRID::END
+// UTILITIES::START
+.font-weight-600 {
+	font-weight: 600;
+}
+
+.font-weight-400 {
+	font-weight: 400;
+}
+
+.border-width-2 {
+	border-width: 2px !important;
+}
+
+img .kt-header__brand-logo-default {
+	height: 40px !important;
+}
+
+@media (min-width: 1025px) {
+	.kt-header {
+		background-color: #337ab7 !important;
+		& .kt-header__top {
+			height: 50px !important;
+		}
+	}
+
+	.kt-header .kt-header__bottom {
+		display: flex;
+		align-items: stretch;
+		height: 40px;
+		background-color: #fff;
+	}
+
+	.kt-header-menu-wrapper .kt-header-menu .kt-menu__nav > .kt-menu__item > .kt-menu__link {
+		border-radius: 4px;
+		padding: 0.45rem 1.50rem;
+	}
+
+	.kt-header .kt-header__top .kt-container .kt-header__brand-logo-default {
+		display: inline-block;
+		height: 40px !important;
+	}
+
+	.kt-px65-desktop,
+	.kt-pl65-desktop {
+		padding-left: 65px !important;
+	}
+	.kt-px65-desktop,
+	.kt-pr65-desktop {
+		padding-right: 65px !important;
+	}
+
+	.kt-header--minimize-all.kt-header--minimize .kt-header .kt-header__top {
+		background-color: #337ab7;
+	}
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+// UTILITIES::END
+formio-alerts {
+	display: none;
+}
+
+// MAT TABLE
+.table-container {
+	position: relative;
+	max-height: 400px;
+	overflow: auto;
+}
+
+.loading-shade {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 56px;
+	right: 0;
+	background: rgba(0, 0, 0, 0.15);
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.rate-limit-reached {
+	color: #980000;
+	max-width: 360px;
+	text-align: center;
+}
+
+/* Column Widths */
+
+.mat-column-number,
+.mat-column-state {
+	max-width: 64px;
+}
+
+.mat-column-created {
+	max-width: 124px;
+}
+
+/* For Maternal & Non Maternal Color */
+
+.maternal {
+	width: 10px;
+	height: 25px;
+	border-radius: 15%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/*  expandable mat table */
+
+tr {
+	&.expandable-row {
+		height: 0 !important;
+		.expandable-row-details {
+			overflow: hidden;
+		}
+	}
+	&.expandable-table-row {
+		&:not(.expandable-row) {
+			td {
+				border-bottom-width: 0 !important;
+			}
+			&:hover {
+				background: #ddd;
+			}
+			&:active {
+				background: #efefef;
+			}
+		}
+	}
+}
+
+/* NgbDatepicker */
+
+.ngb-dp-day {
+	width: 2.5rem !important;
+	height: 2.5rem !important;
+}
+
+.ngb-dp-day > div {
+	width: 2.5rem !important;
+	height: 2.5rem !important;
+	line-height: 2.5rem !important;
+}
+
+.ngb-dp-weekday {
+	width: 2.5rem !important;
+}
+
+// FORM IO PDF
+#angularFormIOPdf {
+	height: calc(100vh - 273px);
+}
+
+// Scrollbar
+.scrollbar {
+	&::-webkit-scrollbar {
+		width: 5px;
+		height: 5px;
+		background-color: #f5f5f5;
+		&-track {
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+			border-radius: 10px;
+			background-color: #f5f5f5;
+		}
+		&-thumb {
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+			background-color: #3d94fa;
+		}
+	}
+}
+
+.mat-table-sticky {
+	z-index: 1 !important; // 96
+}
+
+// BADGE
+.i-badge {
+	font-weight: 500;
+	line-height: 5px;
+	color: #fff;
+	background-color: #343a40;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+	width: 15px;
+	height: 15px;
+}
+
+.i-field-required:after {
+	content: " *";
+	color: red;
+}
+
+.form-group label {
+	font-size: 1rem !important;
+	color: black !important;
+	font-weight: 410 !important;
+}
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+	margin: 0;
+	padding: 0;
+	font-size: 1.2rem;
+	font-weight: 400;
+	color: #000;
+}
+
+// body {
+//     display: flex;
+//     flex-direction: column;
+//     color: #000;
+//     font-weight: 400;
+// }
+
+//
+// .kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+// 	color: #fff !important;
+// }
+
+.mat-cell,
+.mat-footer-cell {
+	color: black !important;
+	//font-weight: bold !important;
+}
+
+//@media (min-width: 1025px)
+.kt-header-menu .kt-menu__nav > .kt-menu__item > .kt-menu__link .kt-menu__link-text {
+	color: black !important;
+}
+
+.kt-header-menu
+	.kt-menu__nav
+	> .kt-menu__item
+	.kt-menu__submenu
+	> .kt-menu__subnav
+	> .kt-menu__item
+	> .kt-menu__link
+	.kt-menu__link-text {
+	color: black !important;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+	color: #646c9a !important;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+	color: #fd398f !important;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}

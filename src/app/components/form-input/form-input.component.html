@@ -1,0 +1,130 @@
+<!-- Label -->
+<label *ngIf="showLabel" [ngClass]="{ 'i-field-required': required }">{{
+	label
+}}</label>
+<span
+	*ngIf="tooltip"
+	class="i-badge ml-2"
+	placement="top"
+	[ngbTooltip]="tooltip"
+	ngbTooltipClass="kt-tooltip"
+	>?</span
+>
+<!-- /Label -->
+<!-- Input -->
+<ng-container [ngSwitch]="type">
+	<ng-container *ngSwitchCase="'text'">
+		<input
+			type="text"
+			class="form-control"
+			[(ngModel)]="value"
+			[readonly]="viewOnly"
+			[ngClass]="{
+				'is-invalid': errors && (touched || isSubmitted)
+			}"
+			(blur)="this.onTouched(); touched = true"
+		/>
+	</ng-container>
+	<!--  -->
+	<ng-container *ngSwitchCase="'textarea'">
+		<textarea
+			type="text"
+			class="form-control"
+			[(ngModel)]="value"
+			[readonly]="viewOnly"
+			[ngClass]="{
+				'is-invalid': errors && (touched || isSubmitted)
+			}"
+			(blur)="this.onTouched(); touched = true"
+		></textarea>
+	</ng-container>
+	<!--  -->
+	<ng-container *ngSwitchCase="'number'">
+		<input
+			type="number"
+			class="form-control"
+			[(ngModel)]="value"
+			[ngClass]="{
+				'is-invalid': errors && (touched || isSubmitted)
+			}"
+			[readonly]="viewOnly"
+			(blur)="this.onTouched(); touched = true"
+		/>
+	</ng-container>
+	<!--  -->
+	<ng-container *ngSwitchCase="'select'">
+		<ng-select
+			[items]="selectOptions?.items || []"
+			[bindLabel]="selectOptions?.bindLabel"
+			[bindValue]="selectOptions?.bindValue"
+			[(ngModel)]="value"
+			[clearable]="selectOptions?.clearable || false"
+			[multiple]="selectOptions?.multiple"
+			(blur)="this.onTouched(); touched = true"
+			[readonly]="viewOnly"
+			[ngClass]="{
+				'is-invalid': errors && (touched || isSubmitted)
+			}"
+		>
+		</ng-select>
+	</ng-container>
+	<!--  -->
+	<ng-container *ngSwitchCase="'datepicker'">
+		<div
+			class="input-group"
+			[ngClass]="{
+				'is-invalid': errors && touched
+			}"
+		>
+			<input
+				class="form-control"
+				placeholder="yyyy-mm-dd"
+				readonly
+				ngbDatepicker
+				#datePicker="ngbDatepicker"
+				[(ngModel)]="value"
+				[max]="maxDate"
+				(blur)="this.onTouched(); touched = true"
+				[ngClass]="{
+					'is-invalid': errors && (touched || isSubmitted)
+				}"
+			/>
+			<div class="input-group-append">
+				<button
+					class="btn btn-primary"
+					(click)="datePicker.toggle()"
+					type="button"
+				>
+					<i class="la la-calendar text-white"></i>
+				</button>
+			</div>
+		</div>
+	</ng-container>
+	<!--  -->
+
+	<ng-container *ngSwitchCase="'timepicker'">
+		<ngb-timepicker
+			[spinners]="false"
+			[(ngModel)]="value"
+			[ngClass]="{
+				'is-invalid': errors && (touched || isSubmitted)
+			}"
+		></ngb-timepicker>
+	</ng-container>
+	<!--  -->
+	<ng-container *ngSwitchDefault>
+		input type "{{ type }}" not implemented yet
+	</ng-container>
+</ng-container>
+<!-- /Input -->
+<!-- Error -->
+<span
+	*ngIf="showErrors"
+	class="invalid-feedback"
+	show-error
+	[min]="min"
+	[max]="max"
+	[errors]="errors"
+	[label]="errorLabel || label"
+></span>
+<!-- /Error -->

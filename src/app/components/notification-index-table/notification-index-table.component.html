@@ -1,0 +1,215 @@
+<kt-portlet>
+	<kt-portlet-header [title]="title">
+		<ng-container ktPortletTools *ngIf="this.currentUser.accessupto != 'District' && isShowAddButton">
+			<a routerLink="add" mat-raised-button color="primary" matTooltip="Add new record">
+				+Add new
+			</a>
+		</ng-container>
+		<ng-container ktPortletTools *ngIf="formFilter">
+			<button class="ml-1" mat-raised-button color="primary" (click)="onClickFilter()">
+				<i class="fas fa-filter"></i>
+			</button>
+
+			<!-- &nbsp;
+			<button *ngIf="this.currentUser.accessupto != 'District'" mat-raised-button aria-label="" color="primary"
+				matTooltip="Info about the action" (click)="exportToPDF()">
+				PDF
+			</button> -->
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<div class="position-relative" style="min-height: 200px;">
+			<!-- <div class="loading-shade" *ngIf="isLoadingResults || isMaxLimitReached">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+				<div class="example-rate-limit-reached" *ngIf="isMaxLimitReached">
+					Please wait...
+				</div>
+			</div> -->
+			<div class="table-container">
+				<table mat-table [dataSource]="tableDataSource" class="w-100" matSort matSortDisableClear>
+					<ng-container *ngFor="let column of columns">
+						<ng-container [matColumnDef]="column.name" *ngIf="!column?.isActionField">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>
+								{{ column?.name }}
+							</th>
+
+							<td mat-cell *matCellDef="let row">
+								{{ objectPath.get(row, column?.key) || "--" }}
+							</td>
+						</ng-container>
+					</ng-container>
+					<ng-container matColumnDef="block">
+						<th mat-header-cell *matHeaderCellDef>
+							Block
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{row?.block_id?.subdistrictname}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Deceased Woman Name">
+						<th mat-header-cell *matHeaderCellDef>
+							Deceased Woman Name
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.getName}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="Death Date Time">
+						<th mat-header-cell *matHeaderCellDef>
+							Death Date Time
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{row.getDeathDateTime}}
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="IsMaternal">
+						<th mat-header-cell *matHeaderCellDef>
+							IsMaternal?
+						</th>
+						<td mat-cell *matCellDef="let row">
+							<span [style.color]="row.is_maternal_death ? 'red' : ''">
+								{{ row.is_maternal_death ? "Yes" : "No" }}
+							</span>
+						</td>
+					</ng-container>
+					<!-- ACTION FIELDS -->
+					<!-- Form 4 -->
+					<ng-container matColumnDef="form4Submitted">
+						<th mat-header-cell *matHeaderCellDef>
+							{{isFormLevel?'Action':'Form 4'}}
+						</th>
+						<td mat-cell *matCellDef="let row">
+							<ng-container [ngSwitch]="row?.mdsrForm4s.length">
+
+								<ng-container *ngSwitchCase="true">
+									<a (click)="editEvent(row?.mdsrForm4s[0]?.id,'form4')" class="cursor-pointer">
+										<i *ngIf="isFormLevel" style="font-size: 1.5em;" class="fas fa-edit"></i>
+										<span *ngIf="!isFormLevel" style="cursor: pointer;"
+											[ngClass]="row?.mdsrForm4s?.length>0?'text-primary font-weight-bold':'text-danger font-weight-bold'">
+											{{row?.mdsrForm4s?.length>0?'Yes':row?.place_of_death==='Health Facility'?'No':''}}
+										</span>
+									</a>
+								</ng-container>
+								<ng-container class="cursor-pointer" *ngSwitchDefault>
+									<a (click)="addEvent(row,'form4')" class="cursor-pointer">
+										<i *ngIf="isFormLevel" style="font-size: 1.5em;" class="fas fa-plus-circle"></i>
+										<span *ngIf="!isFormLevel" style="cursor: pointer;"
+											[ngClass]="row?.mdsrForm4s?.length>0?'text-primary font-weight-bold':'text-danger font-weight-bold'">
+											{{row?.mdsrForm4s?.length>0?'Yes':row?.place_of_death==='Health Facility'?'No':''}}
+										</span>
+
+									</a>
+								</ng-container>
+							</ng-container>
+						</td>
+					</ng-container>
+					<!-- Form 5 -->
+					<ng-container matColumnDef="form5Submitted">
+						<th mat-header-cell *matHeaderCellDef>
+							{{isFormLevel?'Action':'Form 5'}}
+						</th>
+						<td mat-cell *matCellDef="let row">
+							<ng-container [ngSwitch]="row?.mdsrForm5s.length">
+
+								<ng-container *ngSwitchCase="true">
+									<a (click)="editEvent(row?.mdsrForm5s[0]?.id,'form5')" class="cursor-pointer">
+										<i *ngIf="isFormLevel" style="font-size: 1.5em;" class="fas fa-edit"></i>
+										<span *ngIf="!isFormLevel" style="cursor: pointer;"
+											[ngClass]="row?.mdsrForm5s?.length>0?'text-primary font-weight-bold':'text-danger font-weight-bold'">
+											{{row?.mdsrForm5s?.length>0?'Yes':'No'}}
+										</span>
+									</a>
+
+									<a style="cursor: pointer;" *ngIf="viewOnly" (click)="viewEvent(row.id)">
+										<i style="font-size: 1.5em; margin-left: 2px;" class="fas fa-eye"></i>
+										</a>
+								</ng-container>
+								<ng-container class="cursor-pointer" *ngSwitchDefault>
+									<a (click)="addEvent(row,'form5')" class="cursor-pointer">
+										<i *ngIf="isFormLevel" style="font-size: 1.5em;" class="fas fa-plus-circle"></i>
+										<span *ngIf="!isFormLevel" style="cursor: pointer;"
+											[ngClass]="row?.mdsrForm5s?.length>0?'text-primary font-weight-bold':'text-danger font-weight-bold'">
+											{{row?.mdsrForm5s?.length>0?'Yes':'No'}}
+										</span>
+
+									</a>
+								</ng-container>
+							</ng-container>
+						</td>
+					</ng-container>
+
+						<!-- Form 6 -->
+						<ng-container matColumnDef="form6Submitted">
+							<th mat-header-cell *matHeaderCellDef>
+								{{'Form 6'}}
+							</th>
+							<td mat-cell *matCellDef="let row">
+								<ng-container [ngSwitch]="row?.mdsrForm6s.length">
+									<ng-container *ngSwitchCase="true">
+										<a (click)="editEvent(row?.mdsrForm6s[0]?.id,'form6')" class="cursor-pointer">
+											<i *ngIf="isFormLevel" style="font-size: 1.5em;" class="fas fa-edit"></i>
+											<span *ngIf="!isFormLevel" style="cursor: pointer;"
+												[ngClass]="row?.mdsrForm6s?.length>0?'text-primary font-weight-bold':'text-danger font-weight-bold'">
+												{{row?.mdsrForm6s?.length>0?'Yes':'No'}}
+											</span>
+										</a>
+										<a *ngIf="isFormLevel" (click)="viewEvent(row?.mdsrForm6s[0]?.id)" class="cursor-pointer">
+											<i style="font-size: 1.5em; margin-left: 2px;" class="fas fa-eye"></i>
+										</a>
+									</ng-container>
+
+									<ng-container class="cursor-pointer" *ngSwitchDefault>
+										<a (click)="addEvent(row,'form6')" class="cursor-pointer">
+											<i *ngIf="isFormLevel && (row?.mdsrForm5s?.length>0 || row?.mdsrForm4s?.length>0)" style="font-size: 1.5em;" class="fas fa-plus-circle"></i>
+											<span *ngIf="!isFormLevel" style="cursor: pointer;"
+												[ngClass]="row?.mdsrForm6s?.length>0?'text-primary font-weight-bold':'text-danger font-weight-bold'">
+												{{row?.mdsrForm6s?.length>0?'Yes':'No'}}
+											</span>
+										</a>
+									</ng-container>
+								</ng-container>
+							</td>
+						</ng-container>
+
+					<ng-container matColumnDef="action">
+						<th mat-header-cell *matHeaderCellDef>Action</th>
+						<td mat-cell *matCellDef="let row">
+							<ng-container *ngIf="row.status != 'unlist'; else unlistTemplate">
+								<ng-container [ngSwitch]="!!row.fileLibrary.length">
+									<ng-container *ngSwitchCase="true">
+										<!-- <a href="javascript:void(0)">
+											<mat-icon>print</mat-icon>
+										</a> -->
+										<a style="cursor: pointer;" href="javascript:void(0)" (click)="downloadFile(row.fileLibrary[0].modified_file_name)">
+											<i style="font-size: 1.5em; margin-left: 2px;" class="fas fa-eye"></i>
+										</a>
+									</ng-container>
+									<ng-container *ngSwitchDefault>
+										<a style="cursor: pointer;" (click)="editEvent(row?.id,'form1')"  *ngIf="this.currentUser.accessupto != 'District'">
+											<i style="font-size: 1.5em;" class="fas fa-edit"></i>
+										</a>
+										<a style="cursor: pointer;" *ngIf="viewOnly" (click)="viewEvent(row.id)">
+											<i style="font-size: 1.5em; margin-left: 2px;" class="fas fa-eye"></i>
+										</a>
+									</ng-container>
+								</ng-container>
+							</ng-container>
+							<ng-template #unlistTemplate>
+								<span class="text-danger">Unlisted</span>
+							</ng-template>
+						</td>
+					</ng-container>
+					<ng-container matColumnDef="form4_form5">
+						<th mat-header-cell *matHeaderCellDef>Form4/Form5</th>
+						<td mat-cell *matCellDef="let row">
+							{{row?.mdsrForm4s?.length>0?'Yes':'No'}}/{{row?.mdsrForm5s?.length>0?'Yes':'No'}}
+						</td>
+					</ng-container>
+					<tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+					<tr mat-row *matRowDef="let dataSource; columns: columnsToDisplay"></tr>
+				</table>
+			</div>
+			<mat-paginator [length]="tableDataSource.length" [pageSize]="pageSize"></mat-paginator>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

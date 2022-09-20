@@ -1,0 +1,47 @@
+// MAIN::START
+.home-container {
+	min-height: 100vh;
+	background: #fff;
+}
+// MAIN::END
+// HEADER::START
+
+.logo {
+	height: 90px;
+	// margin-left: 6em;
+}
+
+.nav-item {
+	&.nav-link-active {
+		background: rgba(255, 255, 255, 0.25);
+	}
+}
+// HEADER::END
+
+// NAVBAR::START
+.rounded-nav-icon {
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	font-size: 1.5em;
+}
+.hover:hover{
+	background: rgba(0, 0, 0, 0.15);
+}
+// NAVBAR::END
+
+// FOOTER::START
+// FOOTER::END
+.cropped {
+	width: 150px; /* width of container */
+	height: 150px; /* height of container */
+	overflow: hidden;
+	border: 5px solid black;
+	margin: -10px 0px 0px -180px;
+}
+.pb-4, .py-4 {
+    padding-bottom: 0.5rem !important;
+}
+.pt-4, .py-4 {
+    padding-top: 0.5rem !important;
+}

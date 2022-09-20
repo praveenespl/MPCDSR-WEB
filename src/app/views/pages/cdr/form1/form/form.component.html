@@ -1,0 +1,467 @@
+<kt-portlet>
+	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
+	<kt-portlet-header [title]="'Add Notification'" [class]="'kt-portlet__head--lg'">
+		<ng-container ktPortletTools>
+			<a mat-raised-button color="warn" routerLink=".."> Back </a>
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body>
+		<div class="kt-form">
+			<div>
+				<strong>Note:</strong>
+				<ul>
+					<li>To be filled by the Primary Informant.</li>
+					<li>
+						Two copies should be filled in case of CBCDR (One copy to be
+						submitted to ANM and one handed over to family).
+					</li>
+					<li>
+						For FBCDR only one copy needs to be filled and handed over to FNO.
+					</li>
+					<li>
+						If the notification card is already filled, address the bereavement
+						issues, offer support and leave (CBCDR only).
+					</li>
+					<li>Write in capital letters.</li>
+				</ul>
+			</div>
+			<hr />
+			<!-- <pre>{{form.value | json}}</pre> -->
+			<form [formGroup]="form" (ngSubmit)="onSubmit()">
+				<div class="form-row">
+					<h5 class="col-12">For Office Use Only</h5>
+					<!-- Notification Received Date  -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Notification received date</label>
+						<div class="input-group">
+
+							<input class="form-control" placeholder="dd-mm-yyyy" readonly [owlDateTime]="notification_received_date"
+								[owlDateTimeTrigger]="notification_received_date" formControlName="notification_received_date"
+								[max]="today" [ngClass]="{
+									'is-invalid':
+										form.get('notification_received_date').errors && !viewOnly &&
+										(form.get('notification_received_date').touched || isSubmitted)
+								}" />
+							<owl-date-time [disabled]="viewOnly" [pickerType]="'calendar'" #notification_received_date>
+							</owl-date-time>
+
+							<div class="input-group-append">
+								<button class="btn btn-primary trigger" [disabled]="viewOnly"
+									[owlDateTimeTrigger]="notification_received_date" type="button">
+									<i class="fas fa-calendar text-white"></i>
+								</button>
+							</div>
+							<span class="invalid-feedback" show-error [errors]="form.get('notification_received_date').errors"
+								label="Notification received date"></span>
+						</div>
+					</div>
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Person name who received notification</label>
+						<input onlyAlphabets type="text" class="form-control" [readonly]="viewOnly"
+							formControlName="notification_received_person_name" [ngClass]="{
+								'is-invalid':
+									form.get('notification_received_person_name').errors &&
+									(form.get('notification_received_person_name').touched || isSubmitted)
+							}" />
+						<span class="invalid-feedback" show-error [errors]="form.get('notification_received_person_name').errors"
+							label="Notification received person name"></span>
+					</div>
+					<!--  -->
+					<h5 class="col-12">Basic Information</h5>
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Name of the child </label>
+						<span class="i-badge ml-2" placement="top"
+							ngbTooltip="In case of a newborn, name of the mother should be used. eg: Baby of Nirmala"
+							ngbTooltipClass="kt-tooltip">?</span>
+						<input onlyAlphabets type="text" class="form-control" [readonly]="viewOnly" formControlName="name"
+							[ngClass]="{
+								'is-invalid':
+									form.get('name').errors && (form.get('name').touched || isSubmitted)
+							}" />
+						<span class="invalid-feedback" show-error [errors]="form.get('name').errors" label="Name"></span>
+					</div>
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Date of Birth and Time</label>
+						<div class="input-group" [ngClass]="{
+								'is-invalid':
+									form.get('date_of_birth').errors &&
+									(form.get('date_of_birth').touched || isSubmitted)
+							}">
+							<input class="form-control" placeholder="dd-mm-yyyy" readonly [owlDateTime]="date_of_birth"
+								[owlDateTimeTrigger]="date_of_birth" formControlName="date_of_birth" [max]="today"
+								[min]="minDateOfBirth" [readonly]="viewOnly" [ngClass]="{
+									'is-invalid':
+										form.get('date_of_birth').errors &&
+										(form.get('date_of_birth').touched || isSubmitted)
+								}" />
+							<owl-date-time [disabled]="viewOnly" #date_of_birth></owl-date-time>
+
+							<div class="input-group-append">
+								<button class="btn btn-primary trigger" [owlDateTimeTrigger]="date_of_birth" [disabled]="viewOnly"
+									type="button">
+									<i class="fas fa-calendar text-white"></i>
+								</button>
+							</div>
+						</div>
+						<span class="invalid-feedback" show-error [errors]="form.get('date_of_birth').errors"
+							label="Date of birth"></span>
+					</div>
+
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Date of Death and Time</label>
+						<div class="input-group" [ngClass]="{
+								'is-invalid':
+									form.get('date_of_death').errors &&
+									(form.get('date_of_death').touched || isSubmitted)
+							}">
+							<input class="form-control" placeholder="dd-mm-yyyy" readonly [owlDateTime]="date_of_death"
+								[owlDateTimeTrigger]="date_of_death" formControlName="date_of_death" [max]="today" [ngClass]="{
+									'is-invalid':
+										form.get('date_of_death').errors &&
+										(form.get('date_of_death').touched || isSubmitted)
+								}" />
+							<owl-date-time [disabled]="viewOnly" #date_of_death></owl-date-time>
+
+							<div class="input-group-append">
+								<button class="btn btn-primary trigger" [disabled]="viewOnly" [owlDateTimeTrigger]="date_of_death"
+									type="button">
+									<i class="fas fa-calendar text-white"></i>
+								</button>
+							</div>
+						</div>
+						<span class="invalid-feedback" show-error [errors]="form.get('date_of_death').errors"
+							label="Date of death"></span>
+					</div>
+					<!-- TODO: age should be in [Y][Y] [M][M] [D][D] [H][H] -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Age</label>
+						<!-- readonly -->
+						<input type="text" readonly="viewOnly" class="form-control" formControlName="age" [ngClass]="{
+								'is-invalid': form.get('age').errors && (form.get('age').touched || isSubmitted)
+							}" />
+						<span class="invalid-feedback" show-error [errors]="form.get('age').errors" label="Age"></span>
+					</div>
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Sex</label>
+						<select class="form-control" formControlName="sex" [attr.disabled]="viewOnly?viewOnly:null" [ngClass]="{
+								'is-invalid': form.get('sex').errors && (form.get('sex').touched || isSubmitted)
+							}">
+							<option value="Male">Male</option>Ambiguous
+							<option value="Female">Female</option>
+							<option value="Ambiguous">Ambiguous</option>
+						</select>
+
+						<span class="invalid-feedback" show-error [errors]="form.get('sex').errors" label="Sex"></span>
+					</div>
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Mother's Name</label>
+						<input onlyAlphabets type="text" class="form-control" [readonly]="viewOnly" formControlName="mother_name"
+							[ngClass]="{
+								'is-invalid':
+									form.get('mother_name').errors &&
+									(form.get('mother_name').touched || isSubmitted)
+							}" />
+						<span class="invalid-feedback" show-error [errors]="form.get('mother_name').errors"
+							label="Mother name"></span>
+					</div>
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label>Father's Name</label>
+						<input onlyAlphabets type="text" class="form-control" [readonly]="viewOnly" formControlName="father_name"
+							[ngClass]="{
+								'is-invalid':
+									form.get('father_name').errors &&
+									form.get('father_name').touched
+							}" />
+						<span class="invalid-feedback" show-error [errors]="form.get('father_name').errors"
+							label="Father name"></span>
+					</div>
+					<!-- Address start -->
+					<div class="row col-12" formGroupName="address">
+						<div class="col-12">
+							<h5>Address</h5>
+							<hr />
+						</div>
+						<!--  -->
+						<div class="form-group col-md-3">
+							<label class="i-field-required">State</label>
+							<ng-select [items]="states" bindLabel="statename" formControlName="state" [clearable]="false" [ngClass]="{
+									'is-invalid':
+										form.get('address.state').errors &&
+										(form.get('address.state').touched || isSubmitted)
+								}">
+							</ng-select>
+							<span class="invalid-feedback" show-error [errors]="form.get('address.state').errors"
+								label="State"></span>
+						</div>
+						<!--  -->
+						<div class="form-group col-md-3">
+							<label class="i-field-required">District/Tehsil</label>
+							<ng-select [items]="districts" bindLabel="districtname" formControlName="district" [clearable]="false"
+								[ngClass]="{
+									'is-invalid':
+										form.get('address.district').errors &&
+										(form.get('address.district').touched || isSubmitted)
+								}">
+							</ng-select>
+							<span class="invalid-feedback" show-error [errors]="form.get('address.district').errors"
+								label="District"></span>
+						</div>
+						<!--  -->
+						<div class="form-group col-md-3">
+							<label class="i-field-required">Block/SubDistrict</label>
+							<ng-select [items]="blocks" bindLabel="subdistrictname" formControlName="block" [clearable]="false"
+								[ngClass]="{
+									'is-invalid':
+										form.get('address.block').errors &&
+										(form.get('address.block').touched || isSubmitted)
+								}">
+							</ng-select>
+							<span class="invalid-feedback" show-error [errors]="form.get('address.block').errors"
+								label="Block"></span>
+						</div>
+						<!--  -->
+						<div class="form-group col-md-3">
+							<label class="">Village/Town/City</label>
+							<ng-select [items]="villages" bindLabel="villagename" formControlName="village" [clearable]="false"
+								[required]="false">
+							</ng-select>
+							<span class="invalid-feedback" show-error [errors]="form.get('address.village').errors"
+								label="Village"></span>
+						</div>
+						<!--
+						<!-- <div class="form-group col-md-3">
+							<label class="">Village/Town/City</label>
+							<input
+								type="text"
+								class="form-control"
+								[readonly]="viewOnly"
+								formControlName="village"
+
+							/>
+
+							<span
+								class="invalid-feedback"
+								show-error
+								[errors]="form.get('address.village').errors"
+								label="Village"
+							></span>
+						</div> -->
+						<div class="form-group col-md-3">
+							<label class="">Mohalla/Colony/Area</label>
+							<input type="text" class="form-control" [readonly]="viewOnly" formControlName="colony" />
+
+							<span class="invalid-feedback" show-error [errors]="form.get('address.colony').errors"
+								label="Colony"></span>
+						</div>
+						<!--  -->
+						<div class="form-group col-md-3">
+							<label>House/Flat/Apartment Number</label>
+							<input type="text" class="form-control" [readonly]="viewOnly" formControlName="house_number" />
+						</div>
+						<!--  -->
+						<div class="form-group col-md-3">
+							<label>Pincode</label>
+							<input onlyNumber type="text" maxlength="6" placeholder="Enter 6 Digit Number" class="form-control"
+								[readonly]="viewOnly" formControlName="pincode" [ngClass]="{
+									'is-invalid':
+										form.get('address.pincode').errors &&
+										form.get('address.pincode').touched
+								}" />
+							<span class="invalid-feedback" show-error [errors]="form.get('address.pincode').errors"
+								label="Pincode"></span>
+						</div>
+						<!--  -->
+						<div class="form-group col-md-3">
+							<label>Landmarks, if any</label>
+							<input type="text" class="form-control" formControlName="landmark" [readonly]="viewOnly" [ngClass]="{
+									'is-invalid':
+										form.get('address.landmark').errors &&
+										form.get('address.landmark').touched
+								}" />
+
+							<span class="invalid-feedback" show-error [errors]="form.get('address.landmark').errors"
+								label="Landmark"></span>
+						</div>
+						<!--  -->
+						<div class="col-12">
+							<hr />
+						</div>
+					</div>
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label>Landline</label>
+						<input type="text" class="form-control" placeholder="011-234567" formControlName="landline"
+							[readonly]="viewOnly" [ngClass]="{
+								'is-invalid':
+									form.get('landline').errors && form.get('landline').touched
+							}" />
+
+						<span class="invalid-feedback" show-error [errors]="form.get('landline').errors" label="Landline"></span>
+					</div>
+					<!--  -->
+					<div class="form-group col-md-3">
+						<label>Mobile</label>
+						<input onlyNumber maxlength="10" type="text" placeholder="Enter 10 Digit Number Without Prefix"
+							class="form-control" [readonly]="viewOnly" formControlName="mobile" [ngClass]="{
+								'is-invalid':
+									form.get('mobile').errors && form.get('mobile').touched
+							}" />
+
+						<span class="invalid-feedback" show-error [errors]="form.get('mobile').errors" label="Mobile"></span>
+					</div>
+
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Place of Death</label>
+						<select class="form-control" formControlName="palce_of_death" [attr.disabled]="viewOnly?viewOnly:null"
+							[ngClass]="{
+								'is-invalid':
+									form.get('palce_of_death').errors &&
+									(form.get('palce_of_death').touched || isSubmitted)
+							}">
+							<option value="Home" *ngIf="this.currentUser.designation == 'BMO'">Home</option>
+							<option value="Health facility" *ngIf="this.currentUser.designation =='FNO'">Health facility</option>
+							<option value="In transit">In transit</option>
+							<option value="Health facility" *ngIf="this.currentUser.designation == 'BMO'">Health
+								facility(Govt.)</option>
+							<option value="Others/Private" *ngIf="this.currentUser.designation == 'BMO'">Others/private</option>
+						</select>
+						<span class="invalid-feedback" show-error [errors]="form.get('palce_of_death').errors"
+							label="Place of death"></span>
+					</div>
+
+					<div class="form-group col-md-3" *ngIf="form.value.palce_of_death == 'In transit'">
+						<label class="i-field-required">Actual Place of Death</label>
+						<select class="form-control" formControlName="actual_palce_of_death"
+							[attr.disabled]="viewOnly?viewOnly:null" [ngClass]="{
+								'is-invalid':
+									form.get('actual_palce_of_death').errors &&
+									(form.get('actual_palce_of_death').touched || isSubmitted)
+							}">
+							<option value="Home to Hospital" *ngIf="this.currentUser.designation == 'BMO'">Home to Hospital</option>
+							<option value="Hospital to Hospital">Hospital to Hospital</option>
+							<option value="Hospital to Home">Hospital to Home</option>
+						</select>
+						<span class="invalid-feedback" show-error [errors]="form.get('actual_palce_of_death').errors"
+							label="Actual Place of death"></span>
+					</div>
+					<!--  -->
+					<div class="form-group col-md-3" *ngIf="form.value.palce_of_death == 'Hospital'">
+						<label class="">Hospital Name</label>
+						<ng-select [items]="facilities" bindLabel="health_facility_name" formControlName="hospital_name"
+							[clearable]="false" [required]="false">
+						</ng-select>
+						<span class="invalid-feedback" show-error [errors]="form.get('hospital_name').errors"
+							label="Hospital name"></span>
+					</div>
+					<!--  Type of the Informant -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Type of the First Informant</label>
+						<select [attr.disabled]="viewOnly?viewOnly:null" class="form-control" formControlName="first_informant_type"
+							[ngClass]="{
+									'is-invalid':
+										form.get('first_informant_type').errors &&
+										(form.get('first_informant_type').touched || isSubmitted)
+								}">
+							<option value="DOCTOR">DOCTOR</option>
+							<option value="ASHA">ASHA</option>
+							<option value="ANM">ANM</option>
+							<option value="AWW">AWW</option>
+							<option value="DMO">DMO</option>
+							<option value="Health Worker">Health Worker</option>
+							<option value="Family Member/Relative">
+								Family Member/Relative
+							</option>
+							<option value="Other">Other</option>
+						</select>
+
+						<span class="invalid-feedback" show-error [errors]="form.get('first_informant_type').errors"
+							label="Type of the First Informant"></span>
+					</div>
+					<!-- Name of the First Informant -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Name of First Informant</label>
+						<input onlyAlphabets type="text" class="form-control" [readonly]="viewOnly"
+							formControlName="primary_informant_name" [ngClass]="{
+									'is-invalid':
+										form.get('primary_informant_name').errors &&
+										(form.get('primary_informant_name').touched || isSubmitted)
+								}" />
+
+						<span class="invalid-feedback" show-error [errors]="form.get('primary_informant_name').errors"
+							label="Name of First Informant"></span>
+					</div>
+					<!-- Time of the Information -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Time of the Information</label>
+						<div class="input-group" [ngClass]="{
+									'is-invalid':
+									form.get('time').errors &&
+									form.get('time').touched
+								}">
+							<input readonly class="form-control" formControlName="time" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4"
+								[ngClass]="{
+								'is-invalid':
+									form.get('time').errors && (form.get('time').touched || isSubmitted)
+							}" />
+							<owl-date-time [disabled]="viewOnly" [pickerType]="'timer'" #dt4></owl-date-time>
+							<div class="input-group-append">
+								<button class="btn btn-primary trigger" [owlDateTimeTrigger]="dt4" [disabled]="viewOnly" type="button">
+									<i class="fas fa-clock text-white"></i>
+
+
+								</button>
+							</div>
+							<span class="invalid-feedback" show-error [errors]="form.get('time').errors"
+								label="Time of the Information"></span>
+						</div>
+
+					</div>
+
+					<!-- Date of Notification  -->
+					<div class="form-group col-md-3">
+						<label class="i-field-required">Date of Notification</label>
+						<div class="input-group" [ngClass]="{
+									'is-invalid':
+										form.get('date_of_notification').errors &&
+										(form.get('date_of_notification').touched || isSubmitted)
+								}">
+							<input class="form-control" placeholder="dd-mm-yyyy" readonly [owlDateTime]="date_of_notification"
+								[owlDateTimeTrigger]="date_of_notification" formControlName="date_of_notification" [max]="today"
+								[ngClass]="{
+										'is-invalid':
+											form.get('date_of_notification').errors &&
+											(form.get('date_of_notification').touched || isSubmitted)
+									}" />
+							<owl-date-time [disabled]="viewOnly" #date_of_notification></owl-date-time>
+
+							<div class="input-group-append">
+								<button class="btn btn-primary trigger" [owlDateTimeTrigger]="date_of_notification"
+									[disabled]="viewOnly" type="button">
+									<i class="fas fa-calendar text-white"></i>
+								</button>
+							</div>
+							<span class="invalid-feedback" show-error [errors]="form.get('date_of_notification').errors"
+								label="Date of notification"></span>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex justify-content-end" *ngIf="!viewOnly">
+					<button type="submit" class="btn btn-success btn-md font-weight-400">
+						Save
+					</button>
+				</div>
+			</form>
+		</div>
+	</kt-portlet-body>
+	<!-- end::Body (attribute: ktPortletBody) -->
+</kt-portlet>

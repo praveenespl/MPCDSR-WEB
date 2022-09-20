@@ -1,0 +1,22 @@
+@import "../../../../../assets/sass/mat-table.scss";
+
+.form_array_index{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight: 500;
+    margin-left: 1rem;
+}
+.remove_button{
+    cursor: pointer;
+    mat-icon{
+    margin-top: 1.3rem;
+    color: #000;
+    }
+}
+label{
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.02rem;
+}

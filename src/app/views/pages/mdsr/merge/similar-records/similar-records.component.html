@@ -1,0 +1,111 @@
+<h1 mat-dialog-title>Found some simillar record</h1>
+<div mat-dialog-content>
+	<p class="text-danger">Select duplicates and hit merge.</p>
+
+	<mat-radio-group [color]="'primary'" [(ngModel)]="form.keep">
+		<table
+			mat-table
+			[dataSource]="dataSource"
+			class="w-100"
+			matSort
+			matSortDisableClear
+			multiTemplateDataRows
+		>
+			<ng-container matColumnDef="#">
+				<th mat-header-cell *matHeaderCellDef></th>
+				<td mat-cell *matCellDef="let row">
+					<mat-checkbox
+						[color]="'primary'"
+						(change)="onCheckboxChange($event, row.id)"
+						#checkbox
+					></mat-checkbox>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="keep">
+				<th mat-header-cell *matHeaderCellDef>Keep</th>
+				<td mat-cell *matCellDef="let row">
+					<mat-radio-button
+						[value]="row.id"
+						*ngIf="form.merge.indexOf(row.id) > -1"
+					></mat-radio-button>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="mcts_id">
+				<th mat-header-cell *matHeaderCellDef>Mcts id</th>
+				<td mat-cell *matCellDef="let row">{{ row.mcts_id }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="name">
+				<th mat-header-cell *matHeaderCellDef>Name of Deceased</th>
+				<td mat-cell *matCellDef="let row">{{ row.getName }}</td>
+			</ng-container>
+			<ng-container matColumnDef="husband">
+				<th mat-header-cell *matHeaderCellDef>Husband</th>
+				<td mat-cell *matCellDef="let row">
+					{{ row.husband_name }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="state">
+				<th mat-header-cell *matHeaderCellDef>State</th>
+				<td mat-cell *matCellDef="let row">{{ row.state_id.statename }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="district">
+				<th mat-header-cell *matHeaderCellDef>District</th>
+				<td mat-cell *matCellDef="let row">
+					{{ row.district_id.districtname }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="block">
+				<th mat-header-cell *matHeaderCellDef>Block</th>
+				<td mat-cell *matCellDef="let row">
+					{{ row.block_id.subdistrictname }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="village">
+				<th mat-header-cell *matHeaderCellDef>Village</th>
+				<td mat-cell *matCellDef="let row">
+					{{ row?.village_id?.villagename || "--" }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="place_of_death">
+				<th mat-header-cell *matHeaderCellDef>Place of death</th>
+				<td mat-cell *matCellDef="let row">{{ row.place_of_death }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="remark">
+				<th mat-header-cell *matHeaderCellDef>Remark</th>
+				<td mat-cell *matCellDef="let row">{{ row.remark }}</td>
+			</ng-container>
+
+			<!-- <ng-container matColumnDef="action">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let row" style="width: 40px;">
+				<a
+				href="javascript:void(0)"
+					placement="top"
+					[ngbTooltip]="'View similar'"
+					ngbTooltipClass="kt-tooltip"
+					>
+					<mat-icon>remove_red_eye</mat-icon>
+				</a>
+			</td>
+		</ng-container> -->
+			<!--  -->
+			<tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+			<tr mat-row *matRowDef="let row; columns: columns"></tr>
+		</table>
+	</mat-radio-group>
+</div>
+<div mat-dialog-actions class="justify-content-end">
+	<button mat-button [mat-dialog-close]="false">Cancel</button>
+	<button mat-raised-button [mat-dialog-close]="true" color="primary">
+		Merge
+	</button>
+</div>

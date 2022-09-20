@@ -1,0 +1,140 @@
+<kt-portlet>
+	<kt-portlet-header
+		[title]="'Notified Vs Reviewed Analysis'"
+		[class]="'kt-portlet__head--lg'"
+	>
+		<!-- [viewLoading$]="dataSource.loading$" -->
+		<ng-container ktPortletTools> </ng-container>
+		<ng-container ktPortletTools>
+			&nbsp;&nbsp;
+			<button mat-raised-button color="primary" (click)="showFilers()">
+				<i class="fas fa-filter"></i>
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+
+	<kt-portlet-body class="">
+		<div class="position-relative" style="min-height: 200px;">
+			<!-- <div class="loading-shade" *ngIf="isLoadingResults || isMaxLimitReached">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+				<div class="example-rate-limit-reached" *ngIf="isMaxLimitReached">
+					Please wait...
+				</div>
+			</div> -->
+
+			<div class="row justify-content-between">
+				<div class="col-md-4 form-group mt-4">
+					<input
+						type="text"
+						placeholder="Filter..."
+						class="form-control"
+						(keyup)="applyFilter($event)"
+					/>
+				</div>
+				<div class="col mt-4">
+					<div class="d-flex justify-content-end">
+						<button
+							class="btn btn-primary btn-sm"
+							(click)="exporter.exportTable('xlsx')"
+						>
+							XLSX
+						</button>
+						<button
+							class="btn btn-primary btn-sm ml-2"
+							(click)="exporter.exportTable('csv')"
+						>
+							CSV
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-container">
+				<table
+					class="w-100"
+					matTableExporter
+					#exporter="matTableExporter"
+					mat-table
+					[dataSource]="dataSource"
+					matSort
+				>
+					<ng-container *ngFor="let column of columns">
+						<ng-container
+							[matColumnDef]="column.key"
+							*ngIf="!column?.isActionField"
+						>
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>
+								{{ column?.name }}
+							</th>
+
+							<td mat-cell *matCellDef="let row">
+								{{ objectPath.get(row, column?.key) || "--" }}
+							</td>
+
+							<td mat-footer-cell *matFooterCellDef>{{ calculateTotal(column.key) }}</td>
+						</ng-container>
+					</ng-container>
+
+					<ng-container matColumnDef="Deceased Woman Name">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header>
+							Deceased Woman Name
+						</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.getName }}
+						</td>
+						<td mat-footer-cell *matFooterCellDef></td>
+					</ng-container>
+					
+					<!-- ACTION FIELDS -->
+					<ng-container matColumnDef="Sno.">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header>Sno.</th>
+						<td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+						<!--  -->
+						<td [attr.colspan]="columnsToDisplay.length - footerToDisplay.length + 1" mat-footer-cell *matFooterCellDef>Total </td>
+					</ng-container>
+
+					<ng-container matColumnDef="#Total Reviewed">
+						<th mat-header-cell *matHeaderCellDef>#Total Reviewed</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.both + row.form5 + row.form4 }}
+						</td>
+						<td mat-footer-cell *matFooterCellDef>{{calculateTotal('#Total Reviewed')}}</td>
+					</ng-container>
+
+					<ng-container matColumnDef="#Review Pending">
+						<th mat-header-cell *matHeaderCellDef>#Review Pending</th>
+						<td mat-cell *matCellDef="let row">
+							{{ row.notifiedDeath - (row.both + row.form5 + row.form4) }}
+						</td>
+						<td mat-footer-cell *matFooterCellDef>{{calculateTotal('#Review Pending')}}</td>
+					</ng-container>
+					<!--  -->
+
+					<tr
+						mat-header-row
+						*matHeaderRowDef="columnsToDisplay; sticky: true"
+					></tr>
+					<tr
+						mat-row
+						*matRowDef="let dataSource; columns: columnsToDisplay"
+					></tr>
+					<tr mat-footer-row *matFooterRowDef="footerToDisplay; sticky: true"></tr>
+
+					<!-- Group header -->
+					<ng-container matColumnDef="groupHeader">
+						<td mat-cell colspan="999" *matCellDef="let group">
+							<strong>{{group[groupByColumns[group.level-1]]}} </strong>
+						</td>
+					</ng-container>
+
+					<tr
+						mat-row
+						*matRowDef="let row; columns: ['groupHeader']; when: isGroup"
+					></tr>
+				</table>
+			</div>
+
+			<mat-paginator [pageSize]="50"></mat-paginator>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>
