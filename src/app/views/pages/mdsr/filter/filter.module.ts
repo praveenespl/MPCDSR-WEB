@@ -42,6 +42,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
   entryComponents:[
     FormFilterComponent,
     ReportFiliterComponent
-  ]
+  ],
+  exports:[ ReportFiliterComponent]
+
 })
 export class FilterModule { }

@@ -1,25 +1,24 @@
-<h1 mat-dialog-title>&nbsp;&nbsp;Filter 
-    <button type="button" class="float-right close" aria-label="Close" (click)="onNoClick()">
+<h1 mat-dialog-title>Filter 
+    <button type="button" class="float-right close" aria-label="Close" (click)="onYesClick()">
         <span aria-hidden="true">&times;</span>
       </button>
       <hr/>
 </h1>
-
+<!-- {{items|json}} -->
 <div mat-dialog-content style="overflow: visible;">
     <form [formGroup]="filterForm">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2" *ngIf="isShowState">
                 <label for="usr">State<span style="color: red;">*</span></label>
                 <ng-select [items]="states"
                     bindLabel="statename"
                     bindValue="statecode"
                     placeholder="Select item"
                     appendTo="body"
-                   
                     formControlName="state_id" (change)="getDistrictsOnStateBasis($event)">
                 </ng-select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2" *ngIf="isShowDistrict">
                 <label for="usr">District</label>
                 <ng-select [items]="districts"
                     bindLabel="districtname"
@@ -31,7 +30,7 @@
                 </ng-select>
   
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2" *ngIf="isShowBlock">
                 <label for="usr">Block</label>
                 <ng-select [items]="blocks"
                     bindLabel="subdistrictname"
@@ -40,27 +39,25 @@
                     appendTo="body"
             
                     formControlName="block_id" >
-                </ng-select>
-         
+                </ng-select>         
             </div>
-            <div class="col-md-3">
+            <!-- <div class="col-md-2">
                 <label for="usr">Group On<span style="color: red;">*</span></label>
                 <ng-select [items]="groups"
                     bindLabel="name"
                     bindValue="id"
                     placeholder="Select item"
                     appendTo="body"
-            
                     formControlName="accessupto" >
                 </ng-select>
-            </div>
-            <div class="col-md-12"><br/></div>
-            <div class="col-md-3">
+            </div> -->
+            
+            <div class="col-md-2">
                 <label for="usr">From Date<span style="color: red;">*</span></label>
                 <input class="form-control" type="date"  formControlName="from_date">
             </div>
-            <div class="col-md-3">
-                <label for="usr">From Date<span style="color: red;">*</span></label>
+            <div class="col-md-2">
+                <label for="usr">To Date<span style="color: red;">*</span></label>
                 <input class="form-control" type="date"  formControlName="to_date">
             </div>
         </div>
@@ -69,8 +66,8 @@
             <div class="col-md-12"><br/><br/></div>
             <div class="col-md-12">
                 
-                <button class="mat-raised-button mat-button-base btn-secondary"  type="button" (click)="onNoClick()">Exit</button> &nbsp;&nbsp;
-                <button class="mat-raised-button mat-button-base mat-primary"  type="button" [mat-dialog-close]="filterForm" color="accent" [disabled]="filterForm.invalid" cdkFocusInitial>Execute</button>
+                <button class="mat-raised-button mat-button-base btn-secondary"  type="button" (click)="onClose()">Exit</button> &nbsp;&nbsp;
+                <button class="mat-raised-button mat-button-base mat-primary"  type="button" (click)="onClose(filterForm.value)" cdkFocusInitial>Execute</button>
                 
             </div>
         </div>
