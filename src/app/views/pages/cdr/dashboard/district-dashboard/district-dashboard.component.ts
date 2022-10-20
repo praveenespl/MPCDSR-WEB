@@ -242,7 +242,7 @@ export class DistrictDashboardComponent implements OnInit {
 		if (arg.type == "CBMDSR") {
 			whereParam['palce_of_death'] = { '$in': ["Home", "In transit", "Other"] }
 		} else if (arg.type == "FBMDSR") {
-			whereParam['palce_of_death'] = { '$in': ["Hospital"] }
+			whereParam['palce_of_death'] = { '$in': ["Hospital", "Health facility"] }
 		}
 		whereParam['subdistrictcode'] = arg.subdistrictcode;
 		this.cdrForm1Service.getNotificationDetails(whereParam).subscribe(res => {

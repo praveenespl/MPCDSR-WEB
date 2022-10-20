@@ -89,19 +89,20 @@ export class StateDashboardComponent implements OnInit {
 			statecode: this.state_id ? this.state_id : undefined,
 			districtcode: this.district_id ? this.district_id : undefined,
 			subdistrictcode: this.block_id ? this.block_id : undefined,
-			updatedAt: {
-				"$gte": this.fromDate,
-				"$lte": this.toDate
-			}
+			// updatedAt: {
+			// 	"$gte": this.fromDate,
+			// 	"$lte": this.toDate
+			// }
 		}
 		this.loading = true;
 		console.log("this.where:  ",this.where);
 		// @ Dashboard Block Count
 		this.cdrForm1Service.getDashboardBlockCount(this.where).subscribe(res => {
+			console.log("Malik",res)
 			this.cdrDeathCount = res[0].totDeath;
 			this.cdrVerified = res[0].form2;
-			this.cdrPending = this.cdrDeathCount - (res[0].form3A + res[0].form3B + res[0].form4A + res[0].form4B);
-			this.cdrDone = this.cdrDeathCount - this.cdrPending;
+			this.cdrDone = this.cdrDeathCount - (res[0].form3C + res[0].form4A + res[0].form4B);
+			this.cdrPending = this.cdrDeathCount - this.cdrDone;
 			this.loading = false;
 			this.cdf.detectChanges();
 		}, () => {
