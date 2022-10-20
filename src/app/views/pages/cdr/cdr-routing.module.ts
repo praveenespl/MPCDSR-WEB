@@ -24,6 +24,10 @@ const routes: Routes = [
 	{
 		path: "form5",
 		loadChildren: () => import("./form5/form5.module").then(m => m.Form5Module)
+	},
+	{
+		path: "reports",
+		loadChildren: () => import("./cdr-reports/cdr-reports.module").then(m => m.CdrReportsModule)
 	}
 ];
 

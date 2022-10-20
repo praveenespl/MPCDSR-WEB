@@ -1,54 +1,66 @@
 import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef,MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { StateService } from '../../../../../services/locality/state.service';
 import moment from 'moment';
 import { DistrictService } from '../../../../../services/locality/district.service';
 import { BlockService } from '../../../../../services/locality/block.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { fromJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
+import { iif } from 'rxjs';
 @Component({
   selector: 'kt-report-filiter',
   templateUrl: './report-filiter.component.html',
-  styleUrls: ['./report-filiter.component.scss']
+  styleUrls: ['./report-filiter.component.scss'],
 })
 export class ReportFiliterComponent implements OnInit {
   states:State;
   districts:District;
   blocks:Block;
-  groups;
+  // groups;
   currentUser;
   filterForm = new FormGroup({
     state_id: new FormControl(''),
     district_id: new FormControl(''),
     block_id: new FormControl(''),
-    accessupto:new FormControl('National'),
+    accessupto:new FormControl(''),
     from_date:new FormControl(''),
     to_date : new FormControl('')
   });
-  constructor(private blockservice:BlockService, private districtservice:DistrictService,private stateservice:StateService,public dialogRef: MatDialogRef<ReportFiliterComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private changedetectref:ChangeDetectorRef) {}
+  constructor(private blockservice:BlockService, 
+    private districtservice:DistrictService,
+    private stateservice:StateService,
+    public dialogRef: MatDialogRef<ReportFiliterComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    
+    private changedetectref:ChangeDetectorRef) {}
 
   ngOnInit() {
     this.onLoad();
+    this.updateVisibilityFields();
   }
+  isShowState: boolean=false;
+
   onLoad() {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    console.log('this.user',this.currentUser)
     let month=parseInt(moment().format("MM"));
     let year= parseInt(moment().format("YYYY"));
     this.filterForm.patchValue({from_date:moment(`${year}-${month}-01`)})
 
-    this.groups=[{
-      "id":"National",
-      "name":"State"
-    },{
-      "id":"State",
-      "name":"District"
-    },{
-      "id":"District",
-      "name":"Block"
-    }]
+    // this.groups=[{
+    //   "id":"National",
+    //   "name":"State"
+    // },{
+    //   "id":"State",
+    //   "name":"District"
+    // },{
+    //   "id":"District",
+    //   "name":"Block"
+    // }]
+   
     let state_id:State =this.currentUser && (this.currentUser.accessupto === "Block" || this.currentUser.accessupto === "District" || this.currentUser.accessupto ==="State")
     ? this.currentUser.user_state_id.statecode
     : null;
+    
     if(state_id!=null){
       this.filterForm.patchValue({"state_id":state_id})
       this.changedetectref.detectChanges();
@@ -61,14 +73,15 @@ export class ReportFiliterComponent implements OnInit {
     if(district_id!=null){
       this.filterForm.patchValue({"district_id":district_id});
     }
-    let block_id=
-    this.currentUser && this.currentUser.accessupto === "Block"
+    let block_id= this.currentUser && this.currentUser.accessupto === "Block"
     ? this.currentUser.user_block_id.subdistrictcode : null;
     if(block_id!=null){
       this.filterForm.patchValue({"block_id":block_id});
     }
     this.changedetectref.detectChanges();
-
+if(this.currentUser.accessUpto === "National"){
+  this.isShowState = true;
+}
     // const data = {
     //   state_id:
     //     this.currentUser && (this.currentUser.accessupto === "Block" || this.currentUser.accessupto === "District" || this.currentUser.accessupto ==="State")
@@ -85,12 +98,13 @@ export class ReportFiliterComponent implements OnInit {
     //     : null,
     //   from_date: moment(`${year}-${month}-01`),
     //   to_date: moment()
-    
     //   };
+    
       
-      this.stateservice.getStates().subscribe(stateres=>{      
+      this.stateservice.getStates( ).subscribe(stateres=>{      
         this.states=JSON.parse(JSON.stringify(stateres));
      }) 
+    
      if(this.filterForm.value.state_id!='' || this.filterForm.value.state_id!=null){
       this.districtservice.getDistricts( this.filterForm.value.state_id).subscribe(districtres=>{
         this.districts=JSON.parse(JSON.stringify(districtres));
@@ -104,9 +118,33 @@ export class ReportFiliterComponent implements OnInit {
 
 
   }
+  isShowDistrict:boolean = false;
+  isShowBlock:boolean = false;
+  updateVisibilityFields(){
+    const accessUpto = this.currentUser.accessupto;
+    if(accessUpto==='National'){
+      this.isShowState=true;
+      this.isShowDistrict = true;
+      this.isShowBlock = true;
+    }else
+    if(accessUpto==='State'){
+      this.isShowState=false;
+      this.isShowDistrict = true;
+      this.isShowBlock = true;
+
+    }else if(accessUpto==='District'){
+      this.isShowState=false;
+      this.isShowDistrict = false;
+      this.isShowBlock = true;
+    }else if(accessUpto==='Block'){
+      this.isShowState=false;
+      this.isShowDistrict = false;
+      this.isShowBlock = false;
+    }
+  }
   
-  onNoClick():void {
-    this.dialogRef.close();
+  onClose(data?:any):void {
+    this.dialogRef.close(data);
    // this.dialogRef.close({ action: 1, data: event.data });
   }
   getDistrictsOnStateBasis(state){

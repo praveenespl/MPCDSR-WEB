@@ -95,10 +95,8 @@ export class StateDashboardComponent implements OnInit {
 			// }
 		}
 		this.loading = true;
-		console.log("this.where:  ",this.where);
 		// @ Dashboard Block Count
 		this.cdrForm1Service.getDashboardBlockCount(this.where).subscribe(res => {
-			console.log("Malik",res)
 			this.cdrDeathCount = res[0].totDeath;
 			this.cdrVerified = res[0].form2;
 			this.cdrDone = this.cdrDeathCount - (res[0].form3C + res[0].form4A + res[0].form4B);
