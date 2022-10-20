@@ -69,7 +69,7 @@ export class CdrReportsComponent implements OnInit {
 		let param = {
 			previousYearFromDate: this.fromDate,
 			previousYearToDate: this.toDate,
-			where: { 
+			where: { date_of_death:{between: [this.fromDate, this.toDate]},
 			statecode: this.state_id ? this.state_id : undefined,
 			districtcode: this.district_id ? this.district_id : undefined,
 			subdistrictcode: this.block_id ? this.block_id : undefined,
@@ -77,41 +77,13 @@ export class CdrReportsComponent implements OnInit {
 			accessUpto: this.currentUser.accessupto
 		}
 
-    // let param = {};//this.where;
-		// param = {
-		// 	updatedAt: {
-		// 		"$gte": (moment().year() - 1) + "-" + this.mon + "-" + "01",
-		// 		"$lte": moment().year() + "-" + this.mon + "-" + this.day
-		// 	}
-		// }
-		// // if (arg.type == "CBMDSR") {
-		// // 	whereParam['palce_of_death'] = { '$in': ["Home", "In transit", "Other"] }
-		// // } else if (arg.type == "FBMDSR") {
-		// // 	whereParam['palce_of_death'] = { '$in': ["Hospital"] }
-		// // }
 	const params=	{"where":param.where,"include":["cdrForm2s","cdrForm3s","cdrForm3bs","cdrForm3cs","cdrForm4as","cdrForm4bs"]}
-     console.log('passing this param',params);
     this.cdrForm1Service.getList(params).subscribe(res => {
-		console.log(res)
+	
     this.reportResponse = new MatTableDataSource(res);
 		this.reportResponse.paginator =this.paginatorForReportResponseDetail;
 
     })
-	// forCdrReportDetailExportTable(){
-	// 	let dataToExport = this.reportResponse.data.map((x) => ({
-	// 		"District": x.address.districtname,
-	// 		"Block": x.address.subdistrictname,
-	// 		//"Village": x.village_id.villagename,
-	// 		"Deceased Women Name": x.name,
-	// 		"Husband Name": x.mother_name,
-	// 		"Place of Death": x.palce_of_death,
-	// 		"Death Date Time": x.date_of_death,
-	// 	}));
-	// 	const workSheet = XLSX.utils.json_to_sheet(dataToExport);
-	// 	const workBook: XLSX.WorkBook = XLSX.utils.book_new();
-	// 	XLSX.utils.book_append_sheet(workBook, workSheet, "SheetName");
-	// 	XLSX.writeFile(workBook, "Report For Child Deaths Details.xlsx");
-	// }
 
   }
   showFilters() {
@@ -126,17 +98,15 @@ export class CdrReportsComponent implements OnInit {
 		dialogRef.afterClosed().subscribe(res => {
 			console.log('res',res)
 			this.params= {
+				where: { date_of_death:{between: [res.from_date, res.to_date]},
 				statecode: res.state_id ? res.state_id : undefined,
 				districtcode: res.district_id ? res.district_id : undefined,
 				subdistrictcode: res.block_id ? res.block_id : undefined,
-				updatedAt: {
-					"$gte": res.from_date,
-					"$lte": res.to_date
-				}
 			}
-			this.cdrForm1Service.getNotificationDetails(this.params).subscribe(res => {
-			console.log(res)
-
+			}
+	  const parameter=	{"where":this.params.where,"include":["cdrForm2s","cdrForm3s","cdrForm3bs","cdrForm3cs","cdrForm4as","cdrForm4bs"]}
+			
+			this.cdrForm1Service.getList(parameter).subscribe(res => {
 				this.reportResponse = new MatTableDataSource(res);
 					this.reportResponse.paginator =this.paginatorForReportResponseDetail;
 			
@@ -161,8 +131,30 @@ export class CdrReportsComponent implements OnInit {
 	}else if(formname=='form4B'){
 		 this.router.navigateByUrl(`/cdr/form4/b/${data.cdrForm4bs[0].id}?view=true`)
 	}
-    
   }
+  forCdrReportDetailExportTable(){
+	let dataToExport = this.reportResponse.data.map((x) => ({
+		"state":x.address.statename,
+		"District": x.address.districtname,
+		"Block": x.address.subdistrictname,
+		//"Village": x.village_id.villagename,
+		"Child Name": x.name,
+		"Mother Name": x.mother_name,
+		"Place of Death": x.palce_of_death,
+		"Death Date Time": x.date_of_death,
+		"Form 1":'Yes',
+		"Form 2":x.cdrForm2s.length > 0 ? 'yes' : 'No',
+		"Form 3A":x.cdrForm3s.length > 0 ? "Yes" : "No",
+		"Form 3B":x.cdrForm3bs.length > 0 ? "Yes" : "No",
+		"Form 3C":x.cdrForm3cs.length > 0 ? "Yes" : "No",
+		"Form 4A":x.cdrForm4as.length > 0 ? "Yes" : "No",
+		"Form 4B":x.cdrForm4bs.length > 0 ? "Yes" : "No"
+	}));
+	const workSheet = XLSX.utils.json_to_sheet(dataToExport);
+	const workBook: XLSX.WorkBook = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(workBook, workSheet, "SheetName");
+	XLSX.writeFile(workBook, "Report For Child Deaths Details.xlsx");
+}
 
 }
 
