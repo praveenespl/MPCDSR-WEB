@@ -329,6 +329,7 @@ export class Form1Component implements OnInit, DataList {
 			})
 			return;
 		}
+		
 		localStorage.removeItem("data");
 		localStorage.setItem("data", JSON.stringify(row));
 		this.router.navigateByUrl(`/mdsr/${form}/add`, { state: { row } })

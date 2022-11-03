@@ -14,7 +14,6 @@ interface Column {
 export interface DataList extends AfterViewInit {
 	pageSize: number;
 	columns: Column[];
-
 	totalRecords: number;
 	isLoadingResults: boolean;
 	isMaxLimitReached: boolean;

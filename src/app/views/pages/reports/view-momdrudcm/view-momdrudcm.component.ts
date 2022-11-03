@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class ViewMOMDRUDCMComponent implements OnInit {
 
   constructor() { }
-
+   displayedColumns:string[]=['dateOfMeeting','maternalDeathsFromApril','maternalDeathsFromAprilReviewed','maternalDeathsPM','view'];
   ngOnInit() {
+
   }
 
 }

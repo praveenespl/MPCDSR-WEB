@@ -1,1 +1,43 @@
-<h3 class = "text-center">Report is Inprocess...</h3>
+<!-- <h3 class = "text-center">Report is Inprocess...</h3> -->
+<kt-portlet>
+	<kt-portlet-header 
+	[title]="'MOM-DRUDCM Report'" 
+	[class]="'kt-portlet__head--lg'"  >
+	</kt-portlet-header>
+
+<kt-portlet-body>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="dateOfMeeting">
+            <th mat-header-cell *matHeaderCellDef> Date Of Meeting </th>
+            <td mat-cell *matCellDef="let element"> 'amir' </td>
+          </ng-container>
+          <ng-container matColumnDef="maternalDeathsFromApril">
+            <th mat-header-cell *matHeaderCellDef> Maternal Deaths From April</th>
+            <td mat-cell *matCellDef="let element"> 'an' </td>
+          </ng-container>
+          <ng-container matColumnDef="maternalDeathsFromAprilReviewed">
+            <th mat-header-cell *matHeaderCellDef> Maternal Deaths From April Reviewed</th>
+            <td mat-cell *matCellDef="let element"> 'aniket' </td>
+          </ng-container>
+          <ng-container matColumnDef="maternalDeathsPM">
+            <th mat-header-cell *matHeaderCellDef> Maternal Deaths PM</th>
+            <td mat-cell *matCellDef="let element">'amir' </td>
+          </ng-container>
+          <ng-container matColumnDef="view">
+						<th mat-header-cell *matHeaderCellDef>View</th>
+						<td mat-cell *matCellDef="let row">
+							<!-- <span *ngIf="row.createdBy===currentUser.id"><a [routerLink]="[row.id]" matTooltip="Edit Record">
+								<mat-icon>edit</mat-icon>
+							</a>
+						</span> -->
+
+							<a [routerLink]="[row.id]" [queryParams]="{ view: true }" matTooltip="View Record">
+								<mat-icon>remove_red_eye</mat-icon>
+							</a>
+						</td>
+					</ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</kt-portlet-body>
+</kt-portlet>

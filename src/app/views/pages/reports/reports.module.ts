@@ -17,7 +17,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ViewMOMDRUDCMComponent } from './view-momdrudcm/view-momdrudcm.component';
 
 @NgModule({
-	declarations: [StatsComponent,FilterModule, NotifyVsReviewedComponent, MOMFBMDRCComponent, MOMDMDRCComponent, MOMDRUDCMComponent, AlertComponent, ViewMOMDRUDCMComponent],
+	declarations: [StatsComponent, NotifyVsReviewedComponent, MOMFBMDRCComponent, MOMDMDRCComponent, MOMDRUDCMComponent, AlertComponent, ViewMOMDRUDCMComponent],
 	imports: [
 		CommonModule,
 		ReportsRoutingModule,
@@ -27,7 +27,7 @@ import { ViewMOMDRUDCMComponent } from './view-momdrudcm/view-momdrudcm.componen
 		ReactiveFormsModule,
 		MatInputModule,
 		NgbModule,
-		FilterModule,
+	    FilterModule,
 		SharedComponentsModule,
 		MatButtonModule,
 		MatTooltipModule,

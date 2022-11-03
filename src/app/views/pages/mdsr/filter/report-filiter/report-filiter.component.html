@@ -8,7 +8,7 @@
 <div mat-dialog-content style="overflow: visible;">
     <form [formGroup]="filterForm">
         <div class="row">
-            <div class="col-md-2" *ngIf="isShowState">
+            <div class="col-md-2" *ngIf="isShowState" >
                 <label for="usr">State<span style="color: red;">*</span></label>
                 <ng-select [items]="states"
                     bindLabel="statename"
@@ -25,8 +25,7 @@
                     bindValue="districtcode"
                     placeholder="Select item"
                     appendTo="body"
-            
-                    formControlName="district_id" (change)="getBlocksOnDistrictBasis($event)">
+                    formControlName="district_id"  (change)="getBlocksOnDistrictBasis($event)">
                 </ng-select>
   
             </div>
@@ -37,8 +36,7 @@
                     bindValue="subdistrictcode"
                     placeholder="Select item"
                     appendTo="body"
-            
-                    formControlName="block_id" >
+                    formControlName="block_id"  >
                 </ng-select>         
             </div>
             <!-- <div class="col-md-2">
@@ -54,11 +52,11 @@
             
             <div class="col-md-2">
                 <label for="usr">From Date<span style="color: red;">*</span></label>
-                <input class="form-control" type="date"  formControlName="from_date">
+                <input class="form-control" type="date" formControlName="from_date">
             </div>
             <div class="col-md-2">
                 <label for="usr">To Date<span style="color: red;">*</span></label>
-                <input class="form-control" type="date"  formControlName="to_date">
+                <input class="form-control" type="date" formControlName="to_date">
             </div>
         </div>
         
@@ -66,9 +64,9 @@
             <div class="col-md-12"><br/><br/></div>
             <div class="col-md-12">
                 
-                <button class="mat-raised-button mat-button-base btn-secondary"  type="button" (click)="onClose()">Exit</button> &nbsp;&nbsp;
-                <button class="mat-raised-button mat-button-base mat-primary"  type="button" (click)="onClose(filterForm.value)" cdkFocusInitial>Execute</button>
-                
+                <button class="mat-raised-button mat-button-base btn-secondary"  type="button" (click)="onClose()">Close</button> &nbsp;&nbsp;
+                <button class="mat-raised-button mat-button-base mat-primary"  type="button"  (click)="onClose(filterForm.value)" cdkFocusInitial>View</button>
+
             </div>
         </div>
     </form>

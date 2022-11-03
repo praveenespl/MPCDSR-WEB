@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
-import { MatDialogRef,MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { StateService } from '../../../../../services/locality/state.service';
 import moment from 'moment';
 import { DistrictService } from '../../../../../services/locality/district.service';
@@ -30,21 +30,15 @@ export class ReportFiliterComponent implements OnInit {
     private stateservice:StateService,
     public dialogRef: MatDialogRef<ReportFiliterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    
+   
     private changedetectref:ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.onLoad();
-    this.updateVisibilityFields();
-  }
-  isShowState: boolean=false;
-
-  onLoad() {
+    // this.onLoad();
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    console.log('this.user',this.currentUser)
     let month=parseInt(moment().format("MM"));
     let year= parseInt(moment().format("YYYY"));
-    this.filterForm.patchValue({from_date:moment(`${year}-${month}-01`)})
+    
 
     // this.groups=[{
     //   "id":"National",
@@ -79,8 +73,8 @@ export class ReportFiliterComponent implements OnInit {
       this.filterForm.patchValue({"block_id":block_id});
     }
     this.changedetectref.detectChanges();
-if(this.currentUser.accessUpto === "National"){
-  this.isShowState = true;
+   if(this.currentUser.accessUpto === "National"){
+   this.isShowState = true;
 }
     // const data = {
     //   state_id:
@@ -116,10 +110,17 @@ if(this.currentUser.accessUpto === "National"){
       })
      }
 
-
+    this.updateVisibilityFields();
   }
+  isShowState: boolean=false;
   isShowDistrict:boolean = false;
   isShowBlock:boolean = false;
+  myDisabledCondition:boolean=true;
+  onLoad() {
+    
+
+  }
+  
   updateVisibilityFields(){
     const accessUpto = this.currentUser.accessupto;
     if(accessUpto==='National'){
@@ -142,7 +143,7 @@ if(this.currentUser.accessUpto === "National"){
       this.isShowBlock = false;
     }
   }
-  
+
   onClose(data?:any):void {
     this.dialogRef.close(data);
    // this.dialogRef.close({ action: 1, data: event.data });
@@ -156,6 +157,7 @@ if(this.currentUser.accessUpto === "National"){
     if(state!=undefined){
       this.districtservice.getDistricts(state.statecode).subscribe(districtres=>{
         this.districts=JSON.parse(JSON.stringify(districtres));
+        this.myDisabledCondition=false;
       })
     }
    
@@ -166,8 +168,9 @@ if(this.currentUser.accessUpto === "National"){
     if(district!=undefined){
       this.blockservice.getBlocks(district.districtcode).subscribe(blockres=>{
         this.blocks=JSON.parse(JSON.stringify(blockres));
+        this.myDisabledCondition=false;
       })
     }
   }
-
+  
 }

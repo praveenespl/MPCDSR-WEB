@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CdrReportsComponent } from './cdr-reports/cdr-reports.component';
 import { RouterModule } from "@angular/router";
 import { FilterModule } from '../../mdsr/filter/filter.module';
-import { MatIconModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
+import { MatIconModule, MatPaginatorModule , MatSortModule, MatTableModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { PartialsModule } from '../../../../views/partials/partials.module';

@@ -283,6 +283,7 @@ export class FormComponent implements OnInit {
 		} else {
 			this.viewOnly = false;
 		}
+	
 		this.activatedRoute.params.pipe(take(1)).subscribe(({ id, view }) => {
 			if (id) {
 				this.cdrForm1Service.getOne(id).subscribe((response) => {
@@ -325,10 +326,12 @@ export class FormComponent implements OnInit {
 					if(this.viewOnly){
 						this.form.controls.address.disable()
 					}
+					
 					setTimeout(() => {
 						this.changeDetectorRef.detectChanges();
 					}, 500);
 				});
+				
 			} else {
 				const state =
 					this.currentUser &&
