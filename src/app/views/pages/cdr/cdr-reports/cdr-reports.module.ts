@@ -11,10 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { CdrReportBreakUpComponent } from './cdr-report-break-up/cdr-report-break-up.component';
 
 
 @NgModule({
-  declarations: [CdrReportsComponent],
+  declarations: [CdrReportsComponent, CdrReportBreakUpComponent],
   imports: [
     CommonModule,
     PartialsModule,
@@ -34,7 +35,10 @@ import { MatRadioModule } from '@angular/material/radio';
         path: '',
         component: CdrReportsComponent
       },
-
+      {
+        path: 'breakUp',
+        component: CdrReportBreakUpComponent
+      },
     ])
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

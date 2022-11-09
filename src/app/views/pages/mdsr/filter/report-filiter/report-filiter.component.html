@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Filter 
-    <button type="button" class="float-right close" aria-label="Close" (click)="onYesClick()">
+    <!-- <button type="button" class="float-right close" aria-label="Close" >
         <span aria-hidden="true">&times;</span>
-      </button>
+      </button> -->
       <hr/>
 </h1>
 <!-- {{items|json}} -->
@@ -64,7 +64,7 @@
             <div class="col-md-12"><br/><br/></div>
             <div class="col-md-12">
                 
-                <button class="mat-raised-button mat-button-base btn-secondary"  type="button" (click)="onClose()">Close</button> &nbsp;&nbsp;
+                <button class="mat-raised-button mat-button-base btn-secondary"  type="button" (click)="onNoClick()">Close</button> &nbsp;&nbsp;
                 <button class="mat-raised-button mat-button-base mat-primary"  type="button"  (click)="onClose(filterForm.value)" cdkFocusInitial>View</button>
 
             </div>

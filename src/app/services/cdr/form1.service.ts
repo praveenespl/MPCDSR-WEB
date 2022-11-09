@@ -217,4 +217,17 @@ export class CdrForm1Service {
 		);
 	}
 	//Code end by ravindra
+	getCdrReportsDetails(criteria?:any) {
+		const url = api.cdr.form1.getCdrReportsDetails;
+		const params = { params: JSON.stringify(criteria || {})};
+		console.log(params)
+		return this.http.get<any>(url,{ params }).pipe(
+			tap(
+				() => {},
+				({ error: { error } }) => {
+					alert(error.message);
+				}
+			)
+		);
+	}
 }

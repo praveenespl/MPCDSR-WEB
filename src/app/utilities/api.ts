@@ -136,7 +136,8 @@ class MdsrFormCommanApis {
 	readonly maternalDeathTypesGraphData: string;
 	readonly fbmdrVsCbmdrSubmitted: string;
 	readonly getCDRMajorCausesPrevious: string;
-
+	// CDR Reports
+    readonly getCdrReportsDetails: string;
 	// CDR Dashboard
 	readonly getCDRDeathAgeWise:string;
 	readonly getCDRDeathForMap:string;
@@ -148,6 +149,7 @@ class MdsrFormCommanApis {
 		this.getFormsData = `${this.common}/getFormsData`
 		this.getExpectedVsActual = `${this.common}/getExpectedVsActual`;
 		this.getNotificationVsReviewData=`${this.common}/getNotificationVsReviewData`;
+		this.getCdrReportsDetails=`${this.common}/getCdrReportsDetails`;
 		this.getCDRDeathAgeWise = `${this.common}/getCDRDeathAgeWise`;
 		this.getCDRDeathForMap = `${this.common}/getCDRDeathForMap`;
 		this.getNotificationCount = `${this.common}/getNotificationCount`;

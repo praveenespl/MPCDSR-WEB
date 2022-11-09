@@ -148,6 +148,9 @@ export class ReportFiliterComponent implements OnInit {
     this.dialogRef.close(data);
    // this.dialogRef.close({ action: 1, data: event.data });
   }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
   getDistrictsOnStateBasis(state){
    // alert(statecode)
     this.filterForm.patchValue({district_id:''});

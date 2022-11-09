@@ -1,144 +1,10 @@
+<p>cdr-report-break-up works!</p>
 <kt-portlet>
 	<div class="col-md-12">
 		<button mat-raised-button color="primary" style="float:right;" (click)="showFilters()">
 			<i class="fas fa-filter"></i>
 		</button>
 	</div>
-</kt-portlet>
-
-<kt-portlet>
-	<kt-portlet-header [title]="'Report Child Death Details'" [class]="'kt-portlet__head--lg'">
-		<ng-container ktPortletTools>
-			<button class="mat-raised-button" (click)="forCdrReportDetailExportTable()"> Export</button>
-		</ng-container>
-	</kt-portlet-header>
-
-	<kt-portlet-body>
-		<div class="row">
-			<div style="overflow-y: auto; max-height: 320px;">
-				<table class="w-100 shadow" mat-table [dataSource]="reportResponse" MatSort>
-					<ng-container matColumnDef="sn">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>S.N.</th>
-						<td mat-cell *matCellDef="let row; let i = index">
-							{{paginatorForReportResponseDetail.pageSize *
-							paginatorForReportResponseDetail.pageIndex +
-							i +
-							1 }}.</td>
-					</ng-container>
-					<ng-container matColumnDef="statename">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
-						<td mat-cell *matCellDef="let element"> {{element?.address?.statename}} </td>
-					</ng-container>
-					<ng-container matColumnDef="districtname">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header> District </th>
-						<td mat-cell *matCellDef="let element"> {{element?.address?.districtname}} </td>
-					</ng-container>
-					<ng-container matColumnDef="subdistrictname">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header> Block </th>
-						<td mat-cell *matCellDef="let element"> {{element?.address?.subdistrictname}} </td>
-					</ng-container>
-					<ng-container matColumnDef="deceased_women_fname">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Child Name</th>
-						<td mat-cell *matCellDef="let element">{{element?.name}}
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="husband_name">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Mother Name</th>
-						<td mat-cell *matCellDef="let element"> {{element?.mother_name}} </td>
-					</ng-container>
-					<ng-container matColumnDef="birth_date_time">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Date and Time of Birth</th>
-						<td mat-cell *matCellDef="let element">{{element?.date_of_birth | date:'dd-MM-yyyy hh:mm'}}
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="death_date_time">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Date and Time of Death</th>
-						<td mat-cell *matCellDef="let element">{{element?.date_of_death | date:'dd-MM-yyyy hh:mm'}}
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="place_of_death">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Place of Death</th>
-						<td mat-cell *matCellDef="let element">{{element?.palce_of_death}} </td>
-					</ng-container>
-					<ng-container matColumnDef="form_1">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 1</th>
-						<td mat-cell *matCellDef="let element">
-							<div [ngClass]="{'text-primary' : true,'cursor-pointer':true }">
-								<a (click)="navigateToForm('form1',element)">Yes</a>
-							</div>
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="form_2">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 2</th>
-						<td mat-cell *matCellDef="let element">
-							<div ng-if="{element?.cdrForm2s?.length > 0 }"
-								[ngClass]="{'text-primary' : element?.cdrForm2s?.length>0,'text-danger':element?.cdrForm2s?.length===0,'cursor-pointer':element?.cdrForm2s?.length > 0 }">
-								<a (click)="navigateToForm('form2',element)">{{element?.cdrForm2s?.length > 0 ? "Yes" :
-									"No"}}</a>
-							</div>
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="form_3A">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3A</th>
-						<td mat-cell *matCellDef="let element">
-							<div ng-if="{element?.cdrForm3s?.length > 0 }"
-								[ngClass]="{'text-primary' : element?.cdrForm3s?.length>0,'text-danger':element?.cdrForm3s?.length===0,'cursor-pointer':element?.cdrForm3s?.length > 0 }">
-								<a (click)="navigateToForm('form3A',element)">{{element?.cdrForm3s?.length > 0 ? "Yes" :
-									"No"}}</a>
-							</div>
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="form_3B">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3B</th>
-						<td mat-cell *matCellDef="let element">
-							<div ng-if="{element?.cdrForm3bs?.length > 0 }"
-								[ngClass]="{'text-primary' : element?.cdrForm3bs?.length>0,'text-danger':element?.cdrForm3bs?.length===0,'cursor-pointer':element?.cdrForm3bs?.length > 0 }">
-								<a (click)="navigateToForm('form3B',element)">{{element?.cdrForm3bs?.length > 0 ? "Yes"
-									: "No"}}</a>
-							</div>
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="form_3C">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3c</th>
-						<td mat-cell *matCellDef="let element">
-							<div ng-if="{element?.cdrForm3cs?.length > 0 }"
-								[ngClass]="{'text-primary' : element?.cdrForm3cs?.length>0,'text-danger':element?.cdrForm3cs?.length===0,'cursor-pointer':element?.cdrForm3cs?.length > 0 }">
-								<a (click)="navigateToForm('form3C',element)">{{element?.cdrForm3cs?.length > 0 ? "Yes"
-									: "No"}}</a>
-							</div>
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="form_4A">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 4A</th>
-						<td mat-cell *matCellDef="let element">
-							<div ng-if="{element?.cdrForm4as?.length > 0 }"
-								[ngClass]="{'text-primary' : element?.cdrForm4as?.length>0,'text-danger':element?.cdrForm4as?.length===0,'cursor-pointer':element?.cdrForm4as?.length > 0 }">
-								<a (click)="navigateToForm('form4A',element)">{{element?.cdrForm4as?.length > 0 ? "Yes"
-									:"No"}}</a>
-							</div>
-						</td>
-					</ng-container>
-					<ng-container matColumnDef="form_4B">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 4B</th>
-						<td mat-cell *matCellDef="let element">
-							<div ng-if="{element?.cdrForm4bs?.length > 0 }"
-								[ngClass]="{'text-primary' : element?.cdrForm4bs?.length>0,'text-danger':element?.cdrForm4bs?.length===0,'cursor-pointer':element?.cdrForm4bs?.length > 0 }">
-								<a (click)="navigateToForm('form4B,element')">{{element?.cdrForm4bs?.length > 0 ? "Yes"
-									:"No"}}</a>
-							</div>
-						</td>
-					</ng-container>
-					<tr mat-header-row *matHeaderRowDef="displayedColumnsForBlockwiseMaternalDeathsDetail;sticky: true">
-					</tr>
-					<tr mat-row *matRowDef="let row; columns: displayedColumnsForBlockwiseMaternalDeathsDetail;">
-					</tr>
-				</table>
-				<mat-paginator #paginatorForReportResponseDetail [pageSize]="10"
-					[length]="reportResponse?.data?.length || 0" [pageSizeOptions]="[10, 20, 50, 100]"
-					showFirstLastButtons></mat-paginator>
-			</div>
-		</div>
-	</kt-portlet-body>
 </kt-portlet>
 <kt-portlet>
 	<kt-portlet-header [title]="'CDR Detail Reports'" [class]="'kt-portlet__head--lg'">
@@ -151,14 +17,14 @@
 
 	<kt-portlet-body>
 		<div style="overflow-y: auto; max-height: 320px;">
-			<table class="w-100 shadow" mat-table [dataSource]="cdrReportDetailsData" MatSort>
+			<table class="w-100 shadow" mat-table [dataSource]="cdrReportBreakUpDetailsData" MatSort>
 				<!-- Name Column -->
 				<ng-container matColumnDef="sn">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{'display': 'none'}">
 						S.N.</th>
 					<td mat-cell *matCellDef="let row; let i = index">
-						{{paginatorForDistrictwiseCbmdsrFormStatus.pageSize *
-						paginatorForDistrictwiseCbmdsrFormStatus.pageIndex +
+						{{paginatorForReportChildDeathDetail.pageSize *
+							paginatorForReportChildDeathDetail.pageIndex +
 						i +
 						1 }}.</td>
 					<td mat-footer-cell *matFooterCellDef> </td>
@@ -293,9 +159,9 @@
 				<!-- <tr style="background-color: #DCDCDC;" mat-footer-row
 								*matFooterRowDef="displayedChildDeathCountStatus; sticky: true"></tr> -->
 			</table>
-			<mat-paginator #paginatorForDistrictwiseCbmdsrFormStatus [pageSize]="5"
-				[length]="dataSourceForDistrictwiseCbmdsrFormStatus?.data?.length || 0"
-				[pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+			<mat-paginator #paginatorForReportChildDeathDetail [pageSize]="10"
+				[length]="cdrReportBreakUpDetailsData?.data?.length || 0"
+				[pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
 		</div>
 	</kt-portlet-body>
 </kt-portlet>
@@ -371,24 +237,20 @@
 				<ng-container matColumnDef="form_2">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 2</th>
 					<td mat-cell *matCellDef="let element"> {{element?.form_2}} </td>
-
 				</ng-container>
 				<ng-container matColumnDef="form_3A">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3A</th>
 					<td mat-cell *matCellDef="let element"> {{element?.form_3A}} </td>
-
 				</ng-container>
 
 				<ng-container matColumnDef="form_3B">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3B</th>
 					<td mat-cell *matCellDef="let element"> {{element?.form_3B}} </td>
-
 				</ng-container>
 
 				<ng-container matColumnDef="form_3C">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3C</th>
 					<td mat-cell *matCellDef="let element"> {{element?.form_3C}} </td>
-
 				</ng-container>
 
 				<!-- Header row second group -->
