@@ -230,4 +230,18 @@ export class CdrForm1Service {
 			)
 		);
 	}
+
+	getFormStatusReport(criteria?:any) {
+	const url = api.cdr.form1.getFormStatusReport;
+	const params = { params: JSON.stringify(criteria || {})};
+	console.log(params)
+	return this.http.get<any>(url,{ params }).pipe(
+		tap(
+			() => {},
+			({ error: { error } }) => {
+				alert(error.message);
+			}
+		)
+	);
+}
 }

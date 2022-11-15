@@ -162,27 +162,27 @@ const sectionC = new FormGroup({
 	how_many: new FormControl("", []) // Array ['One', 'Two', 'Three', 'Four', 'More Than 4']
 });
 
-const sectionD = new FormGroup({
+const sectionD =  new FormGroup({
 	// 30. Was the onset of labour
-	labour: new FormControl("", [Validators.required]), // Array ['Spontaneous', 'Induced', 'DNK']
+	labour: new FormControl("", []), // Array ['Spontaneous', 'Induced', 'DNK']
 	// 31. What was the Gestational age at the time of admission
-	age_at_time_of_admission: new FormControl("", [Validators.required]), // Array ['Term (> 37–<42 weeks)', 'Preterm(< 28 weeks)', 'Preterm(28–<32 weeks)', 'Preterm(32–<37 weeks)', 'Post term (> 42 weeks)']
+	age_at_time_of_admission: new FormControl("", []), // Array ['Term (> 37–<42 weeks)', 'Preterm(< 28 weeks)', 'Preterm(28–<32 weeks)', 'Preterm(32–<37 weeks)', 'Post term (> 42 weeks)']
 	// 32. What was the Mode of Delivery
-	mode_of_delivery: new FormControl("", [Validators.required]), // Array ['Spontaneous Vaginal (with/without episiotomy)', 'Vacuum/forceps', 'Caesarean section']
+	mode_of_delivery: new FormControl("", []), // Array ['Spontaneous Vaginal (with/without episiotomy)', 'Vacuum/forceps', 'Caesarean section']
 	// 33. Were there any complications during labour?
-	complications_during_labour: new FormControl("", [Validators.required]), // Array ['PROM', 'Sepsis', 'Eclampsia', 'Obstructed labour/Rupture Uterus', 'Others']
+	complications_during_labour: new FormControl("", []), // Array ['PROM', 'Sepsis', 'Eclampsia', 'Obstructed labour/Rupture Uterus', 'Others']
 	complications_during_labour_other: new FormControl("", []),
 	// 34. Was Partograph used?
-	partograph_used: new FormControl("No", [Validators.required]), // Array ['Yes', 'No', 'DNK']
+	partograph_used: new FormControl("No", []), // Array ['Yes', 'No', 'DNK']
 	// 35. Birth weight
-	birth_weight: new FormControl("", [Validators.required,Validators.min(400), Validators.max(15000)]), //
+	birth_weight: new FormControl("", [Validators.min(400), Validators.max(15000)]), //
 	// 36. Was the resuscitation at birth done
-	resuscitation_at_birth: new FormControl("No", [Validators.required]), // Array ['Yes', 'No', 'DNK']
+	resuscitation_at_birth: new FormControl("No", []), // Array ['Yes', 'No', 'DNK']
 	// 37. Who gave resuscitation?
 	who_gave_resuscitation: new FormControl(""), // Array ['Obstetrician', 'Paediatrician', 'Paediatrician', 'Staff Nurse', 'Others']
 	who_gave_resuscitation_other: new FormControl("", []),
 	// 38. APGAR Score (if recorded at time of birth)
-	apgar_score: new FormControl("", [Validators.required,Validators.min(1), Validators.max(7)])
+	apgar_score: new FormControl("", [Validators.min(1), Validators.max(7)])
 });
 
 // Section E: Treatment Details

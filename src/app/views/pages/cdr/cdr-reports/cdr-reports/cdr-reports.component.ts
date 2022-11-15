@@ -56,13 +56,13 @@ export class CdrReportsComponent implements OnInit {
 		} else {
 
 		}
-		this.fromDate = (moment().year() - 1) + "-" + this.mon + "-" + "01";
-		this.toDate = moment().year() + "-" + this.mon + "-" + this.day;
+		this.fromDate = (moment().year() - 1) + "-" + "01" + "-" + "01";
+		this.toDate =  moment().format("YYYY-MM-DD");
 		let param = {
 			previousYearFromDate: this.fromDate,
 			previousYearToDate: this.toDate,
 			where: {
-				date_of_death: { between: [this.fromDate, this.toDate] },
+				updatedAt: { between: [this.fromDate, this.toDate] },
 				statecode: this.state_id ? this.state_id : undefined,
 				districtcode: this.district_id ? this.district_id : undefined,
 				subdistrictcode: this.block_id ? this.block_id : undefined,
@@ -70,14 +70,10 @@ export class CdrReportsComponent implements OnInit {
 			accessUpto: this.currentUser.accessupto
 		}
 		const params = { "where": param.where, "include": ["cdrForm2s", "cdrForm3s", "cdrForm3bs", "cdrForm3cs", "cdrForm4as", "cdrForm4bs"] }
+		console.log("-------->",params)
 		this.cdrForm1Service.getList(params).subscribe(res => {
 			this.reportResponse = new MatTableDataSource(res);
 			this.reportResponse.paginator = this.paginatorForReportResponseDetail;
-		})
-		const parameter = "aniket"
-		this.cdrForm1Service.getCdrReportsDetails(params).subscribe(result => {
-			console.log(result)
-			this.cdrReportDetailsData = new MatTableDataSource(result);
 		})
 
 
@@ -95,7 +91,7 @@ export class CdrReportsComponent implements OnInit {
 
 			this.params = {
 				where: {
-					date_of_death: {
+					updatedAt: {
 						between: [res.from_date ? res.from_date : this.fromDate,
 						res.to_date ? res.to_date : this.toDate]
 					},
@@ -104,7 +100,7 @@ export class CdrReportsComponent implements OnInit {
 					subdistrictcode: res.block_id ? res.block_id : this.block_id ? res.block_id : undefined,
 				}
 			}
-			console.log(this.params.where)
+			
 			const parameter = { "where": this.params.where, "include": ["cdrForm2s", "cdrForm3s", "cdrForm3bs", "cdrForm3cs", "cdrForm4as", "cdrForm4bs"] }
 
 			this.cdrForm1Service.getList(parameter).subscribe(res => {
@@ -146,8 +142,9 @@ export class CdrReportsComponent implements OnInit {
 			//"Village": x.village_id.villagename,
 			"Child Name": x.name,
 			"Mother Name": x.mother_name,
-			"Place of Death": x.palce_of_death,
+			"Date Of Death":x.date_of_birth,
 			"Death Date Time": x.date_of_death,
+			"Place of Death": x.palce_of_death,
 			"Form 1": 'Yes',
 			"Form 2": x.cdrForm2s.length > 0 ? 'yes' : 'No',
 			"Form 3A": x.cdrForm3s.length > 0 ? "Yes" : "No",

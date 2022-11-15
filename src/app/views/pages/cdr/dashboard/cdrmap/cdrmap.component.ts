@@ -40,11 +40,15 @@ export class CDRMapComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
   mapChartDivVar:any;
   districtData;
   type: any;
+  day: any
+	mon: any;
   cbmdsrAndFbmdsrData: any;
   cbmdsrAndFbmdsrDataForDistrict: any;
   cbmdsrAndFbmdsrDataForBlock: any;
   districtDatas = [];
   ngOnInit() {    
+    this.mon = moment().month() + 1;
+		this.day = moment().day() + 1;
     let block_id, district_id, state_id;
     if (this.user.accessupto == "Block" && this.callingFrom == undefined) {
       block_id = this.user.user_block_id;
@@ -76,7 +80,7 @@ export class CDRMapComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
 
   getDeathsWhereCbmdsrAndFbmdsrConducted(passingArg) {
     let previousYearFromDate = (moment().year() - 1) + "-" + "01" + "-" + "01";
-    let previousYearToDate = (moment().year()) + "-" + "12" + "-" + "31";
+    let previousYearToDate = (moment().year()) + "-" + this.mon + "-" + this.day;;
     let param = {
       previousYearFromDate: previousYearFromDate,
       previousYearToDate: previousYearToDate,

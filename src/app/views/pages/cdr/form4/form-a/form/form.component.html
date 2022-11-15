@@ -109,7 +109,7 @@
 								data-ktwizard-state="current">
 								 <div class="kt-heading kt-heading--md sub-heading">
 									Name and Address of facility where death occured
-						</div>
+					        	</div>
 								<div class="kt-form__section kt-form__section--first"
 									*ngIf="form.get('basic') as formBasic">
 									<div class="row">
@@ -1743,14 +1743,10 @@
 											Intrapartum and Postpartum Details (only for inborn
 											babies)
 										</h6>
-										<!-- <ng-container *ngIf="{
-											required: formSectionC.value.referred == 'Yes'
-										} as referralConditions"> -->
-										<!--  -->
 										<div class="form-group col-md-3" *ngIf="{
 												control: formSectionD.get('labour'),
 												label: 'Was the onset of labour',
-												required: true,
+												required: false,
 												type: 'select',
 												selectOptions: {
 													items: ['Spontaneous', 'Induced', 'DNK']
@@ -1767,7 +1763,7 @@
 												control: formSectionD.get('age_at_time_of_admission'),
 												label:
 													'What was the Gestational age at the time of admission',
-												required: true,
+												required: false,
 												type: 'select',
 												selectOptions: {
 													items: [
@@ -1789,7 +1785,7 @@
 										<div class="form-group col-md-3" *ngIf="{
 												control: formSectionD.get('mode_of_delivery'),
 												label: 'What was the Mode of Delivery',
-												required: true,
+												required: false,
 												type: 'select',
 												selectOptions: {
 													items: [
@@ -1811,7 +1807,7 @@
 													'complications_during_labour'
 												),
 												label: 'Were there any complications during labour?',
-												required: true,
+												required: false,
 												type: 'select',
 												selectOptions: {
 													items: [
@@ -1852,7 +1848,7 @@
 										<div class="form-group col-md-3" *ngIf="{
 												control: formSectionD.get('partograph_used'),
 												label: 'Was Partograph used?',
-												required: true,
+												required: false,
 												type: 'select',
 												selectOptions: {
 													items: ['Yes', 'No', 'DNK']
@@ -1868,7 +1864,7 @@
 										<div class="form-group col-md-3" *ngIf="{
 												control: formSectionD.get('birth_weight'),
 												label: 'Birth weight (In Grams)',
-												required: true,
+												required: false,
 												type: 'number'
 											} as form_input">
 											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"
@@ -1882,7 +1878,7 @@
 										<div class="form-group col-md-3" *ngIf="{
 												control: formSectionD.get('resuscitation_at_birth'),
 												label: 'Was the resuscitation at birth done',
-												required: true,
+												required: false,
 												type: 'select',
 												selectOptions: {
 													items: ['Yes', 'No', 'DNK']
@@ -1941,7 +1937,7 @@
 										<div class="form-group col-md-3" *ngIf="{
 												control: formSectionD.get('apgar_score'),
 												label: 'APGAR Score (if recorded at time of birth)',
-												required: true,
+												required: false,
 												type: 'number'
 											} as form_input">
 											<kt-form-input [formControl]="form_input?.control" [type]="form_input?.type"

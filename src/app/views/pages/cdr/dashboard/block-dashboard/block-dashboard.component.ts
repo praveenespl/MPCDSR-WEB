@@ -72,7 +72,7 @@ export class BlockDashboardComponent implements OnInit {
 		} else {
 			//this.getDeathsWhereCbmdsrAndFbmdsrConducted({});
 		}
-		this.fromDate = (moment().year() - 1) + "-" + this.mon + "-" + "01";
+		this.fromDate = (moment().year() - 1) + "-" + "01" + "-" + "01";
 		this.toDate = moment().year() + "-" + this.mon + "-" + this.day;
 		this.where = {
 			statecode: this.state_id ? this.state_id : undefined,
@@ -109,7 +109,7 @@ export class BlockDashboardComponent implements OnInit {
 		let whereParam = {};//this.where;
 		whereParam = {
 			updatedAt: {
-				"$gte": (moment().year() - 1) + "-" + this.mon + "-" + "01",
+				"$gte": (moment().year() - 1) +"-" + "01" + "-" + "01",
 				"$lte": moment().year() + "-" + this.mon + "-" + this.day
 			}
 		}

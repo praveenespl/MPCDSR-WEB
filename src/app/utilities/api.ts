@@ -138,6 +138,7 @@ class MdsrFormCommanApis {
 	readonly getCDRMajorCausesPrevious: string;
 	// CDR Reports
     readonly getCdrReportsDetails: string;
+	readonly getFormStatusReport: string;
 	// CDR Dashboard
 	readonly getCDRDeathAgeWise:string;
 	readonly getCDRDeathForMap:string;
@@ -150,6 +151,7 @@ class MdsrFormCommanApis {
 		this.getExpectedVsActual = `${this.common}/getExpectedVsActual`;
 		this.getNotificationVsReviewData=`${this.common}/getNotificationVsReviewData`;
 		this.getCdrReportsDetails=`${this.common}/getCdrReportsDetails`;
+		this.getFormStatusReport=`${this.common}/getFormStatusReport`;
 		this.getCDRDeathAgeWise = `${this.common}/getCDRDeathAgeWise`;
 		this.getCDRDeathForMap = `${this.common}/getCDRDeathForMap`;
 		this.getNotificationCount = `${this.common}/getNotificationCount`;

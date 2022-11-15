@@ -1,3 +1,4 @@
+import { remove } from 'lodash';
 import { sectionC, sectionD } from './../../../../mdsr/still-birth/form/specs/form';
 import {
 	Component,
@@ -8,7 +9,7 @@ import {
 	ChangeDetectorRef,
 } from "@angular/core";
 import { neonatalDeathdReviewForm } from "./specs/form";
-import { FormGroup } from "@angular/forms";
+import { FormGroup, RequiredValidator, Validators } from "@angular/forms";
 import { startWith, pairwise, take, switchMap } from "rxjs/operators";
 import { getValueChangesInObjects } from "../../../../../../utilities/functions";
 import { StateService } from "../../../../../../services/locality/state.service";
@@ -171,7 +172,6 @@ export class FormComponent implements OnInit, AfterViewInit {
 			const changes = getValueChangesInObjects(prevValue, nextValue);
 
 			// Basic:start
-			// Basic:start
 			if (changes.hasOwnProperty("basic")) {
 				const basic = changes.basic;
 
@@ -230,6 +230,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 						});
 				}
 			}
+			// Basic:end
 
 			// Section A:start
 			if (changes.hasOwnProperty("sectionA")) {
@@ -298,13 +299,22 @@ export class FormComponent implements OnInit, AfterViewInit {
 				// Address:end
 			}
 			// Section A:end
-			console.log("Malik-->", this.form.controls.sectionC.value.referred == "Yes")
 			//Section D:Start
-			if (this.form.controls.sectionC.value.referred == "No") {
-				this.inborn = false;
-			}else{
-				this.inborn = true;
-				 this.form.get("sectionD").valid;
+			// console.log(this.form,"formgroup")
+			if (changes.hasOwnProperty("sectionC")) {
+				if (this.form.controls.sectionC.value.referred !== "No"){
+					this.inborn = true;
+					//  this.form.get('sectionD').clearValidators();
+					// this.form.get('sectionD').setValidators ([]);
+					//  this.form.controls.sectionD.reset();
+					//  this.form.controls.sectionD.setErrors(null)
+					//  this.form.controls.sectionD.updateValueAndValidity();
+					//  this.changeDetectorRef.detectChanges();
+					console.log("sectionD validation cleared")
+
+				} else {
+					this.inborn = false;
+				}
 			}
 			//Section D: End
 		});
@@ -503,7 +513,6 @@ export class FormComponent implements OnInit, AfterViewInit {
 				default:
 					break;
 			}
-			console.log('invalid', invalid);
 			if (invalid) {
 				this.isSubmitted = true;
 				this.alertService.fireAlert({

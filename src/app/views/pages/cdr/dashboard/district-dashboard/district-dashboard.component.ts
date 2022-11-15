@@ -59,7 +59,7 @@ export class DistrictDashboardComponent implements OnInit {
 	ngOnInit() {
 	    this.mon = moment().month() + 1;
 			this.day = moment().date() + 1;
-
+		debugger;
 		// if (moment().date() > 10) {
 		// 	this.day = moment().date();
 		// } else {
@@ -70,14 +70,15 @@ export class DistrictDashboardComponent implements OnInit {
 		} else if (this.currentUser.accessupto == "District") {
 			this.district_id = this.currentUser.user_district_id['districtcode'];
 			this.getSubmittedFormsStatusBlockwise({ "districtcode": this.district_id });
-      this.getBlocksData({ "districtcode": this.district_id });
+            this.getBlocksData({ "districtcode": this.district_id });
 		} else if (this.currentUser.accessupto == "State") {
 			this.state_id = this.currentUser.user_state_id['statecode'];
 		} else {
 			//this.getDeathsWhereCbmdsrAndFbmdsrConducted({});
 		}
-		this.fromDate = (moment().year() - 1) + "-" + this.mon + "-" + "01";
+		this.fromDate = (moment().year() - 1) + "-" + "01" + "-" + "01";
 		this.toDate = moment().year() + "-" + this.mon + "-" + this.day;
+		debugger;
 		this.where = {
 			statecode: this.state_id ? this.state_id : undefined,
 			districtcode: this.district_id ? this.district_id : undefined,
@@ -118,7 +119,7 @@ export class DistrictDashboardComponent implements OnInit {
 		this.mapChartDiv = 'block';
 		this.whereCbmdsrAndFbmdsrConductedInBlock = [];
 		let previousYearFromDate = (moment().year() - 1) + "-" + "01" + "-" + "01";
-		let previousYearToDate = (moment().year()) + "-" + "12" + "-" + "31";
+		let previousYearToDate = (moment().year()) +"-" + this.mon + "-" + this.day;
 		let param = {
 			previousYearFromDate: previousYearFromDate,
 			previousYearToDate: previousYearToDate,
@@ -235,14 +236,14 @@ export class DistrictDashboardComponent implements OnInit {
 		let whereParam = {};//this.where;
 		whereParam = {
 			updatedAt: {
-				"$gte": (moment().year() - 1) + "-" + this.mon + "-" + "01",
+				"$gte": (moment().year() - 1) + "-" + "01" + "-" + "01",
 				"$lte": moment(this.toDate).add(1, 'day')
 			}
 		}
 		if (arg.type == "CBMDSR") {
 			whereParam['palce_of_death'] = { '$in': ["Home", "In transit", "Other"] }
 		} else if (arg.type == "FBMDSR") {
-			whereParam['palce_of_death'] = { '$in': ["Hospital"] }
+			whereParam['palce_of_death'] = { '$in': ["Hospital", "Health facility"] }
 		}
 		whereParam['subdistrictcode'] = arg.subdistrictcode;
 		this.cdrForm1Service.getNotificationDetails(whereParam).subscribe(res => {
@@ -275,7 +276,7 @@ export class DistrictDashboardComponent implements OnInit {
 		this.totalFbmdsrBlockwiseForm4B = 0;
 		this.isShowFormsStatusBlockwise = false;
 		let previousYearFromDate = (moment().year() - 1) + "-" + "01" + "-" + "01";
-		let previousYearToDate = (moment().year()) + "-" + "12" + "-" + "31";
+		let previousYearToDate = (moment().year()) + "-" + this.mon + "-" + this.day;
 		//let previousYearFromDate=(moment().year())+"-"+"01"+"-"+"01";
 		//let previousYearToDate=(moment().year())+"-"+"12"+"-"+"31";
 		let param = {

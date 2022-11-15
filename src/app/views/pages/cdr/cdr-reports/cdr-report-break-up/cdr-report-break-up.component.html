@@ -1,4 +1,4 @@
-<p>cdr-report-break-up works!</p>
+
 <kt-portlet>
 	<div class="col-md-12">
 		<button mat-raised-button color="primary" style="float:right;" (click)="showFilters()">
@@ -7,9 +7,9 @@
 	</div>
 </kt-portlet>
 <kt-portlet>
-	<kt-portlet-header [title]="'CDR Detail Reports'" [class]="'kt-portlet__head--lg'">
+	<kt-portlet-header [title]="'CDR Detail Reports Break-Up'" [class]="'kt-portlet__head--lg'">
 		<ng-container ktPortletTools>
-			<button class="mat-raised-button" (click)="forDistrictwiseCbmdsrFormStatusExportTable()">
+			<button class="mat-raised-button" >
 				Export
 			</button>
 		</ng-container>
@@ -122,7 +122,7 @@
 
 				<!-- Header row second group -->
 				<ng-container matColumnDef="header-row-second-group">
-					<th mat-header-cell *matHeaderCellDef [attr.colspan]="9" style="text-align:center">
+					<th mat-header-cell *matHeaderCellDef [attr.colspan]="10" style="text-align:center">
 						Number Of Child Death Reported </th>
 				</ng-container>
 
@@ -146,12 +146,12 @@
 				</ng-container>
 				<!-- Header row third group -->
 				<ng-container matColumnDef="header-row-third-group">
-					<th mat-header-cell *matHeaderCellDef [attr.colspan]="4" style="text-align:center">
+					<th mat-header-cell *matHeaderCellDef [attr.colspan]="3" style="text-align:center">
 						Place Of Death </th>
 				</ng-container>
 
 				<tr mat-header-row
-					*matHeaderRowDef="['1','4','2','5','header-row-second-group','header-row-third-group']"></tr>
+					*matHeaderRowDef="['1','4','2','5','header-row-second-group','header-row-third-group'];sticky:true"></tr>
 				<tr mat-header-row *matHeaderRowDef="displayedChildDeathCountStatus;sticky: true">
 				</tr>
 				<tr mat-row *matRowDef="let row; columns: displayedChildDeathCountStatus;">
@@ -165,7 +165,7 @@
 		</div>
 	</kt-portlet-body>
 </kt-portlet>
-<kt-portlet>
+<!-- <kt-portlet>
 	<kt-portlet-header [title]="'CDR Detail Reports'" [class]="'kt-portlet__head--lg'">
 		<ng-container ktPortletTools>
 			<button class="mat-raised-button" (click)="forDistrictwiseCbmdsrFormStatusExportTable()">
@@ -176,14 +176,14 @@
 
 	<kt-portlet-body>
 		<div style="overflow-y: auto; max-height: 320px;">
-			<table class="w-100 shadow" mat-table [dataSource]="cdrReportDetailsData" MatSort>
-				<!-- Name Column -->
+			<table class="w-100 shadow" mat-table [dataSource]="cdrFormStatusBreakUpDetailData" MatSort>
+				
 				<ng-container matColumnDef="sn">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{'display': 'none'}">
 						S.N.</th>
 					<td mat-cell *matCellDef="let row; let i = index">
-						{{paginatorForDistrictwiseCbmdsrFormStatus.pageSize *
-						paginatorForDistrictwiseCbmdsrFormStatus.pageIndex +
+						{{paginatorForCdrFormStatusDetail.pageSize *
+							paginatorForCdrFormStatusDetail.pageIndex +
 						i +
 						1 }}.</td>
 					<td mat-footer-cell *matFooterCellDef> </td>
@@ -205,7 +205,7 @@
 						District </th>
 					<td mat-cell *matCellDef="let element">
 						{{element?.districtname}}</td>
-					<!-- <td mat-footer-cell *matFooterCellDef> TOTAL </td> -->
+					
 				</ng-container>
 
 				<ng-container matColumnDef="2">
@@ -224,7 +224,7 @@
 					<th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{'display': 'none'}">
 						Total Death </th>
 					<td mat-cell *matCellDef="let element">
-						{{element?.total_death}}</td>
+						{{element?.total}}</td>
 				</ng-container>
 				<ng-container matColumnDef="6">
 					<th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Total Death</th>
@@ -232,28 +232,28 @@
 
 				<ng-container matColumnDef="form_1">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 1</th>
-					<td mat-cell *matCellDef="let element"> {{element?.form_1}} </td>
+					<td mat-cell *matCellDef="let element"> {{element?.form1cbcdsr}} </td>
 				</ng-container>
 				<ng-container matColumnDef="form_2">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 2</th>
-					<td mat-cell *matCellDef="let element"> {{element?.form_2}} </td>
+					<td mat-cell *matCellDef="let element"> {{element?.form2}} </td>
 				</ng-container>
 				<ng-container matColumnDef="form_3A">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3A</th>
-					<td mat-cell *matCellDef="let element"> {{element?.form_3A}} </td>
+					<td mat-cell *matCellDef="let element"> {{element?.form3a}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef="form_3B">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3B</th>
-					<td mat-cell *matCellDef="let element"> {{element?.form_3B}} </td>
+					<td mat-cell *matCellDef="let element"> {{element?.form3b}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef="form_3C">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Form 3C</th>
-					<td mat-cell *matCellDef="let element"> {{element?.form_3C}} </td>
+					<td mat-cell *matCellDef="let element"> {{element?.form3c}} </td>
 				</ng-container>
 
-				<!-- Header row second group -->
+				
 				<ng-container matColumnDef="header-row-second-group">
 					<th mat-header-cell *matHeaderCellDef [attr.colspan]="5" style="text-align:center">
 						CBCDR Status </th>
@@ -262,22 +262,22 @@
 				<ng-container matColumnDef="form1">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>
 						Form 1</th>
-					<td mat-cell *matCellDef="let element"> {{element?.form1}} </td>
+					<td mat-cell *matCellDef="let element"> {{element?.form1fbcdsr}} </td>
 
 				</ng-container>
 				<ng-container matColumnDef="form_4A">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>
 						Form 4A</th>
-					<td mat-cell *matCellDef="let element"> {{element?.form_4A}} </td>
+					<td mat-cell *matCellDef="let element"> {{element?.form4a}} </td>
 
 				</ng-container>
 				<ng-container matColumnDef="form_4B">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>
 						Form 4B</th>
-					<td mat-cell *matCellDef="let element"> {{element?.form_4B}} </td>
+					<td mat-cell *matCellDef="let element"> {{element?.form4b}} </td>
 
 				</ng-container>
-				<!-- Header row third group -->
+				
 				<ng-container matColumnDef="header-row-third-group">
 					<th mat-header-cell *matHeaderCellDef [attr.colspan]="4" style="text-align:center">
 						FBCDR Status </th>
@@ -289,12 +289,11 @@
 				</tr>
 				<tr mat-row *matRowDef="let row; columns: displayedChildDeathFormStatus;">
 				</tr>
-				<!-- <tr style="background-color: #DCDCDC;" mat-footer-row
-								*matFooterRowDef="displayedChildDeathCountStatus; sticky: true"></tr> -->
+				
 			</table>
-			<mat-paginator #paginatorForDistrictwiseCbmdsrFormStatus [pageSize]="5"
-				[length]="dataSourceForDistrictwiseCbmdsrFormStatus?.data?.length || 0"
-				[pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+			<mat-paginator #paginatorForCdrFormStatusDetail [pageSize]="10"
+				[length]="cdrFormStatusBreakUpDetailData?.data?.length || 0"
+				[pageSizeOptions]="[10, 20, 50,100]" showFirstLastButtons></mat-paginator>
 		</div>
 	</kt-portlet-body>
-</kt-portlet>
+</kt-portlet> -->
